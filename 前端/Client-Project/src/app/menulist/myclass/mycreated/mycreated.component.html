@@ -1,0 +1,25 @@
+
+
+<button (click)="Login()">登陆</button>
+<div>{{username}}</div>
+
+
+
+<ul>
+  <li *ngFor="let item of user">
+    <span>Title: {{item.sName}}</span>
+  </li>
+  <hr />
+
+
+
+  <li>
+  
+    <div>Title: {{user1.sId}}</div>
+    <div>Title: {{user1.sName}}</div>
+    <div>Title: {{user1.gender}}</div>
+  </li>
+
+</ul>
+
+<button (click)="PostTest()">PostTest</button>

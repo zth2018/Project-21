@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+.blue-color {
+  color: dodgerblue;
+}
+
+.black-color {
+  color: black;
+}
+.white-color {
+  color: white;
+}
+.advanced-form {
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.2);
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.foot {
+  text-align: center;
+  height: 20px;
+  padding-top: 0px;
+}
