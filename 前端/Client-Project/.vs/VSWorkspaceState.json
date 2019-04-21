@@ -1,8 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src\\app\\menulist\\myclass\\created"
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\menulist",
+    "\\src\\app\\menulist\\myclass",
+    "\\src\\app\\menulist\\myclass\\mycreated",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\home",
+    "\\src\\app\\pages\\login"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\src\\app\\menulist\\myclass\\mycreated\\mycreated.component.ts",
   "PreviewInSolutionExplorer": false
 }
