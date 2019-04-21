@@ -7,25 +7,25 @@ import { HeadComponent } from './components/head/head.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ForgotpasswordComponent } from './pages/forgotpassword/forgotpassword.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { LoginFormComponent } from './forms/login-form/login-form.component';
+import { SignupFormComponent } from './forms/signup-form/signup-form.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { Page403Component } from './pages/page403/page403.component';
 import { Page500Component } from './pages/page500/page500.component';
 import { LockpageComponent } from './pages/lockpage/lockpage.component';
 import { ListpageComponent } from './shares/listpage/listpage.component';
 import { EditpageComponent } from './shares/editpage/editpage.component';
-import { LockFormComponent } from './components/lock-form/lock-form.component';
-import { FogotpasswordFormComponent } from './components/fogotpassword-form/fogotpassword-form.component';
-import { MycreatedComponent } from './menulist/myclass/mycreated/mycreated.component';
-import { MyjoinedComponent } from './menulist/myclass/myjoined/myjoined.component';
+import { LockFormComponent } from './forms/lock-form/lock-form.component';
+import { FogotpasswordFormComponent } from './forms/fogotpassword-form/fogotpassword-form.component';
+import { MycreatedComponent } from './menulist/MyClass/created/mycreated.component';
+import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
 
 
 
