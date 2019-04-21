@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { ForgotpasswordComponent } from './pages/forgotpassword/forgotpassword.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { Page404Component } from './pages/page404/page404.component';
@@ -10,8 +10,8 @@ import { Page500Component } from './pages/page500/page500.component';
 import { LockpageComponent } from './pages/lockpage/lockpage.component';
 import { ListpageComponent } from './shares/listpage/listpage.component';
 import { EditpageComponent } from './shares/editpage/editpage.component';
-import { MycreatedComponent } from './menulist/myclass/mycreated/mycreated.component';
-import { MyjoinedComponent } from './menulist/myclass/myjoined/myjoined.component';
+import { MycreatedComponent } from './menulist/MyClass/created/mycreated.component';
+import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
 
 
 const routes: Routes = [
