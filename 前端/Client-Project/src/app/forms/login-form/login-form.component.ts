@@ -27,10 +27,7 @@ export class LoginFormComponent implements OnInit {
     })
   }
 
-  
-
-   
-  
+      
 
   submitForm(): void {
 
@@ -44,15 +41,6 @@ export class LoginFormComponent implements OnInit {
 
   }
 
-   
-
-
-
- 
-
-
-
- 
 
 
 }
