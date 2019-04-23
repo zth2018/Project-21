@@ -3,11 +3,8 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\forms",
-    "\\src\\app\\menulist\\myclass",
-    "\\src\\app\\menulist\\myclass\\mycreated",
-    "\\src\\app\\pages"
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\menulist",
   "PreviewInSolutionExplorer": false
 }
