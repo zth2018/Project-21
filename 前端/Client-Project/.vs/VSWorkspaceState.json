@@ -4,10 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\forms",
-    "\\src\\app\\menulist\\myclass",
-    "\\src\\app\\menulist\\myclass\\mycreated",
-    "\\src\\app\\pages"
+    "\\src\\app\\forms\\login-form",
+    "\\src\\app\\menulist",
+    "\\src\\app\\menulist\\MyClass",
+    "\\src\\app\\menulist\\MyClass\\created",
+    "\\src\\app\\services",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\forms\\login-form\\login-form.component.ts",
   "PreviewInSolutionExplorer": false
 }
