@@ -1,0 +1,21 @@
+-- ----------------------------
+-- Table structure for `t_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `T_User`;
+CREATE TABLE `T_User` (
+  `id` varchar(50) NOT NULL DEFAULT '0',
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `useable` int(11) DEFAULT NULL,
+  `addtime` varchar(50) DEFAULT NULL,
+  `logintime` varchar(50) DEFAULT NULL,
+  `loginip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+INSERT INTO `T_User` VALUES ('666b477254384bcfbd54916376b75646', 'lisi', 'lisi', null, null, '2018-03-04 15:51:49', null, null);
+INSERT INTO `T_User` VALUES ('771f48f524ae4786aabc4a1a92ffe666', 'lisi', 'lisi', null, null, null, null, null);
