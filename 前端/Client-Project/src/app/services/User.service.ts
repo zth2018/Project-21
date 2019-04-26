@@ -6,7 +6,8 @@ import { environment } from '../../environments/environment';
 
 interface login {
   result: boolean;
-  meg: string;
+  msg: string;
+  taken: string;
 }
 
 
@@ -37,21 +38,21 @@ export class UserService {
     return this.username;
   }
 
-  Login(id:string,pw:string) {    
+  Login(phone:string,pw:string):any {    
   
-    console.log(id);
+    console.log(phone);
     console.log(pw);
-    
-    this.username = id;
-    //if (id != null && pw != null) {
-    //  this.http.get<login>(this.serveurl + "/login?id=" + id + "&pw=" + pw, {
-    //    responseType:"json"
-    //  }).subscribe(data => {
+    this.username = phone;
 
-    //  })
+    if (phone != null && pw != null) {
+      this.http.get<login>(this.serveurl+"/user" + "/login?phone=" + phone + "&password=" + pw, {
+        responseType:"json"
+      }).subscribe(data => {
+        console.log(data.msg);
+        return data;
+      })
 
-
-    //}
+    }
   }
 
   RememberUsernam(id:string) {

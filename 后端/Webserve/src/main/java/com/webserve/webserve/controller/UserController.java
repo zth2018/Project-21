@@ -2,14 +2,13 @@ package com.webserve.webserve.controller;
 
 
 import com.webserve.webserve.entity.User;
+import com.webserve.webserve.entity.Login;
 import com.webserve.webserve.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -53,5 +52,21 @@ public class UserController {
         System.out.println(result);
     }
 
+    @GetMapping("/login")
+    public Login login(@RequestParam String phone,@RequestParam String password){
+        Login result=new Login();
+        if(password.equals(this.userService.loginByPhone(phone))==true){
+            result.setResult(true);
+            result.setTaken("OK");
+            result.setMsg("OK-Again");
+        }else {
+            result.setResult(false);
+            result.setTaken("NOT-OK");
+            result.setMsg("NOT-OK-Again");
+        }
+
+
+        return result;
+    }
 
 }

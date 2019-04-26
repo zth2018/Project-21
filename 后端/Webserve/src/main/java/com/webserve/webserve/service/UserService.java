@@ -10,4 +10,8 @@ public interface UserService {
     int update(User user);
 
     User getById(Integer id);
+
+    String loginByPhone(String phone);
+
+    String loginByEmail(String email);
 }
