@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/User.service';
 import {  RouterModule } from '@angular/router';
+import { concat } from 'rxjs';
+
+
+export interface login {
+  result: boolean;
+  taken: string;
+  msg: string;
+}
+
 
 @Component({
   selector: 'app-login-form',
@@ -11,6 +20,8 @@ import {  RouterModule } from '@angular/router';
 export class LoginFormComponent implements OnInit {
 
   user: any;
+  loginres: login;
+
 
   validateForm: FormGroup;
 
@@ -37,8 +48,8 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.user = this.validateForm.getRawValue();
-    this.http.Login(this.user.userName, this.user.password);
-
+    this.loginres=this.http.Login(this.user.userName, this.user.password);
+    //console.log(this.loginres.msg);
   }
 
 

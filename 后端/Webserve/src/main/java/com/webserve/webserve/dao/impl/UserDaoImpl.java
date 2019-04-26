@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int deleteById(Integer id) {
-        String sql = "delete from T_User where id = ?";
+        String sql = "delete from t_user where id = ?";
         return this.jdbcTemplate.update(sql, id);
     }
 
@@ -61,5 +61,27 @@ public class UserDaoImpl implements UserDao {
         }, id);
     }
 
+    @Override
+    public String loginByPhone(String phone){
+        String sql = "select password from t_user where phone = ?";
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("password");
+            }
+        },phone);
+    }
+
+
+    @Override
+    public String loginByEmail(String email){
+        String sql = "select password from t_user where email = ?";
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("password");
+            }
+        },email);
+    }
 
 }

@@ -11,6 +11,6 @@
     "\\src\\app\\services",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\forms\\login-form\\login-form.component.ts",
+  "SelectedNode": "\\src\\app\\services\\User.service.ts",
   "PreviewInSolutionExplorer": false
 }

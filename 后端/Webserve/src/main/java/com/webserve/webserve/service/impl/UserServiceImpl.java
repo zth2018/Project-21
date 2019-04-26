@@ -32,4 +32,13 @@ public class UserServiceImpl implements UserService {
         return userDao.getById(id);
     }
 
+    @Override
+    public  String loginByPhone(String phone){
+        return userDao.loginByPhone(phone);
+    }
+
+    @Override
+    public  String loginByEmail(String email){
+        return userDao.loginByEmail(email);
+    }
 }
