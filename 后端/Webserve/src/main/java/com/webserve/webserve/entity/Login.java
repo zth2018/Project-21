@@ -6,9 +6,17 @@ public class Login implements Serializable {
     private boolean result;
     private String taken;
     private String msg;
-
+    private String username;
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setResult(boolean result) {

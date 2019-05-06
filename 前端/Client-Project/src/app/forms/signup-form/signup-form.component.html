@@ -1,10 +1,10 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="advanced-form">
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" ><span style="color:white">手机号码</span></nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phone" ><span style="color:white">手机号码</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="email" id="email" />
-      <nz-form-explain *ngIf="validateForm.get('email')?.dirty && validateForm.get('email')?.errors">
+      <input nz-input formControlName="phone" id="phone" />
+      <nz-form-explain *ngIf="validateForm.get('phone')?.dirty && validateForm.get('phone')?.errors">
         请输入您的手机号码!
       </nz-form-explain>
     </nz-form-control>
@@ -18,7 +18,7 @@
              id="password"
              formControlName="password"
              (ngModelChange)="updateConfirmValidator()" />
-      <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">请输入密码!</nz-form-explain>
+      <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">密码最少为6位，必需包含数字和字母！</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
 

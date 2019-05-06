@@ -1,6 +1,7 @@
 
 <form nz-form [formGroup]="validateForm" class="advanced-form" (ngSubmit)="submitForm()">
   <nz-form-item>
+    <p *ngIf="a" style="color:red">{{msg}}</p>
     <nz-form-control>
       <nz-input-group [nzPrefix]="prefixUser">
         <input type="text" nz-input formControlName="userName" placeholder="用户名" />

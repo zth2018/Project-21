@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from '../../environments/environment';
+import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 
 
 interface login {
   result: boolean;
   msg: string;
   taken: string;
+  username: string;
 }
 
 
@@ -19,7 +21,7 @@ interface login {
 export class UserService {
 
   username: string;
-  isLogin: boolean;
+  loginIfo: login;
 
 
   serveurl: any = environment.ServeUrl;
@@ -38,29 +40,32 @@ export class UserService {
     return this.username;
   }
 
-  Login(phone:string,pw:string):any {    
-  
-    console.log(phone);
-    console.log(pw);
-    this.username = phone;
+  Login(phone:string,pw:string,rt):void {    
 
     if (phone != null && pw != null) {
       this.http.get<login>(this.serveurl+"/user" + "/login?phone=" + phone + "&password=" + pw, {
         responseType:"json"
       }).subscribe(data => {
-        console.log(data.msg);
-        return data;
+        this.loginIfo = {
+          result: data['result'],
+          msg: data['msg'],
+          taken: data['taken'],
+          username:data['username']
+        }
+        localStorage.setItem("User", JSON.stringify(this.loginIfo));
+        rt(this.loginIfo);
       })
-
     }
+
   }
 
-  RememberUsernam(id:string) {
-    localStorage.setItem("UserName", JSON.stringify(id));
+
+  RememberUsernam(phone:string) {
+    localStorage.setItem("Userphone", JSON.stringify(phone));
   }
 
   GetLocalUserName() {
-    return JSON.parse(localStorage.getItem("UserName"));
+    return JSON.parse(localStorage.getItem("Userphone"));
   }
 
 

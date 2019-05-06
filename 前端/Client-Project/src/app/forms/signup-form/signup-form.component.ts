@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
+
+var phone = /^[1][3,4,5,7,8][0-9]{9}$/;
+
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
@@ -10,7 +13,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class SignupFormComponent implements OnInit {
 
   validateForm: FormGroup;
-
+ 
 
 
   constructor(private fb: FormBuilder) { }
@@ -20,13 +23,10 @@ export class SignupFormComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      email: [null, [Validators.email, Validators.required]],
-      password: [null, [Validators.required]],
+      phone: [null, [Validators.required, Validators.pattern(/^[1][3,4,5,7,8][0-9]{9}$/)]],
+      password: [null, [Validators.required, Validators.pattern(/^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/)]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],
-      phoneNumberPrefix: ['+86'],
-      phoneNumber: [null, [Validators.required]],
-      website: [null, [Validators.required]],
+      nickname: [null, [Validators.required]],       
       captcha: [null, [Validators.required]],
       agree: [false]
     });

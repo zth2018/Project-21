@@ -64,12 +64,24 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String loginByPhone(String phone){
         String sql = "select password from t_user where phone = ?";
-        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
-            @Override
-            public String mapRow(ResultSet resultSet, int i) throws SQLException {
-                return resultSet.getString("password");
-            }
-        },phone);
+//        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+//            @Override
+//            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+//                return resultSet.getString("password");
+//            }
+//        },phone);
+        try {
+            return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+                @Override
+                public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                    return resultSet.getString("password");
+                }
+            }, phone);
+        }catch (Exception e){
+            return "0";
+        }
+
+
     }
 
 

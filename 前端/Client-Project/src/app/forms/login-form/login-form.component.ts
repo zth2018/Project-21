@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/User.service';
-import {  RouterModule } from '@angular/router';
-import { concat } from 'rxjs';
+import {  Router } from '@angular/router';
+
 
 
 export interface login {
   result: boolean;
   taken: string;
   msg: string;
+  username: string;
 }
 
 
@@ -20,13 +21,13 @@ export interface login {
 export class LoginFormComponent implements OnInit {
 
   user: any;
-  loginres: login;
-
+  a: boolean=false;
+  msg: string;
 
   validateForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private http: UserService) { }
+  constructor(private fb: FormBuilder, private http: UserService,private router:Router) { }
 
 
 
@@ -48,8 +49,16 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.user = this.validateForm.getRawValue();
-    this.loginres=this.http.Login(this.user.userName, this.user.password);
-    //console.log(this.loginres.msg);
+    this.http.Login(this.user.userName, this.user.password, (rs: login) => {
+      this.a = !rs.result;
+      if (rs.result) {
+        this.router.navigateByUrl("homepage");
+      }
+      else {
+        this.msg = rs.msg;
+      }
+    });
+   
   }
 
 
