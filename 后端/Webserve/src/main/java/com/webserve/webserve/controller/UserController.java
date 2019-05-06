@@ -16,14 +16,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/save")
+    //注册
+    @PostMapping("/register")
     @ResponseBody
-    public User save() {
+    public User register(@RequestBody User u) {
         User user = new User();
-        int id = new Random().nextInt(10000);
-        user.setId(id);
-        user.setUsername("张三" + id);
-        user.setPassword("zhangsan" + id);
+
+        user.setUsername(u.getUsername());
+        user.setPassword(u.getPassword());
 
         int result = this.userService.insert(user);
         System.out.println(result);
@@ -55,18 +55,25 @@ public class UserController {
     @GetMapping("/login")
     public Login login(@RequestParam String phone,@RequestParam String password){
         Login result=new Login();
-        if(password.equals(this.userService.loginByPhone(phone))==true){
-            result.setResult(true);
-            result.setTaken("OK");
-            result.setMsg("OK-Again");
-        }else {
+        String pw=this.userService.loginByPhone(phone);
+        if(pw.equals("0")==true){
             result.setResult(false);
             result.setTaken("NOT-OK");
-            result.setMsg("NOT-OK-Again");
+            result.setMsg("用户不存在!");
+        }else if(password.equals(pw)==true){
+            result.setResult(true);
+            result.setTaken("OK");
+            result.setMsg("登陆成功");
+        }else{
+            result.setResult(false);
+            result.setTaken("NOT-OK");
+            result.setMsg("密码错误!");
         }
-
 
         return result;
     }
+
+
+
 
 }
