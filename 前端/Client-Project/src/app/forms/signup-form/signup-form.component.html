@@ -1,9 +1,21 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="advanced-form">
 
+
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phone" ><span style="color:white">手机号码</span></nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username"><span style="color:white">姓名</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="phone" id="phone" />
+      <input nz-input formControlName="username" id="username" />
+      <nz-form-explain *ngIf="validateForm.get('username')?.dirty && validateForm.get('username')?.errors">
+        请输入您的姓名!
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phone"><span style="color:white">手机号码</span></nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input #phone formControlName="phone" id="phone"  (blur)="checkphone(phone.value)" />
       <nz-form-explain *ngIf="validateForm.get('phone')?.dirty && validateForm.get('phone')?.errors">
         请输入您的手机号码!
       </nz-form-explain>
@@ -23,7 +35,7 @@
   </nz-form-item>
 
 
-  <nz-form-item >
+  <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired><span style="color:white">确认密码</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
       <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
@@ -39,7 +51,7 @@
   </nz-form-item>
 
 
- 
+
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired><span style="color:white">验证码</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
@@ -52,7 +64,7 @@
         </div>
       </div>
       <nz-form-explain *ngIf="validateForm.get('captcha')?.dirty && validateForm.get('captcha')?.errors">请输入您获取的验证码!</nz-form-explain>
-     
+
     </nz-form-control>
   </nz-form-item>
   <nz-form-item nz-row style="margin-bottom:8px;">

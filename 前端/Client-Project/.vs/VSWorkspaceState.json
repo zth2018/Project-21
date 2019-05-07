@@ -8,9 +8,9 @@
     "\\src\\app\\forms\\signup-form",
     "\\src\\app\\menulist",
     "\\src\\app\\menulist\\MyClass",
-    "\\src\\app\\menulist\\MyClass\\created",
-    "\\src\\app\\services"
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\login"
   ],
-  "SelectedNode": "\\src\\app\\forms\\signup-form\\signup-form.component.ts",
+  "SelectedNode": "\\src\\app\\services\\User.service.ts",
   "PreviewInSolutionExplorer": false
 }

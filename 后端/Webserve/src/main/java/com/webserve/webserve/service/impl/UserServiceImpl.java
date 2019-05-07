@@ -41,4 +41,15 @@ public class UserServiceImpl implements UserService {
     public  String loginByEmail(String email){
         return userDao.loginByEmail(email);
     }
+
+    @Override
+    public String checkphone(String phone){
+        return userDao.checkphone(phone);
+    }
+
+    @Override
+    public int notelogintime(String phone){
+        return userDao.notelogintime(phone);
+    }
+
 }

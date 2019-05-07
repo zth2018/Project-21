@@ -9,7 +9,11 @@ public interface UserService {
 
     int update(User user);
 
+    int notelogintime(String phone);
+
     User getById(Integer id);
+
+    String checkphone(String phone);
 
     String loginByPhone(String phone);
 

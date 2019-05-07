@@ -19,15 +19,15 @@ public class UserController {
     //注册
     @PostMapping("/register")
     @ResponseBody
-    public User register(@RequestBody User u) {
+    public int register(@RequestBody User u) {
         User user = new User();
 
         user.setUsername(u.getUsername());
         user.setPassword(u.getPassword());
-
+        user.setPhone(u.getPhone());
         int result = this.userService.insert(user);
         System.out.println(result);
-        return user;
+        return result;
     }
 
     @RequestMapping("/getById")
@@ -64,6 +64,7 @@ public class UserController {
             result.setResult(true);
             result.setTaken("OK");
             result.setMsg("登陆成功");
+            this.userService.notelogintime(phone);
         }else{
             result.setResult(false);
             result.setTaken("NOT-OK");
@@ -73,7 +74,15 @@ public class UserController {
         return result;
     }
 
-
+    @GetMapping("/checkphone")
+    public boolean checkphone(@RequestParam String phone){
+        String id=this.userService.checkphone(phone);
+        if(id.equals("0")){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 
 }

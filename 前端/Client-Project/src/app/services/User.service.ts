@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from '../../environments/environment';
 import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
-
+import { Router} from '@angular/router';
 
 interface login {
   result: boolean;
@@ -12,6 +12,11 @@ interface login {
   username: string;
 }
 
+interface User {
+  username: string;
+  password: string;
+  phone: string;
+}
 
 
 
@@ -22,11 +27,11 @@ export class UserService {
 
   username: string;
   loginIfo: login;
-
+  user: User;
 
   serveurl: any = environment.ServeUrl;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private router:Router) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -59,6 +64,28 @@ export class UserService {
 
   }
 
+  Register(username: string, password: string, phone: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.user = {
+      username: username,
+      phone: phone,
+      password:password
+    }
+    this.http.post<any>(this.serveurl + "/user" + "/register",this.user , httpOptions).subscribe(data => {
+      if (data == 1) {
+        this.Login(phone, password, (rt: any) => {
+          this.router.navigateByUrl("homepage");
+        });
+      }
+
+    })
+
+  }
 
   RememberUsernam(phone:string) {
     localStorage.setItem("Userphone", JSON.stringify(phone));
@@ -68,6 +95,19 @@ export class UserService {
     return JSON.parse(localStorage.getItem("Userphone"));
   }
 
+
+  checkphone(phone: string,rt) {
+    this.http.get(this.serveurl + "/user" + "/checkphone?phone=" + phone, {
+      responseType:"json"
+    }).subscribe(result => {
+      rt(result);
+
+    })
+
+
+      
+
+  }
 
 }
 
