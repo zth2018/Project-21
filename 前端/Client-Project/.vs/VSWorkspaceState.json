@@ -9,8 +9,8 @@
     "\\src\\app\\menulist",
     "\\src\\app\\menulist\\MyClass",
     "\\src\\app\\pages",
-    "\\src\\app\\pages\\login"
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\services\\User.service.ts",
+  "SelectedNode": "\\src\\main.ts",
   "PreviewInSolutionExplorer": false
 }

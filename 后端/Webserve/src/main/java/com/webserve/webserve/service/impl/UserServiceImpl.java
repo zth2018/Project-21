@@ -52,4 +52,6 @@ public class UserServiceImpl implements UserService {
         return userDao.notelogintime(phone);
     }
 
+    @Override
+    public User getByPhone(String phone){ return userDao.getByPhone(phone);}
 }

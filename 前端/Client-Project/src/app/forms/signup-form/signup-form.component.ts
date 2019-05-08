@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { Stream } from 'stream';
 import { UserService } from '../../services/User.service';
-import { concat } from 'rxjs';
+
 
 interface User {
   username: string;

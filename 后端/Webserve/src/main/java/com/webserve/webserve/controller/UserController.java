@@ -64,6 +64,8 @@ public class UserController {
             result.setResult(true);
             result.setTaken("OK");
             result.setMsg("登陆成功");
+            result.setUsername(this.userService.getByPhone(phone).getUsername());
+            result.setPhone(phone);
             this.userService.notelogintime(phone);
         }else{
             result.setResult(false);

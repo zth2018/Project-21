@@ -7,6 +7,7 @@ public class Login implements Serializable {
     private String taken;
     private String msg;
     private String username;
+    private String phone;
     public void setMsg(String msg) {
         this.msg = msg;
     }
@@ -37,5 +38,13 @@ public class Login implements Serializable {
 
     public boolean isResult() {
         return result;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -10,6 +10,8 @@ interface login {
   msg: string;
   taken: string;
   username: string;
+  phone: string;
+
 }
 
 interface User {
@@ -55,9 +57,10 @@ export class UserService {
           result: data['result'],
           msg: data['msg'],
           taken: data['taken'],
-          username:data['username']
+          username: data['username'],
+          phone: data['phone']
         }
-        localStorage.setItem("User", JSON.stringify(this.loginIfo));
+        localStorage.setItem("login", JSON.stringify(this.loginIfo));
         rt(this.loginIfo);
       })
     }

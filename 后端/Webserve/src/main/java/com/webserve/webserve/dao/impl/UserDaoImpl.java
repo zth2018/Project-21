@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -136,6 +137,17 @@ public class UserDaoImpl implements UserDao {
         );
     }
 
-
+    @Override
+    public User getByPhone(String phone){
+        String sql="select * from t_user where phone=?";
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet resultSet, int i) throws SQLException {
+                User user=new User();
+                user.setUsername(resultSet.getString("username"));
+                return user;
+            }
+        },phone);
+    }
 
 }

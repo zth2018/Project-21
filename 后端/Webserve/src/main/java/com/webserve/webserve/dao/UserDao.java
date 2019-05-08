@@ -11,6 +11,8 @@ public interface UserDao {
 
     int notelogintime(String phone);
 
+    User getByPhone(String phone);
+
     User getById(Integer id);
 
     String checkphone(String phone);

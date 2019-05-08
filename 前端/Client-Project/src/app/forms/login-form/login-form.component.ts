@@ -10,6 +10,7 @@ export interface login {
   taken: string;
   msg: string;
   username: string;
+  phone: string;
 }
 
 
