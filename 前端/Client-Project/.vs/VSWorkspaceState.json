@@ -5,12 +5,12 @@
     "\\src\\app",
     "\\src\\app\\forms",
     "\\src\\app\\forms\\login-form",
-    "\\src\\app\\forms\\signup-form",
     "\\src\\app\\menulist",
     "\\src\\app\\menulist\\MyClass",
+    "\\src\\app\\menulist\\MyClass\\created",
     "\\src\\app\\pages",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\main.ts",
+  "SelectedNode": "\\src\\app\\services\\class.service.ts",
   "PreviewInSolutionExplorer": false
 }

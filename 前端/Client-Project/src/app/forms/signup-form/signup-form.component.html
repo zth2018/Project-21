@@ -13,7 +13,7 @@
 
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phone"><span style="color:white">手机号码</span></nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzRequired nzFor="phone" ><span style="color:white">手机号码</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
       <input nz-input #phone formControlName="phone" id="phone"  (blur)="checkphone(phone.value)" />
       <nz-form-explain *ngIf="validateForm.get('phone')?.dirty && validateForm.get('phone')?.errors">

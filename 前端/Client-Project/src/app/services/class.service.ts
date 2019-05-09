@@ -10,10 +10,20 @@ export class ClassService {
   serveurl: any = environment.ServeUrl;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+      const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+  }
 
 
+  getclass() {
+    
 
+  }
 
 
 

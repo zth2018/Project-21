@@ -1,0 +1,41 @@
+package com.webserve.webserve.controller;
+
+import com.webserve.webserve.entity.T_class;
+import com.webserve.webserve.service.T_ClassService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+@CrossOrigin
+@RestController
+@RequestMapping("/class")
+public class T_classController {
+    @Autowired
+    private T_ClassService t_classService;
+
+
+    @GetMapping("/getclass")
+    public List<T_class> getclassid(@RequestParam String phone) {
+
+        return this.t_classService.getclass(phone);
+    }
+
+    @GetMapping("/getcclass")
+    public List<T_class> getcclassid(@RequestParam String phone) {
+
+        return this.t_classService.getcclass(phone);
+    }
+
+    @GetMapping("/getjclass")
+    public List<T_class> getjclassid(@RequestParam String phone) {
+
+        return this.t_classService.getjclass(phone);
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return "test-ok";
+    }
+}

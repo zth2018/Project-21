@@ -1,7 +1,7 @@
 package com.webserve.webserve.dao;
 
 import com.webserve.webserve.entity.User;
-import java.util.Date;
+
 public interface UserDao {
     int insert(User user);
 

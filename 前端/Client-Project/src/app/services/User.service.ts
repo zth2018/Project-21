@@ -43,9 +43,7 @@ export class UserService {
    
   }
 
-  getUsername(){
-    return this.username;
-  }
+ 
 
   Login(phone:string,pw:string,rt):void {    
 
@@ -90,14 +88,15 @@ export class UserService {
 
   }
 
-  RememberUsernam(phone:string) {
-    localStorage.setItem("Userphone", JSON.stringify(phone));
-  }
 
-  GetLocalUserName() {
+
+  GetUserphone() {
     return JSON.parse(localStorage.getItem("Userphone"));
   }
-
+  GetUsername() {
+    this.loginIfo = JSON.parse(localStorage.getItem("login"));
+    return this.loginIfo.username;
+  }
 
   checkphone(phone: string,rt) {
     this.http.get(this.serveurl + "/user" + "/checkphone?phone=" + phone, {
