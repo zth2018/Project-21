@@ -10,5 +10,6 @@ public interface T_ClassService {
     List<T_class> getclass(String phone);
     List<T_class>getjclass(String phone);
     List<T_class>getcclass(String phone);
-
+    int insertclass(T_class t_class);
+    int updateclass(T_class t_class);
 }

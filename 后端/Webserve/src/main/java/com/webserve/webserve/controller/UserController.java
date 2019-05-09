@@ -16,42 +16,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     //注册
     @PostMapping("/register")
-    @ResponseBody
+    //    @ResponseBody
     public int register(@RequestBody User u) {
-        User user = new User();
 
-        user.setUsername(u.getUsername());
-        user.setPassword(u.getPassword());
-        user.setPhone(u.getPhone());
-        int result = this.userService.insert(user);
-        System.out.println(result);
+        int result = this.userService.insert(u);
+
         return result;
     }
 
-    @RequestMapping("/getById")
-    @ResponseBody
-    public User getById(Integer id) {
-        User user = this.userService.getById(id);
-        System.out.println(user.getUsername());
-        return user;
-    }
 
-    @RequestMapping("/update")
-    public void update() {
-        User user = new User();
-        user.setId(1);
-        user.setPassword("test123");
-        this.userService.update(user);
-    }
-
-    @RequestMapping("/deleteById")
-    public void deleteById(Integer id) {
-        int result = this.userService.deleteById(id);
-        System.out.println(result);
-    }
-
+    //登陆
     @GetMapping("/login")
     public Login login(@RequestParam String phone,@RequestParam String password){
         Login result=new Login();
@@ -72,10 +49,11 @@ public class UserController {
             result.setTaken("NOT-OK");
             result.setMsg("密码错误!");
         }
-
         return result;
     }
 
+
+    //检查手机号是否已经注册
     @GetMapping("/checkphone")
     public boolean checkphone(@RequestParam String phone){
         String id=this.userService.checkphone(phone);
@@ -85,6 +63,30 @@ public class UserController {
             return false;
         }
     }
+
+
+
+    @RequestMapping("/getById")
+    public User getById(Integer id) {
+        User user = this.userService.getById(id);
+//        System.out.println(user.getUsername());
+        return user;
+    }
+
+//    @RequestMapping("/update")
+//    public void update() {
+//        User user = new User();
+//        user.setId(1);
+//        user.setPassword("test123");
+//        this.userService.update(user);
+//    }
+
+//    @RequestMapping("/deleteById")
+//    public void deleteById(Integer id) {
+//        int result = this.userService.deleteById(id);
+//        System.out.println(result);
+//    }
+
 
 
 }

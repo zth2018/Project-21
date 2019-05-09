@@ -25,6 +25,8 @@ public class T_ClassServiceImpl implements T_ClassService {
     public List<T_class> getjclass(String phone){
         return this.t_classDao.getjclass(phone);
     }
-
-
+    @Override
+    public int insertclass(T_class t_class){return this.t_classDao.insertclass(t_class);}
+    @Override
+    public int updateclass(T_class t_class){return this.t_classDao.updateclass(t_class);}
 }

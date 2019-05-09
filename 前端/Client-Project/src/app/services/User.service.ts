@@ -30,7 +30,7 @@ export class UserService {
   username: string;
   loginIfo: login;
   user: User;
-
+  
   serveurl: any = environment.ServeUrl;
 
   constructor(private http: HttpClient,private router:Router) {
@@ -91,7 +91,9 @@ export class UserService {
 
 
   GetUserphone() {
-    return JSON.parse(localStorage.getItem("Userphone"));
+    this.loginIfo = JSON.parse(localStorage.getItem("login"));
+
+    return this.loginIfo.phone;
   }
   GetUsername() {
     this.loginIfo = JSON.parse(localStorage.getItem("login"));
@@ -116,9 +118,3 @@ export class UserService {
 
 
 
-  //this.http.get<string>("http://192.168.1.141:8080/login?id=" + this.id, {
-    //  responseType: "json"
-    //}).subscribe(json => {
-    //  console.log("Response: " + json);
-    //  this.username = json;
-    //});

@@ -58,12 +58,13 @@ public class T_classDaoImpl implements T_classDao {
         List<Map<String,Object>>a=this.jdbcTemplate.queryForList(sql,phone);
         List<T_class>result=new ArrayList<>();
         String sql2="select * from t_class where id=?";
-        T_class tmp=new T_class();
+
         for(int i=0;i<a.size();i++){
+            T_class tmp=new T_class();
             if(a.get(i).get("own").toString().equals("1")==true){
                 this.jdbcTemplate.queryForObject(sql2, new RowMapper<T_class>() {
                     @Override
-                    public T_class mapRow(ResultSet resultSet, int i) throws SQLException {
+                    public T_class mapRow(ResultSet resultSet, int x) throws SQLException {
                         tmp.setClassname(resultSet.getString("classname"));
                         tmp.setDescription(resultSet.getString("description"));
                         tmp.setAddtime(resultSet.getString("addtime"));
@@ -90,8 +91,9 @@ public class T_classDaoImpl implements T_classDao {
         List<Map<String,Object>>a=this.jdbcTemplate.queryForList(sql,phone);
         List<T_class>result=new ArrayList<>();
         String sql2="select * from t_class where id=?";
-        T_class tmp=new T_class();
+
         for(int i=0;i<a.size();i++){
+            T_class tmp=new T_class();
             if(a.get(i).get("own").toString().equals("0")==true){
                 this.jdbcTemplate.queryForObject(sql2, new RowMapper<T_class>() {
                     @Override
@@ -115,5 +117,23 @@ public class T_classDaoImpl implements T_classDao {
         return result;
     }
 
+
+    @Override
+    public  int insertclass(T_class t_class){
+        String sql="insert into t_class (classname,description,ownerphone,ownername) values(?,?,?,?)";
+        return this.jdbcTemplate.update(
+                sql,
+                t_class.getClassname(),
+                t_class.getDescription(),
+                t_class.getOwnerphone(),
+                t_class.getOwnername()
+                );
+    }
+
+    @Override
+    public int updateclass(T_class t_class){
+        String sql="update t_class set classname=? where id=? ";
+        return this.jdbcTemplate.update(sql,t_class.getClassname(),t_class.getId());
+    }
 
 }

@@ -34,8 +34,13 @@ public class T_classController {
         return this.t_classService.getjclass(phone);
     }
 
-    @GetMapping("/test")
-    public String test(){
-        return "test-ok";
+   @PostMapping("/createclass")
+    public int insertclass(@RequestBody T_class t_class){
+
+        return this.t_classService.insertclass(t_class);
+   }
+    @PostMapping("updateclass")
+    public int updateclass(@RequestBody T_class t_class){
+        return this.t_classService.updateclass(t_class);
     }
 }
