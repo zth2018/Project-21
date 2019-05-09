@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd';
 
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { UserService } from '../../../services/User.service';
+import { ClassService } from '../../../services/class.service';
 import { environment } from '../../../../environments/environment';
-import { JSDocCommentStmt } from '@angular/compiler';
+import { Observable } from "rxjs";
 
 
-export interface User {
-  sId: number;
-  sName: string;
-  gender: string;
 
-}
-
-export interface User2 {
-  
-  username: string;
-  password: string;
+interface T_class {
+  id: string;
+  classname: string;
+  description: string;
+  ownerphone: string;
+  ownername: string;
+  addtime: string;
+  edittime: string;
+  starttime: string;
+  endtime: string;
 
 }
 
@@ -27,102 +27,145 @@ export interface User2 {
   styleUrls: ['./mycreated.component.scss']
 })
 export class MycreatedComponent implements OnInit {
-  
-  constructor(private http: HttpClient, private User: UserService) {
-   
+  userphone: string;
+  class_list: any;
+ 
+  editclassid: any;
+  t_class: T_class;
+  editclass: T_class;
+
+  constructor(private User: UserService, private T_class: ClassService, private modalService: NzModalService) {
+
   }
-  
-  user: User;
-  user1: User;
-  user2: User2;
-  username: any;
-  id: string;
-  
-  a: any;
+
+
 
   ngOnInit() {
-   
-    this.http.get<User>("http://192.168.1.141:8080/test3", {
-      responseType: "json"
-    }).subscribe(json => {
-      console.log("Response: " + json);
-      this.user = json;
+
+    this.userphone = this.User.GetUserphone();
+    this.T_class.getCreatedclass(this.userphone, (rs: any) => {
+      this.class_list = rs;
     });
-    //this.user1 = {
-    //  sId:1,
-    //  sName: "ss",
-    //  gender:"aa"
-    //}
-    //this.user1 = [{
-    //  "sId": 1,
-    //  "sName": "ss",
-    //  "gender": "aa"
-    //}]
-    
+
   }
 
+  
 
-  PostTest() {
-
-    
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'my-auth-token'
+  edit(t_class: T_class) {
+   
+    const modal = this.modalService.create({
+      nzTitle: '班课信息编辑',
+      nzContent: EditclassComponent,
+      nzComponentParams: {
        
-      })
-    };
+        t_class:t_class
+      },
+      nzFooter: [
+        {
+          label: '确定',
+          onClick: () => modal.destroy()
+        },
+        {
+          label:'取消',
+          onClick:()=>modal.destroy()
+        }
+      ]
+    });
 
-    //下面这个可以
+    modal.afterOpen.subscribe(() => console.log('[afterOpen] emitted!'));
 
-    //this.http.post<User>("http://192.168.1.141:8080/PostTest", httpOptions).subscribe((data: User) => this.user1 = {
-    //  sId: data['sId'],
-    //  sName: data['sName'],
-    //  gender:data['gender']//返回一个object的读取办法
-    //})
+    // Return a result when closed
+    modal.afterClose.subscribe(result => console.log('[afterClose] The result is:', result));
 
-    //this.http.post<User>("http://192.168.1.141:8080/PostTest", {'sId':1,"sName":"suibian","gender":"nan"} ,httpOptions).subscribe((data: User) => this.user1 = {
-    //  sId: data['sId'],
-    //  sName: data['sName'],
-    //  gender: data['gender']//返回一个object的读取办法
-    //})
-
-    //this.http.post<User>("http://192.168.1.141:8080/PostTest", { "sId": 1, "sName": "suibian", "gender": "nan" }, httpOptions).subscribe((data: User) => this.user1 = {
-    //  sId: data['sId'],
-    //  sName: data['sName'],
-    //  gender: data['gender']//返回一个object的读取办法
-    //})
-
-    this.http.post<User2>("http://192.168.1.141:8080/PostTest", { "username": "nan", "password": "suibian"}, httpOptions).subscribe((data: User2) => this.user2 = {
-      username: data['username'],
-      password: data['password']
-      //返回一个object的读取办法
-    })
-
-    //this.a=this.http.post<string>("http://192.168.1.141:8080/PostTest", "一串字符", httpOptions);
-    //this.a = JSON.stringify(this.a);
-
-
-    //this.http.post<string>("http://192.168.1.141:8080/PostTest", "一串字符", httpOptions).subscribe((data: string) => this.a = data['body']);
-
+    
   }
 
- 
 
-Login() {
-    //this.id = "567";
-    //this.http.get<string>("http://192.168.1.141:8080/login?id="+this.id, {
-    //  responseType: "json"
-    //}).subscribe(json => {
-    //  console.log("Response: " + json);
-    //  this.username = json;
-    //});
-    this.username = this.User.getUsername();
 
+  editCancel() {
+    
   }
- 
+
+  editOk() {
+    
+    console.log(this.editclassid);
+    this.t_class = {
+      id: this.editclassid,
+      classname: "update测试",
+      description: null,
+      ownerphone: null,
+      ownername: null,
+      addtime: null,
+      edittime: null,
+      starttime: null,
+      endtime: null,
+    }
+    this.T_class.updateclass(this.t_class);
+  }
+
+
+
 
 }
 
+@Component({
+  selector: 'app - editclass',
+  template: `
+    <div>
+      <h2>{{ title }}</h2>
+      <h4>{{t_class.classname}}</h4>
+      <h4>{{ subtitle }}</h4>
+     
+    </div>
+  `
+})
 
+export class EditclassComponent {
+  @Input() title: string;
+  @Input() subtitle: string;
+  @Input() t_class: T_class;
+  constructor(private modal: NzModalRef) { }
+
+ 
+}
+
+
+
+ //destroyModal(): void {
+  //  this.modal.destroy({ data: '结果' });
+  //}
+
+
+
+
+
+
+
+//const modal = this.modalService.create({
+//  nzTitle: 'Modal Title',
+//  nzContent: EditclassComponent,
+//  nzComponentParams: {
+//    title: '测试',
+//    subtitle: 'component sub title，will be changed after 2 sec',
+//    t_class: t_class
+//  },
+//  nzFooter: [
+//    {
+//      label: '提交',
+//      onClick: componentInstance => {
+//        componentInstance!.title = 'title in inner component is changed';
+//      }
+//    }
+//  ]
+//});
+
+//modal.afterOpen.subscribe(() => console.log('[afterOpen] emitted!'));
+
+//// Return a result when closed
+//modal.afterClose.subscribe(result => console.log('[afterClose] The result is:', result));
+
+//// delay until modal instance created
+//setTimeout(() => {
+//  const instance = modal.getContentComponent();
+//  instance.subtitle = 'sub title is changed';
+//}, 2000);

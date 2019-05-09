@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { UserService } from '../../services/User.service';
 
 
+interface User {
+  username: string;
+  password: string;
+  phone: string;
+}
 
-var phone = /^[1][3,4,5,7,8][0-9]{9}$/;
+
 
 @Component({
   selector: 'app-signup-form',
@@ -13,10 +19,10 @@ var phone = /^[1][3,4,5,7,8][0-9]{9}$/;
 export class SignupFormComponent implements OnInit {
 
   validateForm: FormGroup;
- 
-
-
-  constructor(private fb: FormBuilder) { }
+  user: any;
+  checkph: boolean=false;
+  
+  constructor(private fb: FormBuilder,private http: UserService) { }
 
 
 
@@ -26,20 +32,27 @@ export class SignupFormComponent implements OnInit {
       phone: [null, [Validators.required, Validators.pattern(/^[1][3,4,5,7,8][0-9]{9}$/)]],
       password: [null, [Validators.required, Validators.pattern(/^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/)]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],       
+      username: [null,  [Validators.required, Validators.pattern(/[\u4E00-\u9FA5]/)]],       
       captcha: [null, [Validators.required]],
       agree: [false]
     });
   }
 
-
+//, { updateOn: 'blur' }
 
 
   submitForm(): void {
+    
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
+      this.validateForm.controls[i].updateValueAndValidity();  
     }
+    this.user = this.validateForm.getRawValue();
+    if (!this.validateForm.invalid&&this.checkph) {
+      this.http.Register(this.user.username,this.user.password,this.user.phone);
+
+    }
+    
   }
 
 
@@ -65,4 +78,13 @@ export class SignupFormComponent implements OnInit {
   getCaptcha(e: MouseEvent): void {
     e.preventDefault();
   }
+
+  checkphone(phone: string) {
+    this.http.checkphone(phone, (rt: any) => {
+      this.checkph = rt;
+    })
+  }
+
+
+
 }

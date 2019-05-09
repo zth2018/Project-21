@@ -9,10 +9,17 @@ public interface UserDao {
 
     int update(User user);
 
+    int notelogintime(String phone);
+
+    User getByPhone(String phone);
+
     User getById(Integer id);
+
+    String checkphone(String phone);
 
     String loginByPhone(String phone);
 
     String loginByEmail(String email);
+
 
 }

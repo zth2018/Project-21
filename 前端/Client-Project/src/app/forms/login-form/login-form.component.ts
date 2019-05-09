@@ -10,6 +10,7 @@ export interface login {
   taken: string;
   msg: string;
   username: string;
+  phone: string;
 }
 
 
@@ -23,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   user: any;
   a: boolean=false;
   msg: string;
-
+  remember: string;
   validateForm: FormGroup;
 
 
@@ -31,9 +32,10 @@ export class LoginFormComponent implements OnInit {
 
 
 
-  ngOnInit():void {
+  ngOnInit(): void {
+    this.remember = localStorage.getItem("remember");
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      phone: [this.remember, [Validators.required]],
       password: [null, [Validators.required]],
       remember: [false]
     })
@@ -49,9 +51,12 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.user = this.validateForm.getRawValue();
-    this.http.Login(this.user.userName, this.user.password, (rs: login) => {
+    this.http.Login(this.user.phone, this.user.password, (rs: login) => {
       this.a = !rs.result;
       if (rs.result) {
+        if (this.user.remember) {
+          localStorage.setItem("remember", this.user.phone);
+        }
         this.router.navigateByUrl("homepage");
       }
       else {

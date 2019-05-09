@@ -2,18 +2,20 @@
 
 
 
-<span class="card">
-  <nz-card class="card-item" style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-    <nz-card-meta nzTitle="Card title"
-                  nzDescription="This is the description"
-                  [nzAvatar]="avatarTemplate"></nz-card-meta>
+<label *ngFor="let class of class_list" (click)="test(class.classname)">{{class.classname}}</label>
+
+
+
+
+<!--<span class="card">
+  <nz-card *ngFor="let class of class_list" class="card-item" style="width:300px;" [nzCover]="coverTemplate" [nzHoverable]="true" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+    <nz-card-meta [nzTitle]=class.classname
+                  [nzDescription]=class.description
+                  [nzAvatar]="avatarTemplate">
+    </nz-card-meta>
   </nz-card>
 
-  <nz-card class="card-item" style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-    <nz-card-meta nzTitle="Card title"
-                  nzDescription="This is the description"
-                  [nzAvatar]="avatarTemplate"></nz-card-meta>
-  </nz-card>
+
 </span>
 
 
@@ -33,5 +35,5 @@
 </ng-template>
 <ng-template #actionEllipsis>
   <i nz-icon type="ellipsis"></i>
-</ng-template>
+</ng-template>-->
 

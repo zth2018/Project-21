@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\components",
     "\\src\\app\\forms",
     "\\src\\app\\forms\\login-form",
-    "\\src\\app\\forms\\signup-form",
+    "\\src\\app\\home",
     "\\src\\app\\menulist",
     "\\src\\app\\menulist\\MyClass",
-    "\\src\\app\\menulist\\MyClass\\created",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\forms\\signup-form\\signup-form.component.ts",
+  "SelectedNode": "\\src\\app\\menulist\\MyClass\\created\\mycreated.component.ts",
   "PreviewInSolutionExplorer": false
 }
