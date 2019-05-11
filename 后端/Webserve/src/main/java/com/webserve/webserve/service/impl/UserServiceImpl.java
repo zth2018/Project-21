@@ -1,6 +1,7 @@
 package com.webserve.webserve.service.impl;
 
 import com.webserve.webserve.dao.UserDao;
+import com.webserve.webserve.entity.LoginInfo;
 import com.webserve.webserve.entity.User;
 import com.webserve.webserve.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public  String loginByPhone(String phone){
-        return userDao.loginByPhone(phone);
+    public LoginInfo loginByPhone(String phone, String password){
+        LoginInfo result=new LoginInfo();
+        String pw=userDao.loginByPhone(phone);
+        if(pw.equals("0")==true){
+            result.setResult(false);
+            result.setTaken("NOT-OK");
+            result.setMsg("用户不存在!");
+        }else if(password.equals(pw)==true){
+            result.setResult(true);
+            result.setTaken("OK");
+            result.setMsg("登陆成功");
+            result.setUsername(userDao.getByPhone(phone).getUsername());
+            result.setPhone(phone);
+            this.userDao.notelogintime(phone);
+        }else{
+            result.setResult(false);
+            result.setTaken("NOT-OK");
+            result.setMsg("密码错误!");
+        }
+        return result;
+
     }
 
     @Override
@@ -43,8 +63,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String checkphone(String phone){
-        return userDao.checkphone(phone);
+    public boolean checkphone(String phone){
+        String id=this.userDao.checkphone(phone);
+        if(id.equals("0")){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     @Override

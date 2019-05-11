@@ -2,7 +2,7 @@ package com.webserve.webserve.entity;
 
 import java.io.Serializable;
 
-public class Login implements Serializable {
+public class LoginInfo implements Serializable {
     private boolean result;
     private String taken;
     private String msg;

@@ -1,5 +1,6 @@
 package com.webserve.webserve.service;
 
+import com.webserve.webserve.entity.LoginInfo;
 import com.webserve.webserve.entity.User;
 
 public interface UserService {
@@ -15,9 +16,9 @@ public interface UserService {
 
     User getById(Integer id);
 
-    String checkphone(String phone);
+    boolean checkphone(String phone);
 
-    String loginByPhone(String phone);
+    LoginInfo loginByPhone(String phone, String password);
 
     String loginByEmail(String email);
 }

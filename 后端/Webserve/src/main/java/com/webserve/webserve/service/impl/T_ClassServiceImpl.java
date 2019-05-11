@@ -2,6 +2,7 @@ package com.webserve.webserve.service.impl;
 
 import com.webserve.webserve.dao.T_classDao;
 import com.webserve.webserve.entity.T_class;
+import com.webserve.webserve.entity.User;
 import com.webserve.webserve.service.T_ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,4 +30,6 @@ public class T_ClassServiceImpl implements T_ClassService {
     public int insertclass(T_class t_class){return this.t_classDao.insertclass(t_class);}
     @Override
     public int updateclass(T_class t_class){return this.t_classDao.updateclass(t_class);}
+    @Override
+    public List<User> getuser(String class_id){return this.t_classDao.getuser(class_id);}
 }

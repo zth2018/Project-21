@@ -7,7 +7,7 @@ public class T_class implements Serializable {
     private String classname;
     private String description;
     private String ownerphone;
-    private String ownername;
+
     private String addtime;
     private String edittime;
     private String starttime;
@@ -37,9 +37,7 @@ public class T_class implements Serializable {
         return id;
     }
 
-    public String getOwnername() {
-        return ownername;
-    }
+
 
     public String getOwnerphone() {
         return ownerphone;
@@ -69,9 +67,7 @@ public class T_class implements Serializable {
         this.endtime = endtime;
     }
 
-    public void setOwnername(String ownername) {
-        this.ownername = ownername;
-    }
+
 
     public void setOwnerphone(String ownerphone) {
         this.ownerphone = ownerphone;
@@ -81,7 +77,6 @@ public class T_class implements Serializable {
         this.starttime = starttime;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(String id) {  this.id = id; }
+
 }
