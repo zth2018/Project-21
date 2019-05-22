@@ -9,10 +9,8 @@
     "\\src\\app\\menulist\\MyClass\\created",
     "\\src\\app\\menulist\\MyClass\\joined",
     "\\src\\app\\services",
-    "\\src\\app\\shares",
-    "\\src\\app\\shares\\listpage",
-    "\\src\\environments"
+    "\\src\\app\\shares"
   ],
-  "SelectedNode": "\\src\\app\\services\\User.service.ts",
+  "SelectedNode": "\\src\\app\\menulist\\MyClass\\created\\mycreated.component.ts",
   "PreviewInSolutionExplorer": false
 }

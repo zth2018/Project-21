@@ -9,18 +9,7 @@ import { Class } from '../../../interface/class';
 
 
 
-interface T_class {
-  id: string;
-  classname: string;
-  description: string;
-  ownerphone: string;
-  ownername: string;
-  addtime: string;
-  edittime: string;
-  starttime: string;
-  endtime: string;
 
-}
 
 @Component({
   selector: 'app-mycreated',
@@ -124,7 +113,7 @@ export class MycreatedComponent implements OnInit {
 export class EditclassComponent {
   @Input() title: string;
   @Input() subtitle: string;
-  @Input() t_class: T_class;
+  @Input() t_class: Class;
   constructor(private modal: NzModalRef) { }
 
  
