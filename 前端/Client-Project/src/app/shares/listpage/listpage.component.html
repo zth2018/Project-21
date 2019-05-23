@@ -1,20 +1,6 @@
-<!--<div>
-  <nz-input-group nzSearch nzSize="default" [nzAddOnAfter]="suffixButton">
-    <input type="text" style="width:200px" nz-input placeholder="输入查询规则" />
-  </nz-input-group>
-  <ng-template #suffixButton >
-    <div class="flex-container">
-      <span class="button-2">
-        <button nz-button nzType="primary" style="width:80px" nzSize="default" nzSearch>查询</button>
-        <button nz-button style="width:80px" nzSize="default" nzSearch>重置</button>
-      </span>
-      <span>
-        <button nz-button nzType="primary" style="width:80px" nzSize="default" nzSearch>添加</button>
-      </span>
 
-    </div>
-  </ng-template>
-</div>-->
+
+
 <div class="flex-container">
   <nz-input-group nzSearch nzSize="default" style="width:200px">
     <input type="text" style="width:200px" nz-input placeholder="输入查询规则" />
@@ -27,66 +13,50 @@
 
 </div>
 
-<nz-table #editRowTable nzShowSizeChanger nzBordered [nzData]="listOfData">
+<nz-table #editRowTable nzShowSizeChanger nzBordered [nzData]="listOfUser">
   <thead>
     <tr>
-      <th nzWidth="62px"
-          nzShowCheckbox
-          [(nzChecked)]="allChecked"
-          [nzIndeterminate]="indeterminate"
-          (nzCheckedChange)="checkAll($event)">
-      </th>
-      <th nzWidth="25%">Name</th>
-      <th nzWidth="15%">Age</th>
-      <th nzWidth="40%">Address</th>
-      <th>Action</th>
+   
+      <th nzWidth="25%">姓名</th>
+      <th nzWidth="15%">手机</th>
+      <th nzWidth="40%">编号</th>
+     
     </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let data of editRowTable.data">
+    <tr *ngFor="let user of  listOfUser">
 
-      <td nzShowCheckbox  [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()">
-      </td>
+     
 
       <td>
-        <ng-container *ngIf="!editCache[data.id].edit; else nameInputTpl">
-          {{ data.name }}
+        <ng-container>
+          {{ user.username }}
         </ng-container>
-        <ng-template #nameInputTpl>
-          <input type="text" nz-input [(ngModel)]="editCache[data.id].data.name" />
-        </ng-template>
+        
       </td>
       <td>
-        <ng-container *ngIf="!editCache[data.id].edit; else ageInputTpl">
-          {{ data.age }}
+        <ng-container>
+          {{ user.phone }}
         </ng-container>
-        <ng-template #ageInputTpl>
-          <input type="text" nz-input [(ngModel)]="editCache[data.id].data.age" />
-        </ng-template>
+      
       </td>
       <td>
-        <ng-container *ngIf="!editCache[data.id].edit; else addressInputTpl">
-          {{ data.address }}
+        <ng-container>
+          {{ user.id }}
         </ng-container>
-        <ng-template #addressInputTpl>
-          <input type="text" nz-input [(ngModel)]="editCache[data.id].data.address" />
-        </ng-template>
+     
       </td>
-      <td>
-        <div class="editable-row-operations">
-          <ng-container *ngIf="!editCache[data.id].edit; else saveTpl">
-            <a (click)="startEdit(data.id)">Edit</a>
-          </ng-container>
-          <ng-template #saveTpl>
-            <a (click)="saveEdit(data.id)">Save</a>
-            <a nz-popconfirm nzTitle="Sure to cancel?" (nzOnConfirm)="cancelEdit(data.id)">Cancel</a>
-          </ng-template>
-        </div>
-      </td>
+   
     </tr>
+
+
   </tbody>
  
  
 </nz-table>
+
+
+
+
 

@@ -5,21 +5,11 @@ import { UserService } from '../../../services/User.service';
 import { ClassService } from '../../../services/class.service';
 import { environment } from '../../../../environments/environment';
 import { Observable } from "rxjs";
+import { Class } from '../../../interface/class';
 
 
 
-interface T_class {
-  id: string;
-  classname: string;
-  description: string;
-  ownerphone: string;
-  ownername: string;
-  addtime: string;
-  edittime: string;
-  starttime: string;
-  endtime: string;
 
-}
 
 @Component({
   selector: 'app-mycreated',
@@ -31,8 +21,8 @@ export class MycreatedComponent implements OnInit {
   class_list: any;
  
   editclassid: any;
-  t_class: T_class;
-  editclass: T_class;
+  t_class: Class;
+  editclass: Class;
 
   constructor(private User: UserService, private T_class: ClassService, private modalService: NzModalService) {
 
@@ -51,7 +41,7 @@ export class MycreatedComponent implements OnInit {
 
   
 
-  edit(t_class: T_class) {
+  edit(t_class: Class) {
    
     const modal = this.modalService.create({
       nzTitle: '班课信息编辑',
@@ -94,7 +84,7 @@ export class MycreatedComponent implements OnInit {
       classname: "update测试",
       description: null,
       ownerphone: null,
-      ownername: null,
+     
       addtime: null,
       edittime: null,
       starttime: null,
@@ -123,7 +113,7 @@ export class MycreatedComponent implements OnInit {
 export class EditclassComponent {
   @Input() title: string;
   @Input() subtitle: string;
-  @Input() t_class: T_class;
+  @Input() t_class: Class;
   constructor(private modal: NzModalRef) { }
 
  

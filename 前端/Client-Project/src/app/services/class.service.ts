@@ -1,20 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { Class } from "../interface/class";
 
 
-interface T_class {
-  id:string;
-  classname: string;
-  description: string;
-  ownerphone: string;
-  ownername: string;
-  addtime: string;
-  edittime: string;
-  starttime: string;
-  endtime: string;
-
-}
 
 
 @Injectable({
@@ -22,7 +11,7 @@ interface T_class {
 })
 export class ClassService {
   serveurl: any = environment.ServeUrl;
-  _class: T_class;
+  _class: Class;
 
   
 
@@ -48,7 +37,7 @@ export class ClassService {
     });
   }
 
-  createclass(t_class: T_class) {
+  createclass(t_class: Class) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -60,7 +49,6 @@ export class ClassService {
       classname: t_class.classname,
       description: t_class.description,
       ownerphone: t_class.ownerphone,
-      ownername: t_class.ownername,
       addtime: null,
       edittime: null,
       starttime: t_class.starttime,
@@ -71,7 +59,7 @@ export class ClassService {
 
   }
 
-  updateclass(t_class: T_class) {
+  updateclass(t_class: Class) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
