@@ -1,4 +1,4 @@
-package com.webserve.webserve.controller;
+package com.webserve.webserve.controller.UserController;
 
 
 import com.webserve.webserve.entity.User;

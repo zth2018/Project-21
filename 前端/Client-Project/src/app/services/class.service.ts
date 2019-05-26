@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Class } from "../interface/class";
-
+import { Router } from '@angular/router';
 
 
 
@@ -15,7 +15,7 @@ export class ClassService {
 
   
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
       
   }
 
@@ -67,10 +67,13 @@ export class ClassService {
       })
     };
     this.http.post<any>(this.serveurl + "/class/updateclass", t_class, httpOptions).subscribe(data => { console.log(data) });
-
+    
   }
 
-
+  getclassmember(class_id:any) {
+    //this.router.navigateByUrl("homepage/listpage");
+    this.router.navigate(['/homepage/memlistforstudent', class_id]);
+  }
 
 
 }

@@ -1,4 +1,4 @@
-package com.webserve.webserve.controller;
+package com.webserve.webserve.controller.classController;
 
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import com.webserve.webserve.entity.T_class;
@@ -51,3 +51,4 @@ public class T_classController {
         return this.t_classService.getuser(class_id);
     }
 }
+

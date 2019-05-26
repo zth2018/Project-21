@@ -1,0 +1,54 @@
+<div class="flex-container">
+  <nz-input-group nzSearch nzSize="default" style="width:200px">
+    <input type="text" style="width:200px" nz-input placeholder="输入查询规则" />
+  </nz-input-group>
+
+  <button nz-button nzType="primary" style="width:80px;margin-left:1px" nzSize="default" nzSearch>查询</button>
+  <button nz-button style="width:80px;margin-left:1px" nzSize="default" nzSearch>重置</button>
+  <span style="width:80%"></span>
+  <button nz-button nzType="primary" style="width:80px;margin-right:1px" nzSize="default" nzSearch>添加</button>
+
+</div>
+
+<nz-table #editRowTable nzShowSizeChanger nzBordered [nzData]="listOfUser">
+  <thead>
+    <tr>
+
+      <th nzWidth="25%">姓名</th>
+      <th nzWidth="15%">手机</th>
+      <th nzWidth="40%">编号</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of  listOfStudents">
+
+
+
+      <td>
+        <ng-container>
+          {{ user.username }}
+        </ng-container>
+
+      </td>
+      <td>
+        <ng-container>
+          {{ user.phone }}
+        </ng-container>
+
+      </td>
+      <td>
+        <ng-container>
+          {{ user.id }}
+        </ng-container>
+
+      </td>
+
+    </tr>
+
+
+  </tbody>
+
+
+</nz-table>
