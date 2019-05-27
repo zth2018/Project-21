@@ -2,16 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/User.service';
 import {  Router } from '@angular/router';
+import {Response} from '../../interface/response'
 
 
 
-export interface login {
-  result: boolean;
-  taken: string;
-  msg: string;
-  username: string;
-  phone: string;
-}
 
 
 @Component({
@@ -20,7 +14,7 @@ export interface login {
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-
+  response: Response;
   user: any;
   a: boolean=false;
   msg: string;
@@ -51,7 +45,7 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.user = this.validateForm.getRawValue();
-    this.http.Login(this.user.phone, this.user.password, (rs: login) => {
+    this.http.Login(this.user.phone, this.user.password, (rs: Response) => {
       this.a = !rs.result;
       if (rs.result) {
         if (this.user.remember) {
@@ -60,7 +54,7 @@ export class LoginFormComponent implements OnInit {
         this.router.navigateByUrl("homepage");
       }
       else {
-        this.msg = rs.msg;
+        this.msg = rs.message;
       }
     });
    

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 
 
@@ -14,7 +16,8 @@ export class ListpageComponent implements OnInit {
 
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute,
+    private router: Router) { }
 
   //editCache: { [key: string]: any } = {};
   listOfUser: any;
@@ -48,10 +51,12 @@ export class ListpageComponent implements OnInit {
 
 
   ngOnInit() {
+    
+
     this.http.get<any>("http://localhost:8080/class/getuser?class_id=1", { responseType: "json" }).subscribe(data => {
       this.listOfUser = data;
     });
-   
+    //console.log(id);
   }
 
   //refreshStatus(): void {

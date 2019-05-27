@@ -1,4 +1,4 @@
-package com.webserve.webserve.entity;
+package com.webserve.webserve.entity.User;
 
 import java.io.Serializable;
 

@@ -3,13 +3,12 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\interface",
     "\\src\\app\\menulist",
     "\\src\\app\\menulist\\MyClass",
     "\\src\\app\\menulist\\MyClass\\created",
     "\\src\\app\\menulist\\MyClass\\joined",
     "\\src\\app\\services",
-    "\\src\\app\\shares"
+    "\\src\\environments"
   ],
   "SelectedNode": "\\src\\app\\menulist\\MyClass\\created\\mycreated.component.ts",
   "PreviewInSolutionExplorer": false

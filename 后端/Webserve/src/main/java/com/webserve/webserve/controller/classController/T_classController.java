@@ -1,14 +1,12 @@
-package com.webserve.webserve.controller;
+package com.webserve.webserve.controller.classController;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-import com.webserve.webserve.entity.T_class;
-import com.webserve.webserve.entity.User;
+import com.webserve.webserve.entity.Class.T_class;
+import com.webserve.webserve.entity.User.User;
 import com.webserve.webserve.service.T_ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -51,3 +49,4 @@ public class T_classController {
         return this.t_classService.getuser(class_id);
     }
 }
+

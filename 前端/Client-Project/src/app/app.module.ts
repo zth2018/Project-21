@@ -26,6 +26,8 @@ import { LockFormComponent } from './forms/lock-form/lock-form.component';
 import { FogotpasswordFormComponent } from './forms/fogotpassword-form/fogotpassword-form.component';
 import { MycreatedComponent, EditclassComponent } from './menulist/MyClass/created/mycreated.component';
 import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
+import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist-for-s.component';
+import { MemberlistForTComponent } from './listpages/memberlist-for-t/memberlist-for-t.component';
 
 //import { UserService } from './services/User.service';
 
@@ -55,6 +57,8 @@ registerLocaleData(zh);
     MycreatedComponent,
     MyjoinedComponent,
     EditclassComponent,
+    MemberlistForSComponent,
+    MemberlistForTComponent,
    
    
   ],

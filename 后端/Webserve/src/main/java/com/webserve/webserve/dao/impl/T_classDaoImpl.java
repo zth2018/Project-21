@@ -1,12 +1,12 @@
 package com.webserve.webserve.dao.impl;
 
 import com.webserve.webserve.dao.T_classDao;
-import com.webserve.webserve.entity.User;
+import com.webserve.webserve.entity.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import com.webserve.webserve.entity.T_class;
+import com.webserve.webserve.entity.Class.T_class;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -24,7 +24,7 @@ export class MycreatedComponent implements OnInit {
   t_class: Class;
   editclass: Class;
 
-  constructor(private User: UserService, private T_class: ClassService, private modalService: NzModalService) {
+  constructor(private Userservice: UserService, private Classservice: ClassService, private modalService: NzModalService) {
 
   }
 
@@ -32,14 +32,17 @@ export class MycreatedComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userphone = this.User.GetUserphone();
-    this.T_class.getCreatedclass(this.userphone, (rs: any) => {
+    this.userphone = localStorage.getItem("userphone");
+    this.Classservice.getCreatedclass(this.userphone, (rs: any) => {
       this.class_list = rs;
     });
 
   }
 
-  
+  showdetail(class_id: any) {
+    console.log(class_id);
+    this.Classservice.getclassmember(class_id);
+  }
 
   edit(t_class: Class) {
    
@@ -90,7 +93,7 @@ export class MycreatedComponent implements OnInit {
       starttime: null,
       endtime: null,
     }
-    this.T_class.updateclass(this.t_class);
+    this.Classservice.updateclass(this.t_class);
   }
 
 

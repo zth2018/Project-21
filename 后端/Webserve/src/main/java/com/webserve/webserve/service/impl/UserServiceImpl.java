@@ -1,8 +1,11 @@
 package com.webserve.webserve.service.impl;
 
 import com.webserve.webserve.dao.UserDao;
-import com.webserve.webserve.entity.LoginInfo;
-import com.webserve.webserve.entity.User;
+import com.webserve.webserve.entity.Response;
+import com.webserve.webserve.entity.User.Login;
+import com.webserve.webserve.entity.User.LoginInfo;
+import com.webserve.webserve.entity.User.Token;
+import com.webserve.webserve.entity.User.User;
 import com.webserve.webserve.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +15,61 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public int insert(User user) {
-//    测试事物是否起作用，如果没有保存成功，则事物生效
-//    int a = 1/0;
-        return userDao.insert(user);
+    public Response Register(User user){
+        int a=this.userDao.insert(user);
+        Token token=new Token(user.getPhone());
+        Response result=new Response();
+        if(a>0){
+            result.setResult(true);
+            result.setToken(token.getToken());
+        }else {
+            result.setResult(false);
+            result.setMessage("注册失败");
+        }
+        return result;
     }
+
+    @Override
+    public Response Login(String phone, String password){
+        Response response=new Response();
+        String pw=userDao.login(phone);
+        Token token=new Token(phone);
+        if(pw.equals("0")==true){
+            response.setResult(false);
+            response.setToken(null);
+            response.setMessage("用户不存在!");
+        }else if(password.equals(pw)==true){
+            response.setResult(true);
+            response.setToken(token.getToken());
+            response.setMessage("登陆成功");
+            this.userDao.logintime(phone);
+        }else{
+            response.setResult(false);
+            response.setToken(null);
+            response.setMessage("密码错误!");
+        }
+        return response;
+    }
+
+    @Override
+    public boolean checkphone(String phone){
+        String id=this.userDao.checkphone(phone);
+        if(id.equals("0")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public int logintime(String phone){
+        return userDao.logintime(phone);
+    }
+//--------------------------------------------------------------------------------------------------------------------
+//    @Override
+//    public int insert(User user) {
+//        return userDao.insert(user);
+//    }
 
     @Override
     public int deleteById(Integer id) {
@@ -33,51 +86,43 @@ public class UserServiceImpl implements UserService {
         return userDao.getById(id);
     }
 
-    @Override
-    public LoginInfo loginByPhone(String phone, String password){
-        LoginInfo result=new LoginInfo();
-        String pw=userDao.loginByPhone(phone);
-        if(pw.equals("0")==true){
-            result.setResult(false);
-            result.setTaken("NOT-OK");
-            result.setMsg("用户不存在!");
-        }else if(password.equals(pw)==true){
-            result.setResult(true);
-            result.setTaken("OK");
-            result.setMsg("登陆成功");
-            result.setUsername(userDao.getByPhone(phone).getUsername());
-            result.setPhone(phone);
-            this.userDao.notelogintime(phone);
-        }else{
-            result.setResult(false);
-            result.setTaken("NOT-OK");
-            result.setMsg("密码错误!");
-        }
-        return result;
+//    @Override
+//    public LoginInfo loginByPhone(String phone, String password){
+//        LoginInfo result=new LoginInfo();
+//        String pw=userDao.loginByPhone(phone);
+//        if(pw.equals("0")==true){
+//            result.setResult(false);
+//            result.setTaken("NOT-OK");
+//            result.setMsg("用户不存在!");
+//        }else if(password.equals(pw)==true){
+//            result.setResult(true);
+//            result.setTaken("OK");
+//            result.setMsg("登陆成功");
+//            result.setUsername(userDao.getByPhone(phone).getUsername());
+//            result.setPhone(phone);
+//            this.userDao.notelogintime(phone);
+//        }else{
+//            result.setResult(false);
+//            result.setTaken("NOT-OK");
+//            result.setMsg("密码错误!");
+//        }
+//        return result;
+//
+//    }
 
-    }
 
-    @Override
-    public  String loginByEmail(String email){
-        return userDao.loginByEmail(email);
-    }
 
-    @Override
-    public boolean checkphone(String phone){
-        String id=this.userDao.checkphone(phone);
-        if(id.equals("0")){
-            return true;
-        }else {
-            return false;
-        }
+//    @Override
+//    public  String loginByEmail(String email){
+//        return userDao.loginByEmail(email);
+//    }
 
-    }
 
-    @Override
-    public int notelogintime(String phone){
-        return userDao.notelogintime(phone);
-    }
+
+
 
     @Override
     public User getByPhone(String phone){ return userDao.getByPhone(phone);}
+
+
 }

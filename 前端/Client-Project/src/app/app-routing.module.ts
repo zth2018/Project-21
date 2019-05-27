@@ -12,6 +12,7 @@ import { ListpageComponent } from './shares/listpage/listpage.component';
 import { EditpageComponent } from './shares/editpage/editpage.component';
 import { MycreatedComponent } from './menulist/MyClass/created/mycreated.component';
 import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
+import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist-for-s.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
        { path: 'editpage', component: EditpageComponent },
        { path: 'mycreatedclass', component: MycreatedComponent },
        { path: 'myjoinedclass', component: MyjoinedComponent },
+       { path: 'memlistforstudent/:class_id', component: MemberlistForSComponent },
     ]},
   {path: 'forgetpassword', component: ForgotpasswordComponent},
   {path: 'signup', component: SignupComponent},
