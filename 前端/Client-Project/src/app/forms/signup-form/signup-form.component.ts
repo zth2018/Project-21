@@ -20,7 +20,7 @@ export class SignupFormComponent implements OnInit {
 
   validateForm: FormGroup;
   user: any;
-  checkph: boolean=false;
+  checkph: boolean=true;
   
   constructor(private fb: FormBuilder,private http: UserService) { }
 
@@ -82,6 +82,7 @@ export class SignupFormComponent implements OnInit {
   checkphone(phone: string) {
     this.http.checkphone(phone, (rt: any) => {
       this.checkph = rt;
+      console.log(this.checkph);
     })
   }
 

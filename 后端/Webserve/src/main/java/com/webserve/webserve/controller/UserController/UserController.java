@@ -1,8 +1,9 @@
 package com.webserve.webserve.controller.UserController;
 
 
-import com.webserve.webserve.entity.User;
-import com.webserve.webserve.entity.LoginInfo;
+import com.webserve.webserve.entity.Response;
+import com.webserve.webserve.entity.User.User;
+import com.webserve.webserve.entity.User.LoginInfo;
 import com.webserve.webserve.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,25 +18,29 @@ public class UserController {
 
 
     //注册
-    @PostMapping("/register")
-    //    @ResponseBody
-    public int register(@RequestBody User u) {
-        return this.userService.insert(u);
-    }
+//    @PostMapping("/register")
+//    //    @ResponseBody
+//    public int register(@RequestBody User u) {
+//        return this.userService.insert(u);
+//    }
 
 
     //登陆
-    @GetMapping("/login")
-    public LoginInfo login(@RequestParam String phone, @RequestParam String password){
-        return this.userService.loginByPhone(phone,password);
-    }
+//    @GetMapping("/login")
+//    public Response login(@RequestParam String phone, @RequestParam String password){
+//        return this.userService.Login(phone,password);
+//    }
 
+//    @GetMapping("/login")
+//    public LoginInfo login(@RequestParam String phone, @RequestParam String password){
+//        return this.userService.loginByPhone(phone,password);
+//    }
 
     //检查手机号是否已经注册
-    @GetMapping("/checkphone")
-    public boolean checkphone(@RequestParam String phone){
-        return this.userService.checkphone(phone);
-    }
+//    @GetMapping("/checkphone")
+//    public boolean checkphone(@RequestParam String phone){
+//        return this.userService.checkphone(phone);
+//    }
 
 
 

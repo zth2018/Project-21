@@ -20,7 +20,23 @@ export class ClassService {
   }
 
 
-  getCreatedclass(phone: string,rs) {
+  getCreatedclass(phone: string, rs) {
+    //var token = localStorage.getItem("token");
+
+    //var httpOptions = {
+    //  headers: new HttpHeaders({
+    //    'Content-Type': 'application/json',
+    //    'Authorization': token
+    //  })
+    //};
+    //this.http.get<any>(this.serveurl + "/class/getcclass?phone=" + phone, {
+    //  responseType: "json", headers: new HttpHeaders({
+    //    'Content-Type': 'application/json',
+    //    'Authorization': token
+    //  })
+    //});
+
+
     this.http.get<any>(this.serveurl + "/class/getcclass?phone=" + phone, {
       responseType: "json"
     }).subscribe(data => {

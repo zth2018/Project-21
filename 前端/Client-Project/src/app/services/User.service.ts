@@ -4,12 +4,15 @@ import { Observable } from "rxjs";
 import { environment } from '../../environments/environment';
 import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Router} from '@angular/router';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
+import { Response } from '../interface/response'
+
 
 interface login {
   result: boolean;
   msg: string;
-  taken: string;
-  username: string;
+  token: string;
+  //username: string;
   phone: string;
 
 }
@@ -27,91 +30,77 @@ interface User {
 })
 export class UserService {
 
-  username: string;
-  loginIfo: login;
+  response: Response;
   user: User;
-  
   serveurl: any = environment.ServeUrl;
 
   constructor(private http: HttpClient,private router:Router) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'my-auth-token'
-      })
-    };
    
   }
+  //---------------------------------------------------------------------------------------------------------------------------
+     Login(phone:string,pw:string,rt):void {    
+        if (phone != null && pw != null) {
+          this.http.get<Response>(this.serveurl+ "/login?phone=" + phone + "&password=" + pw, {
+            responseType:"json"
+          }).subscribe(data => {
+            this.response = {
+              result: data['result'],
+              message: data['message'],
+              token: data['token'],
+              data:data['data']
+            }
+            localStorage.setItem("userphone", phone);
+            localStorage.setItem("token", JSON.stringify(this.response.token));
+            rt(this.response);
+          })
+        }
+      }
+
+  //-------------------------------------
+    Register(username: string, password: string, phone: string) { 
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': ""
+          })
+        };
+        this.user = {
+          username: username,
+          phone: phone,
+          password:password
+        }
+        this.http.post<Response>(this.serveurl + "/register",this.user , httpOptions).subscribe(data => {
+          if (data.result) {
+            this.Login(phone, password, (rt: any) => {
+              this.router.navigateByUrl("homepage");
+            });
+          }
+        })
+  }
+  //--------------------------------------
+      checkphone(phone: string,rt) {
+          this.http.get<boolean>(this.serveurl  + "/register?phone=" + phone, {
+            responseType:"json"
+          }).subscribe(result => {
+            rt(result);
+          })
+        }
+
+  //---------------------------------------------------------------------------------------------------------------------------
+
 
  
 
-  Login(phone:string,pw:string,rt):void {    
+ 
 
-    if (phone != null && pw != null) {
-      this.http.get<login>(this.serveurl+"/user" + "/login?phone=" + phone + "&password=" + pw, {
-        responseType:"json"
-      }).subscribe(data => {
-        this.loginIfo = {
-          result: data['result'],
-          msg: data['msg'],
-          taken: data['taken'],
-          username: data['username'],
-          phone: data['phone']
-        }
-        localStorage.setItem("login", JSON.stringify(this.loginIfo));
-        rt(this.loginIfo);
-      })
-    }
-
-  }
-
-  Register(username: string, password: string, phone: string) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'my-auth-token'
-      })
-    };
-    this.user = {
-      username: username,
-      phone: phone,
-      password:password
-    }
-    this.http.post<any>(this.serveurl + "/user" + "/register",this.user , httpOptions).subscribe(data => {
-      if (data == 1) {
-        this.Login(phone, password, (rt: any) => {
-          this.router.navigateByUrl("homepage");
-        });
-      }
-
-    })
-
-  }
+  
 
 
 
-  GetUserphone() {
-    this.loginIfo = JSON.parse(localStorage.getItem("login"));
+ 
+  
 
-    return this.loginIfo.phone;
-  }
-  GetUsername() {
-    this.loginIfo = JSON.parse(localStorage.getItem("login"));
-    return this.loginIfo.username;
-  }
-
-  checkphone(phone: string,rt) {
-    this.http.get(this.serveurl + "/user" + "/checkphone?phone=" + phone, {
-      responseType:"json"
-    }).subscribe(result => {
-      rt(result);
-
-    })
-
-
-      
-
-  }
+  
 
 }
 

@@ -1,17 +1,16 @@
 package com.webserve.webserve.dao.impl;
 import com.webserve.webserve.dao.UserDao;
-import com.webserve.webserve.entity.User;
+import com.webserve.webserve.entity.User.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
-import java.util.Random;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -25,7 +24,7 @@ public class UserDaoImpl implements UserDao {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String addtime = dateFormat.format( now );
 
-        String sql = "insert into t_user(phone,username,password,addtime) values(?,?,?,?)";
+        String sql = "insert into t_user(phone,username,password,registertime) values(?,?,?,?)";
         return this.jdbcTemplate.update(
                 sql,
                 user.getPhone(),
@@ -69,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public String loginByPhone(String phone){
+    public String login(String phone){
         String sql = "select password from t_user where phone = ?";
 //        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
 //            @Override
@@ -92,16 +91,16 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    @Override
-    public String loginByEmail(String email){
-        String sql = "select password from t_user where email = ?";
-        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
-            @Override
-            public String mapRow(ResultSet resultSet, int i) throws SQLException {
-                return resultSet.getString("password");
-            }
-        },email);
-    }
+//    @Override
+//    public String loginByEmail(String email){
+//        String sql = "select password from t_user where email = ?";
+//        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+//            @Override
+//            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+//                return resultSet.getString("password");
+//            }
+//        },email);
+//    }
 
     @Override
     public String checkphone(String phone) {
@@ -111,7 +110,6 @@ public class UserDaoImpl implements UserDao {
                 @Override
                 public String mapRow(ResultSet resultSet, int i) throws SQLException {
                     return resultSet.getString("id");
-
                 }
             }, phone);
         }catch (Exception e){
@@ -121,7 +119,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int notelogintime(String phone){
+    public int logintime(String phone){
         Date now=new Date();
         Calendar logintime=Calendar.getInstance();
         logintime.setTime(now);

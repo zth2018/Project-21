@@ -1,14 +1,14 @@
 package com.webserve.webserve.service.impl;
 
 import com.webserve.webserve.dao.T_classDao;
-import com.webserve.webserve.entity.T_class;
-import com.webserve.webserve.entity.User;
+import com.webserve.webserve.entity.Class.T_class;
+import com.webserve.webserve.entity.User.User;
 import com.webserve.webserve.service.T_ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+
 @Service
 public class T_ClassServiceImpl implements T_ClassService {
     @Autowired

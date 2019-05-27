@@ -32,7 +32,7 @@ export class MycreatedComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userphone = this.Userservice.GetUserphone();
+    this.userphone = localStorage.getItem("userphone");
     this.Classservice.getCreatedclass(this.userphone, (rs: any) => {
       this.class_list = rs;
     });

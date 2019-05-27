@@ -1,9 +1,8 @@
 package com.webserve.webserve.dao;
-import com.webserve.webserve.entity.T_class;
-import com.webserve.webserve.entity.User;
+import com.webserve.webserve.entity.Class.T_class;
+import com.webserve.webserve.entity.User.User;
 
 import java.util.List;
-import java.util.Map;
 
 
 public interface T_classDao {
