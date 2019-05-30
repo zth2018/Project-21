@@ -17,9 +17,12 @@ export class HomeComponent implements OnInit {
   submenulist: any[];
   constructor() {
 
-    this.menulist = [    
-      { "title": "我的消息", "link": "#" },
+    this.menulist = [
+      { "title": "用户管理", "link": "usermanagement" },
+      { "title": "院校管理", "link": "institutionmanagement" },
+      { "title": "角色管理", "link": "#" },
       { "title": "设置", "link": "#" },
+      { "title": "安全退出", "link": "#" },
       { "title": "标准列表页", "link": "listpage" },
       { "title": "标准编辑页", "link": "editpage" }
     ];

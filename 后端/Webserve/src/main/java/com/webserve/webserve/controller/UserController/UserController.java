@@ -3,7 +3,7 @@ package com.webserve.webserve.controller.UserController;
 
 import com.webserve.webserve.entity.Response;
 import com.webserve.webserve.entity.User.User;
-import com.webserve.webserve.entity.User.LoginInfo;
+
 import com.webserve.webserve.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +31,7 @@ public class UserController {
 //        return this.userService.Login(phone,password);
 //    }
 
-//    @GetMapping("/login")
-//    public LoginInfo login(@RequestParam String phone, @RequestParam String password){
-//        return this.userService.loginByPhone(phone,password);
-//    }
+
 
     //检查手机号是否已经注册
 //    @GetMapping("/checkphone")

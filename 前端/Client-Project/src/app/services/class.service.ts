@@ -12,11 +12,18 @@ import { Router } from '@angular/router';
 export class ClassService {
   serveurl: any = environment.ServeUrl;
   _class: Class;
-
+  httpOptions: any;
   
 
   constructor(private http: HttpClient, private router: Router) {
-      
+   this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("token")
+      })
+    };
+   
+
   }
 
 
@@ -37,9 +44,7 @@ export class ClassService {
     //});
 
 
-    this.http.get<any>(this.serveurl + "/class/getcclass?phone=" + phone, {
-      responseType: "json"
-    }).subscribe(data => {
+    this.http.get<any>(this.serveurl + "/class/getcclass?phone=" + phone,this.httpOptions).subscribe(data => {
       rs(data);
     });    
   }

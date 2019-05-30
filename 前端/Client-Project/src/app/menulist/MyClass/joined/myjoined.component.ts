@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { UserService } from '../../../services/User.service';
 import { ClassService } from '../../../services/class.service';
 import { Class } from '../../../interface/class';
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { collapseMotion } from 'ng-zorro-antd/core/animation/collapse';
+import { error } from '@angular/compiler/src/util';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable,of } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import { Response } from 'selenium-webdriver/http';
+
+
 
 interface T_class {
   id: string;
@@ -29,7 +36,7 @@ export class MyjoinedComponent implements OnInit {
   //_class: Class;
   //userphone: string;
   //class_list: any;
-  constructor(private User: UserService, private T_class: ClassService,private http:HttpClient) { }
+  constructor(private User: UserService, private T_class: ClassService, private http: HttpClient, private error1: ErrorHandler) { }
 
   ngOnInit() {
     this.token = localStorage.getItem("token");
@@ -41,42 +48,73 @@ export class MyjoinedComponent implements OnInit {
   }
 
   test() {
-    console.log("test");
+   
+    this.User.test();
+
+    ////token = JSON.parse(token);
+    ////console.log(token);
+    ////token = JSON.stringify(token);
+    ////console.log(token);
+    //var httpOptions = {
+    //  headers: new HttpHeaders({
+    //    'Content-Type': 'application/json',
+    //    'Authorization': this.token
+    //  })
+    //};
+    //this.http.get<any>("http://localhost:8080/test/3").subscribe(data => { }, error => {
+    //  console.log(error);
+      
+    //});
+
     
-    
-    //token = JSON.parse(token);
-    //console.log(token);
-    //token = JSON.stringify(token);
-    //console.log(token);
-    var httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': this.token
-      })
-    };
-  
-    this.http.get<any>("http://localhost:8080/test/3",httpOptions).subscribe(data => {
-      console.log(data);
-    });
-    
+    //        //this.http.get<any>("http://localhost:8080/test/3").subscribe(data => {
+ 
+    //        //});
+          
+    }
+
+
+  testerror(): Observable<any> {
+    console.log("test0");
+    return this.http.get<any>("http://localhost:8080/test/3")
+      .pipe(
+      
+      catchError(this.handleError<any>(`test`)));
+      
 
   }
 
-  //test(a: string) {
-    
-  //  this._class = {
-  //    id: null,
-  //    classname: "17.28测试",
-  //    description: "17.28测试",
-  //    ownerphone: "17.28测试",
-  //    addtime: null,
-  //    edittime: null,
-  //    starttime: "17.28测试",
-  //    endtime: "17.28测试"
-  //  }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log("test1")
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      console.log(error.status);
+      // TODO: better job of transforming error for user consumption
+      //this.log(`${operation} failed: ${error.message}`);
 
-  //  this.T_class.createclass(this._class);
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+
+
+  //private handleError<T>(operation = 'operation', result?: T) {
+  //  return (error: any): Observable<T> => {
+
+  //    // TODO: send the error to remote logging infrastructure
+  //    console.error(error); // log to console instead
+
+  //    // TODO: better job of transforming error for user consumption
+  //    this.log(`${operation} failed: ${error.message}`);
+
+  //    // Let the app keep running by returning an empty result.
+  //    return of(result as T);
+  //  };
   //}
+
+
 
 
 }

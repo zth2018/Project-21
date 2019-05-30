@@ -1,0 +1,67 @@
+<nz-table #nestedTable [nzData]="listofSchoolData" [nzPageSize]="10">
+  <thead>
+    <tr>
+      <th nzShowExpand></th>
+      <th>学校</th>
+      <th>所属省份</th>
+      <th>所在城市</th>
+      <th>Action</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+      <tr>
+        <td nzShowExpand [(nzExpand)]="data.expand"></td>
+        <td>{{ data.schoolname }}</td>
+        <td>{{ data.province }}</td>
+        <td>{{ data.city }}</td>
+        <td><a (click)="addinsititution(data)">添加学院</a> <nz-divider nzType="vertical"></nz-divider> <a>编辑</a>  <nz-divider nzType="vertical"></nz-divider>  <a>删除</a></td>
+      </tr>
+
+      <tr [nzExpand]="data.expand">
+        <td></td>
+        <td colspan="7">
+          <nz-table #innerTable [nzData]="data.institutions" nzSize="middle" [nzShowPagination]="true">
+            <thead>
+              <tr>
+                <th>学院</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+  <tbody>
+
+
+    <tr *ngFor="let data of innerTable.data;let i = index">
+      <td>{{ data.institution }}</td>
+   
+
+      <td>
+        <span class="table-operation">
+          <!--<nz-dropdown>
+            <a nz-dropdown class="operation"> Pause <i nz-icon type="down"></i> </a>
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a>Action 1</a>
+              </li>
+              <li nz-menu-item>
+                <a>Action 2</a>
+              </li>
+            </ul>
+          </nz-dropdown>-->
+          <!--<nz-divider nzType="vertical"></nz-divider>-->
+          <a class="operation">编辑</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="deleteinstitution(data.id)">删除</a>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+      </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
+
+
