@@ -3,7 +3,7 @@ package com.webserve.webserve.service.impl;
 import com.webserve.webserve.dao.UserDao;
 import com.webserve.webserve.entity.Response;
 import com.webserve.webserve.entity.User.Login;
-import com.webserve.webserve.entity.User.LoginInfo;
+
 import com.webserve.webserve.entity.User.Token;
 import com.webserve.webserve.entity.User.User;
 import com.webserve.webserve.service.UserService;
@@ -86,39 +86,12 @@ public class UserServiceImpl implements UserService {
         return userDao.getById(id);
     }
 
-//    @Override
-//    public LoginInfo loginByPhone(String phone, String password){
-//        LoginInfo result=new LoginInfo();
-//        String pw=userDao.loginByPhone(phone);
-//        if(pw.equals("0")==true){
-//            result.setResult(false);
-//            result.setTaken("NOT-OK");
-//            result.setMsg("用户不存在!");
-//        }else if(password.equals(pw)==true){
-//            result.setResult(true);
-//            result.setTaken("OK");
-//            result.setMsg("登陆成功");
-//            result.setUsername(userDao.getByPhone(phone).getUsername());
-//            result.setPhone(phone);
-//            this.userDao.notelogintime(phone);
-//        }else{
-//            result.setResult(false);
-//            result.setTaken("NOT-OK");
-//            result.setMsg("密码错误!");
-//        }
-//        return result;
-//
-//    }
-
 
 
 //    @Override
 //    public  String loginByEmail(String email){
 //        return userDao.loginByEmail(email);
 //    }
-
-
-
 
 
     @Override

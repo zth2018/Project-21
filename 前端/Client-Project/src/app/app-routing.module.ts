@@ -13,13 +13,17 @@ import { EditpageComponent } from './shares/editpage/editpage.component';
 import { MycreatedComponent } from './menulist/MyClass/created/mycreated.component';
 import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
 import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist-for-s.component';
+import { UsermanagementComponent } from './menulist/usermanagement/usermanagement.component';
+import { InstitutionmanagementComponent } from './menulist/institutionmanagement/institutionmanagement.component';
 
 
 const routes: Routes = [
   
   {path: 'login', component: LoginComponent },
   {path: 'homepage', component: HomeComponent,
-     children: [
+    children: [
+       { path: 'usermanagement', component: UsermanagementComponent },
+       { path: 'institutionmanagement', component: InstitutionmanagementComponent },
        { path: 'listpage', component: ListpageComponent },
        { path: 'editpage', component: EditpageComponent },
        { path: 'mycreatedclass', component: MycreatedComponent },

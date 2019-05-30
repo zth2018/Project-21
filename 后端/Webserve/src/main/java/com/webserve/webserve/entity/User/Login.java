@@ -1,6 +1,4 @@
 package com.webserve.webserve.entity.User;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Login {
-    private String phone;
+    private String username;
 
     private String validtime;
     public  String valid="20195261915";
@@ -23,8 +21,8 @@ public class Login {
 //        }
 //
 //    }
-    public Login(String phone){
-        this.phone=phone;
+    public Login(String username){
+        this.username =username;
         Date now=new Date();
         Calendar validtime=Calendar.getInstance();
         validtime.setTime(now);
@@ -33,7 +31,7 @@ public class Login {
         this.validtime= dateFormat.format( validtime.getTime() );
     }
     public Login (){
-        this.phone="";
+        this.username ="";
         this.validtime="";
     }
     public boolean checkvalid(){
@@ -57,16 +55,16 @@ public class Login {
         return validtime.after(now);
     }
 
-    public String getPhone() {
-        return phone;
+    public String getUsername() {
+        return username;
     }
 
     public String getValidtime() {
         return validtime;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setValidtime(String validtime) {

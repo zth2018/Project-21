@@ -7,6 +7,7 @@ import { Router} from '@angular/router';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Response } from '../interface/response'
 
+import { NzMessageService } from 'ng-zorro-antd';
 
 interface login {
   result: boolean;
@@ -29,18 +30,23 @@ interface User {
   providedIn: 'root'
 })
 export class UserService {
-
+  httpOptions: any;
   response: Response;
   user: User;
   serveurl: any = environment.ServeUrl;
 
-  constructor(private http: HttpClient,private router:Router) {
-   
+  constructor(private http: HttpClient, private router: Router,  private message: NzMessageService) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("token")
+      })
+    };
   }
   //---------------------------------------------------------------------------------------------------------------------------
-     Login(phone:string,pw:string,rt):void {    
-        if (phone != null && pw != null) {
-          this.http.get<Response>(this.serveurl+ "/login?phone=" + phone + "&password=" + pw, {
+     Login(username:string,pw:string,rt):void {    
+        if (username != null && pw != null) {
+          this.http.get<Response>(this.serveurl+ "/login?username=" + username + "&password=" + pw, {
             responseType:"json"
           }).subscribe(data => {
             this.response = {
@@ -49,13 +55,13 @@ export class UserService {
               token: data['token'],
               data:data['data']
             }
-            localStorage.setItem("userphone", phone);
+            localStorage.setItem("username", username);
             localStorage.setItem("token", JSON.stringify(this.response.token));
             rt(this.response);
           })
         }
       }
-
+  
   //-------------------------------------
     Register(username: string, password: string, phone: string) { 
         const httpOptions = {
@@ -85,12 +91,39 @@ export class UserService {
             rt(result);
           })
         }
+  //--------------------------------------
+  getclassmemberfor(class_id: string): any {
+    this.http.get<any>("http://localhost:8080/class/getuser?class_id=" + class_id,this.httpOptions).subscribe(data => {
+     
+    });
+
+  }
+
 
   //---------------------------------------------------------------------------------------------------------------------------
 
 
  
+  test() {
 
+
+
+    //token = JSON.parse(token);
+    //console.log(token);
+    //token = JSON.stringify(token);
+    //console.log(token);
+ 
+    this.http.get<any>("http://localhost:8080/test/3").subscribe(data => { }, error => {
+      console.log(error);
+      this.message.warning(error.status, { nzDuration: 3000 }).onClose.subscribe(() => { console.log("close") });
+    });
+
+
+    //this.http.get<any>("http://localhost:8080/test/3").subscribe(data => {
+
+    //});
+
+  }
  
 
   
