@@ -1,12 +1,33 @@
-<nz-table #nestedTable [nzData]="listofSchoolData" [nzPageSize]="10">
+<button nz-button (click)="addschool()" nzType="primary">添加学校</button>
+
+<button nz-button (click)="refreshlist()" style="margin-left:3px" nzType="primary">刷新</button>
+
+<nz-table #nestedTable [nzData]="listOfDisplay" [nzPageSize]="10">
   <thead>
     <tr>
       <th nzShowExpand></th>
-      <th>学校</th>
+      <th nzCustomFilter>
+        学校
+        <nz-dropdown nzTrigger="click" nzPlacement="topLeft" [nzClickHide]="false" [(nzVisible)]="visible" nzTableFilter #dropdown>
+          <i nz-icon
+             nzType="search"
+             class="ant-table-filter-icon"
+             [class.ant-table-filter-open]="dropdown.nzVisible"
+             nz-dropdown></i>
+          <div class="search-box">
+            <input type="text" nz-input placeholder="按名称查找" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+              查找
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">重置</button>
+          </div>
+        </nz-dropdown>
+
+      </th>
       <th>所属省份</th>
       <th>所在城市</th>
       <th>Action</th>
-     
+
     </tr>
   </thead>
   <tbody>
@@ -16,7 +37,13 @@
         <td>{{ data.schoolname }}</td>
         <td>{{ data.province }}</td>
         <td>{{ data.city }}</td>
-        <td><a (click)="addinsititution(data)">添加学院</a> <nz-divider nzType="vertical"></nz-divider> <a>编辑</a>  <nz-divider nzType="vertical"></nz-divider>  <a>删除</a></td>
+        <td>
+          <a (click)="addinsititution(data)">添加学院</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="editschool(data)">编辑</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="deleteschool(data.id)">删除</a>
+        </td>
       </tr>
 
       <tr [nzExpand]="data.expand">
@@ -34,23 +61,10 @@
 
     <tr *ngFor="let data of innerTable.data;let i = index">
       <td>{{ data.institution }}</td>
-   
-
       <td>
         <span class="table-operation">
-          <!--<nz-dropdown>
-            <a nz-dropdown class="operation"> Pause <i nz-icon type="down"></i> </a>
-            <ul nz-menu>
-              <li nz-menu-item>
-                <a>Action 1</a>
-              </li>
-              <li nz-menu-item>
-                <a>Action 2</a>
-              </li>
-            </ul>
-          </nz-dropdown>-->
-          <!--<nz-divider nzType="vertical"></nz-divider>-->
-          <a class="operation">编辑</a>
+      
+          <a class="operation" (click)="editinstitution(data.id,data.institution)">编辑</a>
           <nz-divider nzType="vertical"></nz-divider>
           <a (click)="deleteinstitution(data.id)">删除</a>
         </span>

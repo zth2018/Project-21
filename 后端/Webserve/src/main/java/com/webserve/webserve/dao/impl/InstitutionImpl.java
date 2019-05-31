@@ -21,7 +21,7 @@ public class InstitutionImpl implements InstitutionDao {
     public int deleteinstitution(String institution_id){
         String sql="delete from t_institution where id=?";
         return this.jdbcTemplate.update(sql,institution_id);
-    }
+    }//----------------------------------------------------------------------------------
 
     @Override
     public int addschool(school data){
@@ -41,11 +41,15 @@ public class InstitutionImpl implements InstitutionDao {
     }//------------------------------------------------
 
     @Override
-    public int updataschool(school data){
-        String sql="updata t_school set schoolname=?,province=?,city=? where id=?";
+    public int updateschool(school data){
+        String sql="update t_school set schoolname=?,province=?,city=? where id=?";
         return this.jdbcTemplate.update(
                 sql,
-                data);
+                data.getSchoolname(),
+                data.getProvince(),
+                data.getCity(),
+                data.getId()
+        );
     }//-----------------------------------------------------
 //            data.getSchoolname(),
 //            data.getProvince(),
@@ -67,23 +71,35 @@ public class InstitutionImpl implements InstitutionDao {
 //            }
         }
         return schools;
-    }
+    }//-------------------------------------------------------------------------
 
     @Override
     public List<institution> getinstitution(String school_id){
         String sql="select * from t_institution where school_id=?";
         RowMapper<institution> rowMapper=new BeanPropertyRowMapper<institution>(institution.class);
         List<institution>institutions=this.jdbcTemplate.query(sql,rowMapper,school_id);
-//        for(institution ins:institutions){
-//            System.out.println(ins.getInstitution());
-//        }
         return institutions;
-    }
+    }//----------------------------------------------------------------------------------------
 
     @Override
     public int addinstitution(String school_id,String institution){
         String sql="insert into t_institution (institution,school_id) values(?,?)";
         return this.jdbcTemplate.update(sql,institution,school_id);
+    }//------------------------------------------------------------------------------------------
+
+    @Override
+    public int updateinstitution(String id,String institution){
+        String sql="update t_institution set institution=? where id=?";
+        return this.jdbcTemplate.update(
+                sql,
+                institution,
+                id
+                );
     }
+
+
+
+
+
 
 }

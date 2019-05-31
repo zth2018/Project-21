@@ -15,9 +15,23 @@ public class InstitutionController {
     @PostMapping()
     public Response addinstitution(@RequestParam String username,@RequestParam String school_id,@RequestParam String institution){
         return this.institutionService.addinstitution(school_id,institution);
-    }//-----------------------------------------
+    }//-------------------------------------------------------------------------------------
+
+
     @DeleteMapping()
     public Response deleteinstitution(@RequestParam String username,@RequestParam String id){
         return this.institutionService.deleteinstitution(id);
-    }
+    }//--------------------------------------------------------------------------------------
+
+
+    @PatchMapping()
+    public Response update(@RequestParam String username,@RequestParam String id,@RequestParam String institution){
+        return this.institutionService.updateinstitution(id,institution);
+    }//------------------------------------------------------------------------------------
+
+
+
+
+
+
 }

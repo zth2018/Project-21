@@ -23,7 +23,7 @@ public class InstitutionServiceImpl implements InstitutionService {
             response.setMessage("删除学院失败");
         }
         return response;
-    }
+    }//--------------------------------------------------------------------------
 
     @Override
     public Response addschool(school data){
@@ -35,7 +35,7 @@ public class InstitutionServiceImpl implements InstitutionService {
             result.setResult(false);
         }
         return  result;
-    }//--------------------------------------------
+    }//-----------------------------------------------------------------------------
 
     public Response deleteschool(String school_id){
         Response result=new Response();
@@ -46,18 +46,18 @@ public class InstitutionServiceImpl implements InstitutionService {
             result.setMessage("删除学校失败");
         }
         return result;
-    }//--------------------------------------
+    }//------------------------------------------------------------------------------
 
-    public Response updataschool(school data){
+    public Response updateschool(school data){
         Response result=new Response();
-        if(this.institutionDao.updataschool(data)==1){
+        if(this.institutionDao.updateschool(data)==1){
             result.setResult(true);
         }else {
             result.setResult(false);
             result.setMessage("更新学校信息失败");
         }
         return result;
-    }
+    }//------------------------------------------------------------------------------
 
     public Response getallschool(){
         Response response=new Response();
@@ -65,7 +65,7 @@ public class InstitutionServiceImpl implements InstitutionService {
         response.setData(this.institutionDao.getallschool());
         response.setMessage("获取数据失败");
         return response;
-    }
+    }//---------------------------------------------------------------------------
 
     public Response addinstitution(String schoo_id,String institution){
         Response response=new Response();
@@ -76,5 +76,17 @@ public class InstitutionServiceImpl implements InstitutionService {
             response.setMessage("添加学院失败");
         }
         return response;
-    }
+    }//-------------------------------------------------------------------------------
+
+    public Response updateinstitution(String id,String institution){
+        Response response=new Response();
+        if(this.institutionDao.updateinstitution(id,institution)==1){
+            response.setResult(true);
+        }else{
+            response.setResult(false);
+            response.setMessage("修改学院信息失败");
+        }
+        return response;
+    }//---------------------------------------------------------------------------------
+
 }
