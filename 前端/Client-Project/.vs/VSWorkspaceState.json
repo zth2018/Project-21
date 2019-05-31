@@ -3,14 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\auth",
     "\\src\\app\\forms",
     "\\src\\app\\forms\\login-form",
-    "\\src\\app\\interface",
+    "\\src\\app\\home",
     "\\src\\app\\menulist",
     "\\src\\app\\menulist\\institutionmanagement",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\services\\class.service.ts",
+  "SelectedNode": "\\src\\app\\forms\\login-form\\login-form.component.ts",
   "PreviewInSolutionExplorer": false
 }

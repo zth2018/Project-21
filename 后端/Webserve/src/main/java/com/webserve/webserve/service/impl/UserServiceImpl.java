@@ -30,10 +30,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response Login(String phone, String password){
+    public Response Login(String username, String password){
         Response response=new Response();
-        String pw=userDao.login(phone);
-        Token token=new Token(phone);
+        String pw=userDao.login(username);
+        Token token=new Token(username);
         if(pw.equals("0")==true){
             response.setResult(false);
             response.setToken(null);
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
             response.setResult(true);
             response.setToken(token.getToken());
             response.setMessage("登陆成功");
-            this.userDao.logintime(phone);
+            this.userDao.logintime(username);
         }else{
             response.setResult(false);
             response.setToken(null);

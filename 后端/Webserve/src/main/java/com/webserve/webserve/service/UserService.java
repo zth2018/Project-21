@@ -13,7 +13,7 @@ public interface UserService {
 
 //    String loginByEmail(String email);
 //------------------------------------------------------------------------
-    Response Login(String phone, String password);
+    Response Login(String username, String password);
     Response Register(User user);
     int logintime(String phone);
     boolean checkphone(String phone);

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class InsititutionService {
+export class InstitutionService {
   httpOptions: any;
   serveurl: any = environment.ServeUrl;
   username: string;
@@ -23,8 +23,10 @@ export class InsititutionService {
         'Authorization': localStorage.getItem("token")
       })
     };
-
+    
   }//---------------------------------------------------------------------
+
+
 
   getallschool(callback):any {
     this.http.get<any>(this.serveurl + "/school?username=" + this.username, this.httpOptions).subscribe(data => {
@@ -116,6 +118,16 @@ export class InsititutionService {
   }//-----------------------------------------------------------------------------------------------
 
 
+  refreshtoken() {
+    this.username = localStorage.getItem("username");
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("token")
+      })
+    };
+  }
+  
 
 
 }//-------------------------------------------------------------------------------------------------

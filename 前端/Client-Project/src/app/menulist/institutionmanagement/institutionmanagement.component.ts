@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd';
-import { InsititutionService } from '../../services/insititution.service';
+import { InstitutionService } from '../../services/institution.service';
 import { Response } from '../../interface/response';
 import {  school } from '../../interface/school';
 
@@ -23,7 +23,7 @@ export class InstitutionmanagementComponent implements OnInit {
   //schoolname: string;
   //province: any;
   //city: any;
-  constructor(private modalService: NzModalService,private institutionservice:InsititutionService) { }//------------------------------------------------
+  constructor(private modalService: NzModalService,private institutionservice:InstitutionService) { }//------------------------------------------------
 
 
 

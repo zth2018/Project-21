@@ -17,7 +17,7 @@ public interface UserDao {
 
     String checkphone(String phone);//检查手机号码是否已被注册
 
-    String login(String phone);//通过手机号码登陆
+    String login(String username);//通过手机号码登陆
 
 //    String loginByEmail(String email);//通过邮箱号码登陆
 

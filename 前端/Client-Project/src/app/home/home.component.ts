@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserService } from '../services/User.service';
+import { InstitutionService } from '../services/institution.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   menulist: any[];
   submenulist: any[];
-  constructor() {
+  constructor(private userService:UserService,private institutionService:InstitutionService) {
 
     this.menulist = [
       { "title": "用户管理", "link": "usermanagement" },
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.institutionService.refreshtoken();
   }
 
 }

@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public String login(String phone){
+    public String login(String username){
         String sql = "select password from t_user where phone = ?";
 //        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
 //            @Override
@@ -82,7 +82,7 @@ public class UserDaoImpl implements UserDao {
                 public String mapRow(ResultSet resultSet, int i) throws SQLException {
                     return resultSet.getString("password");
                 }
-            }, phone);
+            }, username);
         }catch (Exception e){
             return "0";
         }
