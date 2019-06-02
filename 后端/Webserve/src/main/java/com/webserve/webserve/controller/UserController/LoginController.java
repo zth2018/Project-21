@@ -13,7 +13,7 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping()
-    public Response login(@RequestParam String username, @RequestParam String password){
-        return this.userService.Login(username,password);
+    public Response login(@RequestParam String account, @RequestParam String password,@RequestParam Integer how){
+        return this.userService.Login(account,password,how);
     }
 }

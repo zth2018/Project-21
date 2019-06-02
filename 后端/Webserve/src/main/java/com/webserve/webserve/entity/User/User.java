@@ -13,7 +13,7 @@ public class User implements Serializable{
 
     private String phone;
 
-    private String taken;
+
 
 
     public void setUsername(String username) {
@@ -48,11 +48,5 @@ public class User implements Serializable{
         return phone;
     }
 
-    public void setTaken(String taken) {
-        this.taken = taken;
-    }
 
-    public String getTaken() {
-        return taken;
-    }
 }

@@ -14,23 +14,23 @@ public class SchoolController {
     private InstitutionService institutionService;
 
     @GetMapping()
-    public Response getall(@RequestParam String username){
+    public Response getall(@RequestParam String account){
         return this.institutionService.getallschool();
     }//-----------------------------------------------------------------------------
 
     @PostMapping()
-    public Response add(@RequestParam String username,@RequestBody school data)
+    public Response add(@RequestParam String account,@RequestBody school data)
     {
         return  this.institutionService.addschool(data);
     }//-----------------------------------------------------------------------------
 
     @DeleteMapping()
-    public Response delete(@RequestParam String username,@RequestParam String id){
+    public Response delete(@RequestParam String account,@RequestParam String id){
         return this.institutionService.deleteschool(id);
     }//-----------------------------------------------------------------------------
 
     @PatchMapping()
-    public Response update(@RequestParam String username,@RequestBody school data){
+    public Response update(@RequestParam String account,@RequestBody school data){
         return this.institutionService.updateschool(data);
     }//-----------------------------------------------------------------------------
 

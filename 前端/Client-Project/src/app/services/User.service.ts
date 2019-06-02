@@ -32,14 +32,17 @@ export class UserService {
     };
   }//----------------------------------------------------------------------------------------------------------------------------
  
-  Login(username:string,pw:string,remember:boolean):void {    
+  Login(account:string,pw:string,remember:boolean,how:number):void {    
      
-    if (username != null && pw != null) {
-      this.http.get<any>(this.serveurl + "/login?username=" + username + "&password=" + pw).subscribe((data: any) => {
+    if (account != null && pw != null) {
+      this.http.get<any>(this.serveurl + "/login?account=" + account + "&password=" + pw+"&how="+how).subscribe((data: any) => {
         if (data.result == true) {
           localStorage.setItem("token", JSON.stringify(data.token));
-          localStorage.setItem("username", username);
-          if (remember == true) { localStorage.setItem("remember", username); }
+          localStorage.setItem("account", account);
+          localStorage.setItem("uid", data.data.id);
+          if (remember == true) {
+            localStorage.setItem("remember", account);          
+          }
           this.router.navigateByUrl("homepage");
         } else {
           this.message.warning(data.message);
@@ -53,7 +56,7 @@ export class UserService {
     var user = {"username": username,"phone": phone,"password":password}
       this.http.post<Response>(this.serveurl + "/register",user, this.httpOptions).subscribe((data:any) => {
       if (data.result) {
-        this.Login(phone, password, false);
+        //this.Login(phone, password, false);
       }
     });
   }//---------------------------------------------------------------------------------------------------------------------------

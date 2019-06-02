@@ -13,9 +13,9 @@ public interface UserService {
 
 //    String loginByEmail(String email);
 //------------------------------------------------------------------------
-    Response Login(String username, String password);
+    Response Login(String account, String password,Integer how);
     Response Register(User user);
-    int logintime(String phone);
+
     boolean checkphone(String phone);
 //------------------------------------------------------------------------
 

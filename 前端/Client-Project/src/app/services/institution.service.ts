@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 export class InstitutionService {
   httpOptions: any;
   serveurl: any = environment.ServeUrl;
-  username: string;
+  account: string;
   response: Response;
 
   constructor(private http: HttpClient,private messageservice:NzMessageService,private router:Router) {
-    this.username = localStorage.getItem("username");
+    this.account = localStorage.getItem("account");
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export class InstitutionService {
 
 
   getallschool(callback):any {
-    this.http.get<any>(this.serveurl + "/school?username=" + this.username, this.httpOptions).subscribe(data => {
+    this.http.get<any>(this.serveurl + "/school?account=" + this.account, this.httpOptions).subscribe(data => {
       this.response = {
         result: data['result'],
         message: data['message'],
@@ -46,7 +46,7 @@ export class InstitutionService {
   addschool(name: string, province: string, city: string) {
    
     var school = { "schoolname": name, "province": province, "city": city };
-    this.http.post<any>(this.serveurl + "/school?username=" + this.username, school, this.httpOptions).subscribe((data: any) => {
+    this.http.post<any>(this.serveurl + "/school?account=" + this.account, school, this.httpOptions).subscribe((data: any) => {
       
       if (data.result != true) {
         this.messageservice.warning(data.message);
@@ -59,7 +59,7 @@ export class InstitutionService {
   }//-----------------------------------------------------------------------------------------------
 
   deleteschool(school_id: string) {
-    this.http.delete<any>(this.serveurl + "/school?username=" + this.username + "&id=" + school_id, this.httpOptions).subscribe((data: any) => {
+    this.http.delete<any>(this.serveurl + "/school?account=" + this.account + "&id=" + school_id, this.httpOptions).subscribe((data: any) => {
       if (data.result != true) { this.messageservice.warning(data.message); }
       this.messageservice.success("删除学校成功,请刷新");
     }, error => {
@@ -68,7 +68,7 @@ export class InstitutionService {
   }//------------------------------------------------------------------------------------------------
 
   updateschool(data:school) {
-    this.http.patch<any>(this.serveurl + "/school?username=" + this.username, data, this.httpOptions).subscribe((data: any) => {
+    this.http.patch<any>(this.serveurl + "/school?account=" + this.account, data, this.httpOptions).subscribe((data: any) => {
       if (data.result != true) {
         this.messageservice.warning(data.message);
       }
@@ -79,7 +79,7 @@ export class InstitutionService {
   }//------------------------------------------------------------------------------------------------
 
   addinstitution(school_id: string,institution:string) {
-    this.http.post<any>(this.serveurl + "/institution?username=" + this.username + "&school_id=" + school_id + "&institution=" + institution,null,this.httpOptions).subscribe((data:any) => {
+    this.http.post<any>(this.serveurl + "/institution?account=" + this.account + "&school_id=" + school_id + "&institution=" + institution,null,this.httpOptions).subscribe((data:any) => {
       if (data.result != true) {
         this.messageservice.warning(data.message);
       }
@@ -90,7 +90,7 @@ export class InstitutionService {
   }//----------------------------------------------------------------------------------------------
 
   deleteinstitution(id: string) {
-    this.http.delete<any>(this.serveurl + "/institution?username=" + this.username + "&id=" + id, this.httpOptions).subscribe((data: any) => {
+    this.http.delete<any>(this.serveurl + "/institution?account=" + this.account + "&id=" + id, this.httpOptions).subscribe((data: any) => {
       if (data.result != true) { this.messageservice.warning(data.message); }
       this.messageservice.success("删除学院成功,请刷新");
     }, error => {
@@ -99,7 +99,7 @@ export class InstitutionService {
   }//-----------------------------------------------------------------------------------------------
 
   updateinstitution(id: string, name: string) {
-    this.http.patch<any>(this.serveurl + "/institution?username=" + this.username + "&id=" + id + "&institution=" + name, null, this.httpOptions).subscribe((data: any) => {
+    this.http.patch<any>(this.serveurl + "/institution?account=" + this.account + "&id=" + id + "&institution=" + name, null, this.httpOptions).subscribe((data: any) => {
       if (data.result != true) { this.messageservice.warning(data.message); }
       this.messageservice.success("修改学院信息成功,请刷新");
     }, error => {
@@ -119,7 +119,7 @@ export class InstitutionService {
 
 
   refreshtoken() {
-    this.username = localStorage.getItem("username");
+    this.account = localStorage.getItem("account");
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

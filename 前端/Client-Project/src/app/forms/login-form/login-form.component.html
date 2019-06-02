@@ -1,12 +1,18 @@
 
-<form nz-form [formGroup]="validateForm" class="advanced-form" (ngSubmit)="submitForm()">
+<nz-tabset [(nzSelectedIndex)]="howlogin">
+  <nz-tab nzTitle="用户名登陆"></nz-tab>
+  <nz-tab nzTitle="手机号登陆"></nz-tab>
+</nz-tabset>
+
+
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
   <nz-form-item>
     <!--<p *ngIf="a" style="color:red">{{msg}}</p>-->
     <nz-form-control>
       <nz-input-group [nzPrefix]="prefixUser">
-        <input type="text" nz-input formControlName="phone" placeholder="手机号" />
+        <input type="text" nz-input formControlName="phone" placeholder="账号" />
       </nz-input-group>
-      <nz-form-explain *ngIf="validateForm.get('phone')?.dirty && validateForm.get('phone')?.errors">请输入手机号!</nz-form-explain>
+      <nz-form-explain *ngIf="validateForm.get('phone')?.dirty && validateForm.get('phone')?.errors">请输入账号!</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>

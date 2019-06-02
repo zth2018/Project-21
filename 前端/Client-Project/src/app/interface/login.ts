@@ -3,6 +3,6 @@ export interface login {
   msg: string;
   token: string;
   //username: string;
-  phone: string;
+  account: string;
 
 }

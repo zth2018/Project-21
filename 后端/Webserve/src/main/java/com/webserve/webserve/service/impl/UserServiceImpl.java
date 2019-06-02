@@ -30,24 +30,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response Login(String username, String password){
+    public Response Login(String account, String password,Integer how){
         Response response=new Response();
-        String pw=userDao.login(username);
-        Token token=new Token(username);
-        if(pw.equals("0")==true){
+        User user=userDao.login(account,how);
+        Token token=new Token(account);
+        if(user.getId()==null){
             response.setResult(false);
             response.setToken(null);
             response.setMessage("用户不存在!");
-        }else if(password.equals(pw)==true){
+        }else if(user.getPassword().equals(password)){
             response.setResult(true);
             response.setToken(token.getToken());
             response.setMessage("登陆成功");
-            this.userDao.logintime(username);
-        }else{
+            response.setData(user);
+//            this.userDao.logintime(account);
+        }else {
             response.setResult(false);
             response.setToken(null);
             response.setMessage("密码错误!");
         }
+//        System.out.println(user.getId());
+//        if(pw.equals("0")==true){
+//            response.setResult(false);
+//            response.setToken(null);
+//            response.setMessage("用户不存在!");
+//        }else if(password.equals(pw)==true){
+//            response.setResult(true);
+//            response.setToken(token.getToken());
+//            response.setMessage("登陆成功");
+//            this.userDao.logintime(account);
+//        }else{
+//            response.setResult(false);
+//            response.setToken(null);
+//            response.setMessage("密码错误!");
+//        }
         return response;
     }
 
@@ -61,10 +77,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public int logintime(String phone){
-        return userDao.logintime(phone);
-    }
+
 //--------------------------------------------------------------------------------------------------------------------
 //    @Override
 //    public int insert(User user) {

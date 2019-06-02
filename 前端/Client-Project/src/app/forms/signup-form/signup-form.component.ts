@@ -3,11 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn, AbstractC
 import { UserService } from '../../services/User.service';
 
 
-interface User {
-  username: string;
-  password: string;
-  phone: string;
-}
+//interface User {
+//  username: string;
+//  password: string;
+//  phone: string;
+//}
 
 
 
