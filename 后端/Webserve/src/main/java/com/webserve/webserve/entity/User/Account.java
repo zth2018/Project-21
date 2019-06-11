@@ -2,10 +2,10 @@ package com.webserve.webserve.entity.User;
 import java.io.Serializable;
 
 
-public class User implements Serializable{
+public class Account implements Serializable{
     private static final long serialVersionUID = -6249397911566315813L;
 
-    private Integer id;
+    private String id;
 
     private String username;
 
@@ -24,7 +24,7 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public void setId(Integer id){
+    public void setId(String id){
         this.id=id;
     }
 
@@ -36,7 +36,7 @@ public class User implements Serializable{
         return username;
     }
 
-    public Integer getId(){
+    public String getId(){
         return id;
     }
 

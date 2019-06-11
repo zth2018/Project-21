@@ -16,6 +16,7 @@ import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist
 import { UsermanagementComponent } from './menulist/usermanagement/usermanagement.component';
 import { InstitutionmanagementComponent } from './menulist/institutionmanagement/institutionmanagement.component';
 import { AuthGuard } from './auth/auth.guard';
+import { RolemanagementComponent } from './menulist/rolemanagement/rolemanagement.component';
 
 const routes: Routes = [
   
@@ -25,6 +26,7 @@ const routes: Routes = [
     children: [
        { path: 'usermanagement', component: UsermanagementComponent },
        { path: 'institutionmanagement', component: InstitutionmanagementComponent },
+       { path: 'rolemanagement', component: RolemanagementComponent },
        { path: 'listpage', component: ListpageComponent },
        { path: 'editpage', component: EditpageComponent },
        { path: 'mycreatedclass', component: MycreatedComponent },

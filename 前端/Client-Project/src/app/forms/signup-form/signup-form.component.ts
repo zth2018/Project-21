@@ -32,12 +32,12 @@ export class SignupFormComponent implements OnInit {
       phone: [null, [Validators.required, Validators.pattern(/^[1][3,4,5,7,8][0-9]{9}$/)]],
       password: [null, [Validators.required, Validators.pattern(/^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/)]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      username: [null,  [Validators.required, Validators.pattern(/[\u4E00-\u9FA5]/)]],       
+      username: [null,  [Validators.required]],       
       captcha: [null, [Validators.required]],
       agree: [false]
     });
   }
-
+  //, Validators.pattern(/[\u4E00-\u9FA5]/)
 //, { updateOn: 'blur' }
 
 

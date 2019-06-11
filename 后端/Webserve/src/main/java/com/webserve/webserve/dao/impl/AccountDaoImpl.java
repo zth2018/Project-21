@@ -1,7 +1,9 @@
 package com.webserve.webserve.dao.impl;
-import com.webserve.webserve.dao.UserDao;
-import com.webserve.webserve.entity.User.User;
+import com.webserve.webserve.dao.AccountDao;
+import com.webserve.webserve.entity.User.Account;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,27 +12,25 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class AccountDaoImpl implements AccountDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int insert(User user) {
+    public int insert(Account account) {
         Date now=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String addtime = dateFormat.format( now );
-
         String sql = "insert into t_user(phone,username,password,registertime) values(?,?,?,?)";
         return this.jdbcTemplate.update(
                 sql,
-                user.getPhone(),
-                user.getUsername(),
-                user.getPassword(),
+                account.getPhone(),
+                account.getUsername(),
+                account.getPassword(),
                 addtime
         );
     }//-----------------------------------------------------------------------------
@@ -42,54 +42,59 @@ public class UserDaoImpl implements UserDao {
     }//--------------------------------------------------------------------------------
 
     @Override
-    public int update(User user) {
+    public int update(Account account) {
         String sql = "update t_user set password = ? where id = ?";
         return this.jdbcTemplate.update(
                 sql,
-                user.getPassword(),
-                user.getId()
+                account.getPassword(),
+                account.getId()
         );
     }//--------------------------------------------------------------------------------------
 
     @Override
-    public User getById(Integer id) {
+    public Account getById(Integer id) {
         String sql = "select * from t_user where id = ?";
-        return this.jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<Account>() {
 
             @Override
-            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User user = new User();
-                user.setId(rs.getInt("id"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                return user;
+            public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Account account = new Account();
+                account.setId(rs.getString("id"));
+                account.setUsername(rs.getString("username"));
+                account.setPassword(rs.getString("password"));
+                return account;
             }
 
         }, id);
     }//------------------------------------------------------------------------------------
 
     @Override
-    public User login(String account,Integer how){
+    public Account login(String account, Integer how){
         String sql="";
         if(how==0){
             sql = "select password,id from t_user where username = ?";
         }else if(how==1){
             sql = "select password,id from t_user where phone = ?";
         }
-        RowMapper<User>rowMapper=new BeanPropertyRowMapper<>(User.class);
+        RowMapper<Account>rowMapper=new BeanPropertyRowMapper<>(Account.class);
         try {
-//            User user=this.jdbcTemplate.queryForObject(sql,rowMapper,account);
+//            Account user=this.jdbcTemplate.queryForObject(sql,rowMapper,account);
             return this.jdbcTemplate.queryForObject(sql,rowMapper,account);
         }catch (Exception e){
-            return new User();
+            return new Account();
         }
-
-
-
-
     }//--------------------------------------------------------------------------------------------
 
-
+    @Override
+    public String getuserrole(String id){
+        String sql="select  role  from  t_userinfo  where id=? ";
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("role");
+            }
+        },id);
+    }//---------------------------------------------------------------------------------------------
 
 
 
@@ -111,14 +116,15 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public User getByPhone(String phone){
+    public Account getByPhone(String phone){
         String sql="select * from t_user where phone=?";
-        return this.jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<Account>() {
             @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User user=new User();
-                user.setUsername(resultSet.getString("username"));
-                return user;
+            public Account mapRow(ResultSet resultSet, int i) throws SQLException {
+                Account account =new Account();
+                //account.setUsername(resultSet.getString("username"));
+                account.setId(resultSet.getString("id"));
+                return account;
             }
         },phone);
     }//---------------------------------------------------------------------------------

@@ -30,7 +30,7 @@ import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist
 import { MemberlistForTComponent } from './listpages/memberlist-for-t/memberlist-for-t.component';
 import { UsermanagementComponent } from './menulist/usermanagement/usermanagement.component';
 import { InstitutionmanagementComponent, addinsititutionComponent, addschoolComponent, editschoolComponent, editinsititutionComponent } from './menulist/institutionmanagement/institutionmanagement.component';
-import { RolemanagementComponent } from './menulist/rolemanagement/rolemanagement.component';
+import { RolemanagementComponent, addroleComponent, updateroleComponent, addrolepermissionComponent } from './menulist/rolemanagement/rolemanagement.component';
 import { EditpersoninfoComponent } from './menulist/editpersoninfo/editpersoninfo.component';
 
 
@@ -71,14 +71,20 @@ registerLocaleData(zh);
     addinsititutionComponent,
     addschoolComponent,
     editschoolComponent,
-    editinsititutionComponent
+    editinsititutionComponent,
+    addroleComponent,
+    updateroleComponent,
+    addrolepermissionComponent
   ],
   entryComponents: [
     EditclassComponent,
     addinsititutionComponent,
     addschoolComponent,
     editschoolComponent,
-    editinsititutionComponent
+    editinsititutionComponent,
+    addroleComponent,
+    updateroleComponent,
+    addrolepermissionComponent
   ],
   imports: [
     BrowserModule,

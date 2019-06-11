@@ -144,11 +144,9 @@ export class InstitutionmanagementComponent implements OnInit {
         {
           label: '确定',
           onClick: data => {
-            this.institutionservice.updateinstitution(id,data.name)
-            //if (componentInstance.name != null) {
-            //  this.institutionservice.addinstitution(school.id, componentInstance.name)
-            //}
-            //console.log(componentInstance.insititution)
+            if (data.name != null) {
+                this.institutionservice.updateinstitution(id,data.name)
+            }
             modal.destroy()
           }
         },
@@ -158,7 +156,7 @@ export class InstitutionmanagementComponent implements OnInit {
         }
       ]
     });
-  }
+  }//-------------------------------------------------------------------------------------------------------
 
 
 

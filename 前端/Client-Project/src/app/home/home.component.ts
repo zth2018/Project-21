@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/User.service';
 import { InstitutionService } from '../services/institution.service';
+import { RoleService } from '../services/role.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,12 +17,12 @@ export class HomeComponent implements OnInit {
 
   menulist: any[];
   submenulist: any[];
-  constructor(private userService:UserService,private institutionService:InstitutionService) {
+  constructor(private userService:UserService,private institutionService:InstitutionService,private roleservice:RoleService) {
 
     this.menulist = [
       { "title": "用户管理", "link": "usermanagement" },
       { "title": "院校管理", "link": "institutionmanagement" },
-      { "title": "角色管理", "link": "#" },
+      { "title": "角色管理", "link": "rolemanagement" },
       { "title": "设置", "link": "#" },
       { "title": "安全退出", "link": "#" },
       { "title": "标准列表页", "link": "listpage" },
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.institutionService.refreshtoken();
+    this.roleservice.refreshtoken();
   }
 
 }

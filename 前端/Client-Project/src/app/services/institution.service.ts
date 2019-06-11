@@ -50,8 +50,8 @@ export class InstitutionService {
       
       if (data.result != true) {
         this.messageservice.warning(data.message);
-      }
-      this.messageservice.success("添加学校成功,请刷新");
+      } else {this.messageservice.success("添加学校成功"); }
+      
       
     }, error => {
       this.errorprocessor(error,"添加学校失败");  
@@ -60,8 +60,8 @@ export class InstitutionService {
 
   deleteschool(school_id: string) {
     this.http.delete<any>(this.serveurl + "/school?account=" + this.account + "&id=" + school_id, this.httpOptions).subscribe((data: any) => {
-      if (data.result != true) { this.messageservice.warning(data.message); }
-      this.messageservice.success("删除学校成功,请刷新");
+      if (data.result != true) { this.messageservice.warning(data.message); } else { this.messageservice.success("删除学校成功");}
+      
     }, error => {
       this.errorprocessor(error,"删除学校失败");       
     });
@@ -71,8 +71,8 @@ export class InstitutionService {
     this.http.patch<any>(this.serveurl + "/school?account=" + this.account, data, this.httpOptions).subscribe((data: any) => {
       if (data.result != true) {
         this.messageservice.warning(data.message);
-      }
-      this.messageservice.success("修改学校信息成功");
+      } else {this.messageservice.success("修改学校信息成功"); }
+      
     }, error => {
       this.errorprocessor(error,"修改学校信息失败");  
     });
@@ -82,8 +82,8 @@ export class InstitutionService {
     this.http.post<any>(this.serveurl + "/institution?account=" + this.account + "&school_id=" + school_id + "&institution=" + institution,null,this.httpOptions).subscribe((data:any) => {
       if (data.result != true) {
         this.messageservice.warning(data.message);
-      }
-      this.messageservice.success("添加学院成功,请刷新");
+      } else { this.messageservice.success("添加学院成功"); }
+     
     }, error => {
       this.errorprocessor(error,"添加学院失败");  
     });
@@ -91,8 +91,8 @@ export class InstitutionService {
 
   deleteinstitution(id: string) {
     this.http.delete<any>(this.serveurl + "/institution?account=" + this.account + "&id=" + id, this.httpOptions).subscribe((data: any) => {
-      if (data.result != true) { this.messageservice.warning(data.message); }
-      this.messageservice.success("删除学院成功,请刷新");
+      if (data.result != true) { this.messageservice.warning(data.message); } else {  this.messageservice.success("删除学院成功");}
+     
     }, error => {
       this.errorprocessor(error,"删除学院失败");  
     });
@@ -100,8 +100,8 @@ export class InstitutionService {
 
   updateinstitution(id: string, name: string) {
     this.http.patch<any>(this.serveurl + "/institution?account=" + this.account + "&id=" + id + "&institution=" + name, null, this.httpOptions).subscribe((data: any) => {
-      if (data.result != true) { this.messageservice.warning(data.message); }
-      this.messageservice.success("修改学院信息成功,请刷新");
+      if (data.result != true) { this.messageservice.warning(data.message); } else { this.messageservice.success("修改学院信息成功");}
+      
     }, error => {
       this.errorprocessor(error,"修改学院信息失败");  
       

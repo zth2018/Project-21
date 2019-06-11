@@ -56,7 +56,7 @@ export class UserService {
     var user = {"username": username,"phone": phone,"password":password}
       this.http.post<Response>(this.serveurl + "/register",user, this.httpOptions).subscribe((data:any) => {
       if (data.result) {
-        //this.Login(phone, password, false);
+        this.Login(phone, password, false,1);
       }
     });
   }//---------------------------------------------------------------------------------------------------------------------------
