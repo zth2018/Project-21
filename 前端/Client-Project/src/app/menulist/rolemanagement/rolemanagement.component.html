@@ -1,3 +1,61 @@
-<p>
-  rolemanagement works!
-</p>
+<button nz-button (click)="addrole()" nzType="primary">添加角色</button>
+
+<button nz-button (click)="refreshlist()" style="margin-left:3px" nzType="primary">刷新</button>
+
+<nz-table #nestedTable [nzData]="listOfRole" [nzPageSize]="10">
+  <thead>
+    <tr>
+      <th nzShowExpand></th>
+      <th nzCustomFilter>
+        角色
+      </th>   
+      <th>Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+      <tr>
+        <td nzShowExpand [(nzExpand)]="data.expand"></td>
+        <td>{{ data.role_name }}</td>
+        <td>
+          <a (click)="addrolepermission(data.role_name)">添加权限</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="updaterole(data)">编辑</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="deleterole(data.id)">删除</a>
+        </td>
+      </tr>
+
+      <tr [nzExpand]="data.expand">
+        <td></td>
+        <td colspan="7">
+          <nz-table #innerTable [nzData]="data.permissionList" nzSize="middle" [nzShowPagination]="true">
+            <thead>
+              <tr>
+                <th>权限</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+  <tbody>
+
+
+    <tr *ngFor="let data of innerTable.data;let i = index">
+      <td>{{ data.permission }}</td>
+ 
+      <td>
+        <span class="table-operation">
+          <a (click)="deleterolepermission(data.id)">删除</a>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+      </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
+
+
+

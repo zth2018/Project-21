@@ -2,11 +2,11 @@
 
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username"><span style="color:white">姓名</span></nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username"><span style="color:white">用户名</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="username" id="username" />
+      <input nz-input formControlName="username" id="username" placeholder="用户名" />
       <nz-form-explain *ngIf="validateForm.get('username')?.dirty && validateForm.get('username')?.errors">
-        请输入您的姓名!
+        请输入您的用户名!
       </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
@@ -15,7 +15,7 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phone"><span style="color:white">手机号码</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input #phone formControlName="phone" id="phone" (blur)="checkphone(phone.value)" />
+      <input nz-input #phone formControlName="phone" id="phone" (blur)="checkphone(phone.value)" placeholder="手机号码" />
       <nz-form-explain *ngIf="validateForm.get('phone')?.dirty && validateForm.get('phone')?.errors">
         请输入您的手机号码!
       </nz-form-explain>
@@ -32,6 +32,7 @@
              type="password"
              id="password"
              formControlName="password"
+             placeholder="密码"
              (ngModelChange)="updateConfirmValidator()" />
       <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">密码最少为6位，必需包含数字和字母！</nz-form-explain>
     </nz-form-control>
@@ -41,7 +42,7 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired><span style="color:white">确认密码</span></nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+      <input nz-input type="password" formControlName="checkPassword" id="checkPassword" placeholder="确认密码" />
       <nz-form-explain *ngIf="validateForm.get('checkPassword')?.dirty && validateForm.get('checkPassword')?.errors">
         <ng-container *ngIf="validateForm.get('checkPassword')?.hasError('required')">
           请确认登陆密码!
@@ -60,7 +61,7 @@
     <nz-form-control [nzSm]="14" [nzXs]="24">
       <div nz-row [nzGutter]="8">
         <div nz-col [nzSpan]="12">
-          <input nz-input formControlName="captcha" id="captcha" />
+          <input nz-input formControlName="captcha" id="captcha" placeholder="随便输" />
         </div>
         <div nz-col [nzSpan]="12">
           <button nz-button (click)="getCaptcha($event)">获取验证码</button>

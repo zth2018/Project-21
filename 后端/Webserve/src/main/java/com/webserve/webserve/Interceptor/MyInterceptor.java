@@ -52,7 +52,7 @@ public class MyInterceptor implements HandlerInterceptor{
         }catch (IOException e){
             throw e;
         }
-        if(!httpServletRequest.getParameter("username").equals(login.getUsername())){
+        if(!httpServletRequest.getParameter("account").equals(login.getAccount())){
             return  false;
         }
 //        System.out.println(login.checkvalid());

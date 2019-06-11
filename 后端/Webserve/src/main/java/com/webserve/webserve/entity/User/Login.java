@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Login {
-    private String username;
+    private String account;
 
     private String validtime;
     public  String valid="20195261915";
@@ -21,8 +21,8 @@ public class Login {
 //        }
 //
 //    }
-    public Login(String username){
-        this.username =username;
+    public Login(String account){
+        this.account =account;
         Date now=new Date();
         Calendar validtime=Calendar.getInstance();
         validtime.setTime(now);
@@ -31,7 +31,7 @@ public class Login {
         this.validtime= dateFormat.format( validtime.getTime() );
     }
     public Login (){
-        this.username ="";
+        this.account ="";
         this.validtime="";
     }
     public boolean checkvalid(){
@@ -55,16 +55,16 @@ public class Login {
         return validtime.after(now);
     }
 
-    public String getUsername() {
-        return username;
+    public String getAccount() {
+        return account;
     }
 
     public String getValidtime() {
         return validtime;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public void setValidtime(String validtime) {

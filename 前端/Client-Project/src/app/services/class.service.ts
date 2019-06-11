@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Class } from "../interface/class";
 import { Router } from '@angular/router';
-
+import { NzMessageService } from 'ng-zorro-antd';
 
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ClassService {
   httpOptions: any;
   
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,private message:NzMessageService) {
    this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -46,7 +46,10 @@ export class ClassService {
 
     this.http.get<any>(this.serveurl + "/class/getcclass?phone=" + phone,this.httpOptions).subscribe(data => {
       rs(data);
-    });    
+    }, error => {
+      this.processor(error, "没啥");
+
+      });    
   }
 
 
@@ -96,5 +99,14 @@ export class ClassService {
     this.router.navigate(['/homepage/memlistforstudent', class_id]);
   }
 
+
+  processor(error: any, msg: string) {
+    if (error.status == 0) {
+      setTimeout(() => {
+        this.router.navigateByUrl("/login");
+      }, 3000);
+      this.message.warning("令牌已失效," + msg + ",请重新登陆");
+    }
+  }
 
 }

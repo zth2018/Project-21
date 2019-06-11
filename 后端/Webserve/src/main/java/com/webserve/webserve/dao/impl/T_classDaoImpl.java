@@ -1,7 +1,7 @@
 package com.webserve.webserve.dao.impl;
 
 import com.webserve.webserve.dao.T_classDao;
-import com.webserve.webserve.entity.User.User;
+import com.webserve.webserve.entity.User.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -131,19 +131,19 @@ public class T_classDaoImpl implements T_classDao {
 
 
     @Override
-    public List<User>getuser(String class_id){
+    public List<Account>getuser(String class_id){
         String sql="select phone from t_user_class where class_id=?";
         List<Map<String,Object>>phone=this.jdbcTemplate.queryForList(sql,class_id );
-        List<User>result=new ArrayList<>();
+        List<Account>result=new ArrayList<>();
         String sql2="select * from t_user where phone=?";
         for(int i=0;i<phone.size();i++){
-            User tmp=new User();
-            this.jdbcTemplate.queryForObject(sql2, new RowMapper<User>() {
+            Account tmp=new Account();
+            this.jdbcTemplate.queryForObject(sql2, new RowMapper<Account>() {
                 @Override
-                public User mapRow(ResultSet resultSet, int x) throws SQLException {
+                public Account mapRow(ResultSet resultSet, int x) throws SQLException {
                     tmp.setUsername(resultSet.getString("username"));
                     tmp.setPhone(resultSet.getString("phone"));
-                    tmp.setId(resultSet.getInt("id"));
+                    tmp.setId(resultSet.getString("id"));
 
                     return null;
                 }

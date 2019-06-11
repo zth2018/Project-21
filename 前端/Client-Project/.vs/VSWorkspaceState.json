@@ -2,15 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
-    "\\src\\app\\forms",
-    "\\src\\app\\forms\\login-form",
-    "\\src\\app\\interface",
-    "\\src\\app\\menulist",
-    "\\src\\app\\menulist\\institutionmanagement",
-    "\\src\\app\\menulist\\MyClass",
-    "\\src\\app\\services"
+    "\\src\\app"
   ],
-  "SelectedNode": "\\src\\app\\menulist\\institutionmanagement\\institutionmanagement.component.ts",
+  "SelectedNode": "\\src\\app\\forms",
   "PreviewInSolutionExplorer": false
 }

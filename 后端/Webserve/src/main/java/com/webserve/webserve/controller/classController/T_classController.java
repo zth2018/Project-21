@@ -1,7 +1,7 @@
 package com.webserve.webserve.controller.classController;
 
 import com.webserve.webserve.entity.Class.T_class;
-import com.webserve.webserve.entity.User.User;
+import com.webserve.webserve.entity.User.Account;
 import com.webserve.webserve.service.T_ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +45,7 @@ public class T_classController {
     }
 
     @GetMapping("getuser")
-    public List<User> getuser(@RequestParam String class_id){
+    public List<Account> getuser(@RequestParam String class_id){
         return this.t_classService.getuser(class_id);
     }
 }

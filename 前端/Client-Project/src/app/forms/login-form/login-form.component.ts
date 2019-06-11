@@ -14,11 +14,12 @@ import {Response} from '../../interface/response'
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+  howlogin:number=0;
   response: Response;
   user: any;
-  a: boolean=false;
-  msg: string;
-  remember: string;
+  //a: boolean=false;
+  //msg: string;
+  //remember: string;
   validateForm: FormGroup;
 
 
@@ -27,38 +28,30 @@ export class LoginFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.remember = localStorage.getItem("remember");
+    //this.howlogin = localStorage.getItem("howlogin");
+    //this.remember = localStorage.getItem("remember");
     this.validateForm = this.fb.group({
-      phone: [this.remember, [Validators.required]],
+      phone: [localStorage.getItem("remember"), [Validators.required]],
       password: [null, [Validators.required]],
       remember: [false]
     })
-  }
+  }//---------------------------------------------------------------------------------------------
 
       
 
   submitForm(): void {
-
+    //console.log(this.howlogin);
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity(); 
     }
-
-    this.user = this.validateForm.getRawValue();
-    this.http.Login(this.user.phone, this.user.password, (rs: Response) => {
-      this.a = !rs.result;
-      if (rs.result) {
-        if (this.user.remember) {
-          localStorage.setItem("remember", this.user.phone);
-        }
-        this.router.navigateByUrl("homepage");
-      }
-      else {
-        this.msg = rs.message;
-      }
-    });
+      this.user = this.validateForm.getRawValue();
+         
+        this.http.Login(this.user.phone, this.user.password, this.user.remember,this.howlogin);
+    
+    
    
-  }
+  }//----------------------------------------------------------------------------------------------
 
 
 

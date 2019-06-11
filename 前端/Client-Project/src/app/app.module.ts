@@ -29,8 +29,8 @@ import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component'
 import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist-for-s.component';
 import { MemberlistForTComponent } from './listpages/memberlist-for-t/memberlist-for-t.component';
 import { UsermanagementComponent } from './menulist/usermanagement/usermanagement.component';
-import { InstitutionmanagementComponent, addinsititutionComponent } from './menulist/institutionmanagement/institutionmanagement.component';
-import { RolemanagementComponent } from './menulist/rolemanagement/rolemanagement.component';
+import { InstitutionmanagementComponent, addinsititutionComponent, addschoolComponent, editschoolComponent, editinsititutionComponent } from './menulist/institutionmanagement/institutionmanagement.component';
+import { RolemanagementComponent, addroleComponent, updateroleComponent, addrolepermissionComponent } from './menulist/rolemanagement/rolemanagement.component';
 import { EditpersoninfoComponent } from './menulist/editpersoninfo/editpersoninfo.component';
 
 
@@ -69,10 +69,23 @@ registerLocaleData(zh);
     RolemanagementComponent,
     EditpersoninfoComponent,
     addinsititutionComponent,
-   
-   
+    addschoolComponent,
+    editschoolComponent,
+    editinsititutionComponent,
+    addroleComponent,
+    updateroleComponent,
+    addrolepermissionComponent
   ],
-  entryComponents: [EditclassComponent, addinsititutionComponent],
+  entryComponents: [
+    EditclassComponent,
+    addinsititutionComponent,
+    addschoolComponent,
+    editschoolComponent,
+    editinsititutionComponent,
+    addroleComponent,
+    updateroleComponent,
+    addrolepermissionComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
