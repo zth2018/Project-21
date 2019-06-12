@@ -6,7 +6,6 @@ import com.webserve.webserve.entity.Response;
 import com.webserve.webserve.entity.User.Account;
 
 import com.webserve.webserve.entity.User.Token;
-import com.webserve.webserve.entity.User.UserInfo;
 import com.webserve.webserve.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +18,14 @@ public class AccountServiceImpl implements AccountService {
     private UserInfoDao userInfoDao;
     @Override
     public Response Register(Account account){
-        int a=this.accountDao.insert(account);
+        int a=this.accountDao.register(account);
         Token token=new Token(account.getPhone());
         Response result=new Response();
         if(a>0){
             result.setResult(true);
             result.setToken(token.getToken());
             String uid=this.accountDao.getByPhone(account.getPhone()).getId();
+            result.setData(uid);
             this.userInfoDao.adduserinfo(uid);
         }else {
             result.setResult(false);
@@ -72,26 +72,56 @@ public class AccountServiceImpl implements AccountService {
         return this.accountDao.getuserrole(id);
     }//----------------------------------------------------------------------------------------
 
+    @Override
+    public Response changepassword(String uid,String old,String _new){
+        Response response=new Response();
+        String pas=this.accountDao.getpassword(uid);
+        if(pas.equals(old)){
+            if(this.accountDao.changepassword(uid,_new)==1){
+                response.setResult(true);
+            }else {
+                response.setResult(false);
+                response.setMessage("修改密码失败");
+            }
+        }else {
+            response.setResult(false);
+            response.setMessage("原密码错误");
+        }
+        return response;
+    }//----------------------------------------------------------------------------------------
+
+
 
 
 //--------------------------------------------------------------------------------------------------------------------
 //    @Override
-//    public int insert(Account user) {
-//        return accountDao.insert(user);
+//    public int register(Account user) {
+//        return accountDao.register(user);
 //    }
 
     @Override
-    public int deleteById(Integer id) {
+    public int deleteById(String id) {
         return accountDao.deleteById(id);
     }
 
     @Override
-    public int update(Account account) {
-        return accountDao.update(account);
+    public Response update(String username,String phone,String id) {
+        Response response=new Response();
+        Account account=new Account();
+        account.setUsername(username);
+        account.setPhone(phone);
+        account.setId(id);
+        if(this.accountDao.update(account)==1){
+            response.setResult(true);
+        }else{
+            response.setResult(false);
+            response.setMessage("更新账户信息失败");
+        }
+        return response;
     }
 
     @Override
-    public Account getById(Integer id) {
+    public Account getById(String id) {
         return accountDao.getById(id);
     }
 

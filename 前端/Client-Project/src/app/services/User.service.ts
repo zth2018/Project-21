@@ -22,8 +22,9 @@ export class UserService {
   httpOptions: any;
   response: Response;
   serveurl: any = environment.ServeUrl;
-
-  constructor(private http: HttpClient, private router: Router,  private message: NzMessageService) {
+  account: string;
+  constructor(private http: HttpClient, private router: Router, private message: NzMessageService) {
+    this.account = localStorage.getItem("account");
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -70,6 +71,78 @@ export class UserService {
  }//----------------------------------------------------------------------------------------------------------------------------
 
 
+  getalluserinfo(callback){
+    this.http.get(this.serveurl + "/user?account=" + this.account, this.httpOptions).subscribe((data: any) => {
+      if (data.result != true) {
+        this.message.warning(data.message);
+      } 
+      callback(data.data);
+    }, error => {
+      this.errorprocessor(error, "获取用户信息失败");
+    });
+
+  }//---------------------------------------------------------------------------------------------------------------------------
+
+  adduserbym(data: any) {
+    if (data.username == null || data.password == null||data.phone==null) { this.message.warning("添加用户失败，至少需要填入用户名、手机号及密码"); } else {
+      var info = { "name": data.name, "school": data.school, "institution": data.institution, "gender": data.gender, "age": data.age, "role": data.role, "username": data.username, "phone": data.phone };
+      this.http.post(this.serveurl + "/user?account=" + this.account + "&password=" + data.password, info, this.httpOptions).subscribe((data: any) => {
+        if (data.result != true) {
+          this.message.warning(data.message);
+        } else {
+          this.message.success("添加用户成功")
+        }
+      }, error => {
+        this.errorprocessor(error, "添加用户失败");
+      });
+    }
+  }//-----------------------------------------------------------------------------------------------------------------------------
+
+  deleteuserbym(uid: string) {
+    this.http.delete(this.serveurl + "/user?account=" + this.account + "&uid=" + uid, this.httpOptions).subscribe((data: any) => {
+      if (data.result != true) {
+        this.message.warning(data.message);
+      } else {
+        this.message.success("删除用户成功")
+      }
+    }, error => {
+      this.errorprocessor(error, "删除用户失败");
+    });
+  }//-----------------------------------------------------------------------------------------------------------------------------
+
+  updateuserinfo(data: any) {
+    if (data.username == null || data.phone == null) { this.message.warning("用户失败，用户名、手机号不能为空"); } else {
+      var info = { "name": data.name, "school": data.school, "institution": data.institution, "gender": data.gender, "age": data.age, "role": data.role, "username": data.username, "phone": data.phone,"id":data.id };
+      this.http.patch(this.serveurl + "/user?account=" + this.account, info, this.httpOptions).subscribe((data: any) => {
+        if (data.result != true) {
+          this.message.warning(data.message);
+        } else {
+          this.message.success("修改用户信息成功")
+        }
+      }, error => {
+        this.errorprocessor(error, "修改用户信息失败");
+      });
+    }
+  }//------------------------------------------------------------------------------------------------------------------------------
+
+
+  changepassword(old: string, _new: string) {
+    var uid = localStorage.getItem("uid");
+    if (old == null || _new == null) { this.message.warning("请输入原密码和新密码") } else {
+      this.http.patch(this.serveurl + "/account?account=" + this.account+"&uid="+uid+"&old="+old+"&_new="+_new,null, this.httpOptions).subscribe((data: any) => {
+        if (data.result != true) {
+          this.message.warning(data.message);
+        } else {
+          this.message.success("修改密码成功")
+        }
+      }, error => {
+        this.errorprocessor(error, "修改密码失败");
+      });
+    }
+  }//--------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
   getclassmemberfor(class_id: string): any {
@@ -96,7 +169,15 @@ export class UserService {
 
 
   
-
+  refreshtoken() {
+    this.account = localStorage.getItem("account");
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("token")
+      })
+    };
+  }//------------------------------------------------------------------------------------------------
 
  
   errorprocessor(error: any, msg: string) {

@@ -5,11 +5,11 @@ import com.webserve.webserve.entity.Response;
 import com.webserve.webserve.entity.User.Account;
 
 public interface AccountService {
-//    int insert(Account user);
-    int deleteById(Integer id);
-    int update(Account account);
+//    int register(Account user);
+    int deleteById(String id);
+    Response update(String username,String phone,String id);
     Account getByPhone(String phone);
-    Account getById(Integer id);
+    Account getById(String id);
 
 //    String loginByEmail(String email);
 //------------------------------------------------------------------------
@@ -18,5 +18,5 @@ public interface AccountService {
     String getuserrole(String id);
     boolean checkphone(String phone);
 //------------------------------------------------------------------------
-
+    Response changepassword(String uid,String old,String _new);
 }

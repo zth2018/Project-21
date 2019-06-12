@@ -1,6 +1,7 @@
 package com.webserve.webserve.controller.UserController;
 
 
+import com.webserve.webserve.entity.Response;
 import com.webserve.webserve.entity.User.Account;
 
 import com.webserve.webserve.service.AccountService;
@@ -15,49 +16,19 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    @PatchMapping()
+    public Response changepassword(@RequestParam String uid,@RequestParam String old,@RequestParam String _new){
+        return this.accountService.changepassword(uid,old,_new);
+    } //----------------------------------------------------------------------------------------------------------
 
-    //注册
-//    @PostMapping("/register")
-//    //    @ResponseBody
-//    public int register(@RequestBody Account u) {
-//        return this.accountService.insert(u);
+
+
+//    @RequestMapping("/getById")
+//    public Account getById(String id) {
+//        return this.accountService.getById(id);
 //    }
 
 
-    //登陆
-//    @GetMapping("/login")
-//    public Response login(@RequestParam String phone, @RequestParam String password){
-//        return this.accountService.Login(phone,password);
-//    }
-
-
-
-    //检查手机号是否已经注册
-//    @GetMapping("/checkphone")
-//    public boolean checkphone(@RequestParam String phone){
-//        return this.accountService.checkphone(phone);
-//    }
-
-
-
-    @RequestMapping("/getById")
-    public Account getById(Integer id) {
-        return this.accountService.getById(id);
-    }
-
-//    @RequestMapping("/update")
-//    public void update() {
-//        Account user = new Account();
-//        user.setId(1);
-//        user.setPassword("test123");
-//        this.accountService.update(user);
-//    }
-
-//    @RequestMapping("/deleteById")
-//    public void deleteById(Integer id) {
-//        int result = this.accountService.deleteById(id);
-//        System.out.println(result);
-//    }
 
 
 

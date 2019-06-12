@@ -48,4 +48,5 @@ public class Response {
     public String getToken() {
         return token;
     }
+
 }

@@ -28,10 +28,12 @@ import { MycreatedComponent, EditclassComponent } from './menulist/MyClass/creat
 import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
 import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist-for-s.component';
 import { MemberlistForTComponent } from './listpages/memberlist-for-t/memberlist-for-t.component';
-import { UsermanagementComponent } from './menulist/usermanagement/usermanagement.component';
+import { UsermanagementComponent, adduserComponent, updateuserComponent } from './menulist/usermanagement/usermanagement.component';
 import { InstitutionmanagementComponent, addinsititutionComponent, addschoolComponent, editschoolComponent, editinsititutionComponent } from './menulist/institutionmanagement/institutionmanagement.component';
 import { RolemanagementComponent, addroleComponent, updateroleComponent, addrolepermissionComponent } from './menulist/rolemanagement/rolemanagement.component';
 import { EditpersoninfoComponent } from './menulist/editpersoninfo/editpersoninfo.component';
+import { SafequitComponent } from './menulist/safequit/safequit.component';
+import { ChangepasswordComponent } from './menulist/changepassword/changepassword.component';
 
 
 //import { UserService } from './services/User.service';
@@ -74,7 +76,11 @@ registerLocaleData(zh);
     editinsititutionComponent,
     addroleComponent,
     updateroleComponent,
-    addrolepermissionComponent
+    addrolepermissionComponent,
+    SafequitComponent,
+    adduserComponent,
+    updateuserComponent,
+    ChangepasswordComponent
   ],
   entryComponents: [
     EditclassComponent,
@@ -84,7 +90,9 @@ registerLocaleData(zh);
     editinsititutionComponent,
     addroleComponent,
     updateroleComponent,
-    addrolepermissionComponent
+    addrolepermissionComponent,
+    adduserComponent,
+    updateuserComponent
   ],
   imports: [
     BrowserModule,

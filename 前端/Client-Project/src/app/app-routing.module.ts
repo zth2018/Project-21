@@ -17,6 +17,8 @@ import { UsermanagementComponent } from './menulist/usermanagement/usermanagemen
 import { InstitutionmanagementComponent } from './menulist/institutionmanagement/institutionmanagement.component';
 import { AuthGuard } from './auth/auth.guard';
 import { RolemanagementComponent } from './menulist/rolemanagement/rolemanagement.component';
+import { SafequitComponent } from './menulist/safequit/safequit.component';
+import { ChangepasswordComponent } from './menulist/changepassword/changepassword.component';
 
 const routes: Routes = [
   
@@ -27,6 +29,8 @@ const routes: Routes = [
        { path: 'usermanagement', component: UsermanagementComponent },
        { path: 'institutionmanagement', component: InstitutionmanagementComponent },
        { path: 'rolemanagement', component: RolemanagementComponent },
+       { path: 'safequit', component: SafequitComponent },
+       { path: 'changepassword', component: ChangepasswordComponent },
        { path: 'listpage', component: ListpageComponent },
        { path: 'editpage', component: EditpageComponent },
        { path: 'mycreatedclass', component: MycreatedComponent },

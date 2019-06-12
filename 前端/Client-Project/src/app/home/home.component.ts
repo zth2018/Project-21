@@ -23,27 +23,27 @@ export class HomeComponent implements OnInit {
       { "title": "用户管理", "link": "usermanagement" },
       { "title": "院校管理", "link": "institutionmanagement" },
       { "title": "角色管理", "link": "rolemanagement" },
-      { "title": "设置", "link": "#" },
-      { "title": "安全退出", "link": "#" },
-      { "title": "标准列表页", "link": "listpage" },
-      { "title": "标准编辑页", "link": "editpage" }
+      { "title": "个人信息", "link": "#" },
+      { "title": "修改密码", "link": "changepassword" },
+      { "title": "安全退出", "link": "safequit" },
+      
     ];
 
 
-    this.submenulist = [
-      {
-        "title": "我的班课", "menulist": [
-          { "title": "我创建的班课", "link": "mycreatedclass" },
-          { "title": "我加入的班课", "link": "myjoinedclass" }
-        ]
-      },
-      {
-        "title": "一个菜单", "menulist": [
-          { "title": "menu1", "link": "#" },
-          { "title": "menu2", "link": "#" }
-        ]
-      }
-    ];
+    //this.submenulist = [
+    //  {
+    //    "title": "我的班课", "menulist": [
+    //      { "title": "我创建的班课", "link": "mycreatedclass" },
+    //      { "title": "我加入的班课", "link": "myjoinedclass" }
+    //    ]
+    //  },
+    //  {
+    //    "title": "一个菜单", "menulist": [
+    //      { "title": "menu1", "link": "#" },
+    //      { "title": "menu2", "link": "#" }
+    //    ]
+    //  }
+    //];
 
 
   }
@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.institutionService.refreshtoken();
     this.roleservice.refreshtoken();
+    this.userService.refreshtoken();
   }
 
 }

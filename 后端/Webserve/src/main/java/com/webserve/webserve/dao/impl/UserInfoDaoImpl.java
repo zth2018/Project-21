@@ -1,5 +1,6 @@
 package com.webserve.webserve.dao.impl;
 
+import com.webserve.webserve.dao.AccountDao;
 import com.webserve.webserve.dao.UserInfoDao;
 import com.webserve.webserve.entity.User.Account;
 import com.webserve.webserve.entity.User.UserInfo;
@@ -19,13 +20,21 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
     @Autowired
     public JdbcTemplate jdbcTemplate;
-
+    @Autowired
+    private AccountDao accountDao;
 
     @Override
     public List<UserInfo>getalluserinfo(){
         String sql="select * from t_userinfo";
         RowMapper rowMapper=new BeanPropertyRowMapper(UserInfo.class);
-        return this.jdbcTemplate.query(sql,rowMapper);
+        List<UserInfo>userInfoList=this.jdbcTemplate.query(sql,rowMapper);
+        for(UserInfo userInfo:userInfoList){
+            Account account=this.accountDao.getById(userInfo.getId());
+            userInfo.setUsername(account.getUsername());
+            userInfo.setPhone(account.getPhone());
+        }
+        return userInfoList;
+        //return this.jdbcTemplate.query(sql,rowMapper);
     }//---------------------------------------------------------------------------------
 
     @Override
@@ -38,8 +47,8 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
     @Override
     public Void adduserinfo(String uid){
-        String sql="insert into t_userinfo (id,role) values(?,?)";
-        this.jdbcTemplate.update(sql, uid, "普通用户");
+        String sql="insert into t_userinfo (name,school,institution,age,gender,id,role) values(?,?,?,?,?,?,?)";
+        this.jdbcTemplate.update(sql,"未填写","未填写","未填写","未填写","未填写", uid, "普通用户");
         return null;
     }//----------------------------------------------------------------------------------
 
@@ -55,6 +64,12 @@ public class UserInfoDaoImpl implements UserInfoDao {
                 userInfo.getRole(),
                 userInfo.getId()
                 );
+    }//----------------------------------------------------------------------------------
+
+    @Override
+    public int deleteuser(String uid){
+        String sql="delete from t_userinfo where id=?";
+        return this.jdbcTemplate.update(sql,uid);
     }//----------------------------------------------------------------------------------
 
 

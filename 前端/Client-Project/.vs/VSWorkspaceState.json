@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app"
+    "\\src\\app",
+    "\\src\\app\\forms\\login-form",
+    "\\src\\app\\menulist",
+    "\\src\\app\\menulist\\changepassword"
   ],
-  "SelectedNode": "\\src\\app\\forms",
+  "SelectedNode": "\\src\\app\\menulist\\changepassword\\changepassword.component.html",
   "PreviewInSolutionExplorer": false
 }

@@ -11,5 +11,5 @@ public interface UserInfoDao {
     int updateuserinfo(UserInfo info);
     List<UserInfo>getalluserinfo();
     UserInfo getuserinfo(String uid);
-
+    int deleteuser(String uid);
 }

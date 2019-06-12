@@ -8,6 +8,8 @@ public class UserInfo {
     private String age;
     private String gender;
     private String role;
+    private String username;
+    private String phone;
     public String getId() {
         return id;
     }
@@ -62,5 +64,21 @@ public class UserInfo {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

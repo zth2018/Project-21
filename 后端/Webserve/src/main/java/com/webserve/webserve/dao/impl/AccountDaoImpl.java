@@ -21,7 +21,7 @@ public class AccountDaoImpl implements AccountDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int insert(Account account) {
+    public int register(Account account) {
         Date now=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String addtime = dateFormat.format( now );
@@ -36,32 +36,32 @@ public class AccountDaoImpl implements AccountDao {
     }//-----------------------------------------------------------------------------
 
     @Override
-    public int deleteById(Integer id) {
+    public int deleteById(String id) {
         String sql = "delete from t_user where id = ?";
         return this.jdbcTemplate.update(sql, id);
     }//--------------------------------------------------------------------------------
 
     @Override
     public int update(Account account) {
-        String sql = "update t_user set password = ? where id = ?";
+        String sql = "update t_user set username = ?,phone=? where id = ?";
         return this.jdbcTemplate.update(
                 sql,
-                account.getPassword(),
+                account.getUsername(),
+                account.getPhone(),
                 account.getId()
         );
     }//--------------------------------------------------------------------------------------
 
     @Override
-    public Account getById(Integer id) {
+    public Account getById(String id) {
         String sql = "select * from t_user where id = ?";
         return this.jdbcTemplate.queryForObject(sql, new RowMapper<Account>() {
 
             @Override
             public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Account account = new Account();
-                account.setId(rs.getString("id"));
                 account.setUsername(rs.getString("username"));
-                account.setPassword(rs.getString("password"));
+                account.setPhone(rs.getString("phone"));
                 return account;
             }
 
@@ -128,6 +128,25 @@ public class AccountDaoImpl implements AccountDao {
             }
         },phone);
     }//---------------------------------------------------------------------------------
+
+    @Override
+    public String getpassword(String uid){
+        String sql="select password from t_user where id=?";
+        return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("password");
+            }
+        },uid);
+    }//---------------------------------------------------------------------------------
+
+    @Override
+    public int changepassword(String uid,String password){
+        String sql="update t_user set password=? where id=?";
+        return this.jdbcTemplate.update(sql,password,uid);
+    }//---------------------------------------------------------------------------------
+
+
 
 }//----------------------------------
 

@@ -17,7 +17,7 @@ export class InstitutionmanagementComponent implements OnInit {
   listOfSchoolData: school[] = [];
   listOfDisplay: school[] = [];
   pushdata: school;
-  visible: boolean = true;
+  visible: boolean = false;
   //data: school=null;
   //listOfChildrenData: any[] = [];
   //schoolname: string;
