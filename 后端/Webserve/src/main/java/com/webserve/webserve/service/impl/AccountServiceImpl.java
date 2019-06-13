@@ -21,6 +21,16 @@ public class AccountServiceImpl implements AccountService {
         int a=this.accountDao.register(account);
         Token token=new Token(account.getPhone());
         Response result=new Response();
+//        if(this.accountDao.checkusername(account.getUsername()).equals("0")){
+//            result.setResult(false);
+//            result.setMessage("注册失败,用户名已存在");
+//            return result;
+//        }
+//        if(this.accountDao.checkphone(account.getPhone()).equals("0")){
+//            result.setResult(false);
+//            result.setMessage("注册失败,手机号已存在");
+//            return result;
+//        }
         if(a>0){
             result.setResult(true);
             result.setToken(token.getToken());
@@ -90,7 +100,14 @@ public class AccountServiceImpl implements AccountService {
         return response;
     }//----------------------------------------------------------------------------------------
 
-
+    @Override
+    public Response getpersoninfo(String uid){
+        Response response=new Response();
+        response.setData(this.userInfoDao.getuserinfo(uid));
+        response.setResult(true);
+        response.setMessage("获取个人信息失败");
+        return response;
+    }
 
 
 //--------------------------------------------------------------------------------------------------------------------

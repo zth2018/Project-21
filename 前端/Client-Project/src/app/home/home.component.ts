@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       { "title": "用户管理", "link": "usermanagement" },
       { "title": "院校管理", "link": "institutionmanagement" },
       { "title": "角色管理", "link": "rolemanagement" },
-      { "title": "个人信息", "link": "#" },
+      { "title": "个人信息", "link": "personinfo" },
       { "title": "修改密码", "link": "changepassword" },
       { "title": "安全退出", "link": "safequit" },
       

@@ -19,6 +19,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { RolemanagementComponent } from './menulist/rolemanagement/rolemanagement.component';
 import { SafequitComponent } from './menulist/safequit/safequit.component';
 import { ChangepasswordComponent } from './menulist/changepassword/changepassword.component';
+import { PersoninfoComponent } from './menulist/personinfo/personinfo.component';
 
 const routes: Routes = [
   
@@ -31,6 +32,7 @@ const routes: Routes = [
        { path: 'rolemanagement', component: RolemanagementComponent },
        { path: 'safequit', component: SafequitComponent },
        { path: 'changepassword', component: ChangepasswordComponent },
+       { path: 'personinfo', component: PersoninfoComponent },
        { path: 'listpage', component: ListpageComponent },
        { path: 'editpage', component: EditpageComponent },
        { path: 'mycreatedclass', component: MycreatedComponent },

@@ -1,0 +1,60 @@
+<style>
+  .c1{
+    border:2px solid;
+    max-width:350px;
+    padding:10px 10px 10px 10px;
+    position:absolute;
+    left:45%;
+    top:15%;
+  }
+
+
+</style>
+
+
+
+
+
+
+
+<div class="c1">
+  <h2>个人信息修改</h2>
+  <hr />
+  <h3>姓名:</h3>
+  <input nz-input style="width: 150px" placeholder="选填" [(ngModel)]="name" />
+  <h3>账号角色:</h3>
+  <nz-select style="width: 200px;"
+             nzAllowClear
+             nzPlaceHolder="选择角色"
+             [(ngModel)]="role">
+    <nz-option *ngFor="let option of listofrole" [nzLabel]="option.role_name" [nzValue]="option.role_name"></nz-option>
+  </nz-select>
+  <h3>学校:</h3>
+  <nz-select style="width: 300px;"
+             nzAllowClear
+             nzPlaceHolder="选择学校"
+             [(ngModel)]="school"
+             (ngModelChange)="institutionlist($event)">
+    <nz-option *ngFor="let option of listofschool" [nzLabel]="option.schoolname" [nzValue]="option.schoolname"></nz-option>
+  </nz-select>
+  <h3>学院:</h3>
+  <nz-select style="width: 300px;"
+             nzAllowClear
+             nzPlaceHolder="请先选择学校"
+             [(ngModel)]="institution">
+    <nz-option *ngFor="let option of listofinstitution" [nzLabel]="option.institution" [nzValue]="option.institution"></nz-option>
+  </nz-select>
+  <h3>性别:</h3>
+  <nz-select style="width: 100px;"
+             nzAllowClear
+             nzPlaceHolder="性别"
+             [(ngModel)]="gender">
+    <nz-option nzLabel="男" nzValue="男"></nz-option>
+    <nz-option nzLabel="女" nzValue="女"></nz-option>
+  </nz-select>
+  <h3>年龄:</h3>
+  <input nz-input style="width: 100px" placeholder="选填" [(ngModel)]="age" />
+  <button nz-button nzType="primary" style="margin-left:100px" (click)="updatepersoninfo()">提交修改</button>
+</div>
+
+

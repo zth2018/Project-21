@@ -19,4 +19,5 @@ public interface AccountService {
     boolean checkphone(String phone);
 //------------------------------------------------------------------------
     Response changepassword(String uid,String old,String _new);
+    Response getpersoninfo(String uid);
 }

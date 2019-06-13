@@ -113,6 +113,20 @@ public class AccountDaoImpl implements AccountDao {
         }
     }//-----------------------------------------------------------------------------
 
+    @Override
+    public String checkusername(String username) {
+        String sql = "select id from t_user where username = ?";
+        try {
+            return this.jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+                @Override
+                public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                    return resultSet.getString("id");
+                }
+            }, username);
+        }catch (Exception e){
+            return "0";
+        }
+    }//-----------------------------------------------------------------------------
 
 
     @Override

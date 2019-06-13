@@ -17,6 +17,8 @@ public interface AccountDao {
 
     String checkphone(String phone);//检查手机号码是否已被注册
 
+    String checkusername(String username);
+
     Account login(String username, Integer how);//登陆
 
     String getuserrole(String id);

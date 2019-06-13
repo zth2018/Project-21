@@ -125,6 +125,19 @@ export class UserService {
     }
   }//------------------------------------------------------------------------------------------------------------------------------
 
+  updatepersoninfo(data: any) {
+    this.http.post(this.serveurl + "/account?account=" + this.account, data, this.httpOptions).subscribe((data: any) => {
+      if (data.result != true) {
+        this.message.warning(data.message);
+      } else {
+        this.message.success("修改用户信息成功")
+      }
+    }, error => {
+      this.errorprocessor(error, "修改用户信息失败");
+    });
+  }//------------------------------------------------------------------------------------------------------------------------------
+
+
 
   changepassword(old: string, _new: string) {
     var uid = localStorage.getItem("uid");
@@ -141,7 +154,18 @@ export class UserService {
     }
   }//--------------------------------------------------------------------------------------------------------------------------------
 
-
+  getpersoninfo(uid:string,callback) {
+    this.http.get(this.serveurl + "/account?account=" + this.account + "&uid=" + uid, this.httpOptions).subscribe((data: any) => {
+      if (data.result != true) {
+        this.message.warning(data.message);
+      } else {
+        callback(data);
+        this.message.success("获取个人信息成功")
+      }
+    }, error => {
+      this.errorprocessor(error, "获取个人信息失败");
+    });
+  }
 
 
 

@@ -31,9 +31,10 @@ import { MemberlistForTComponent } from './listpages/memberlist-for-t/memberlist
 import { UsermanagementComponent, adduserComponent, updateuserComponent } from './menulist/usermanagement/usermanagement.component';
 import { InstitutionmanagementComponent, addinsititutionComponent, addschoolComponent, editschoolComponent, editinsititutionComponent } from './menulist/institutionmanagement/institutionmanagement.component';
 import { RolemanagementComponent, addroleComponent, updateroleComponent, addrolepermissionComponent } from './menulist/rolemanagement/rolemanagement.component';
-import { EditpersoninfoComponent } from './menulist/editpersoninfo/editpersoninfo.component';
+
 import { SafequitComponent } from './menulist/safequit/safequit.component';
 import { ChangepasswordComponent } from './menulist/changepassword/changepassword.component';
+import { PersoninfoComponent } from './menulist/personinfo/personinfo.component';
 
 
 //import { UserService } from './services/User.service';
@@ -69,7 +70,6 @@ registerLocaleData(zh);
     UsermanagementComponent,
     InstitutionmanagementComponent,
     RolemanagementComponent,
-    EditpersoninfoComponent,
     addinsititutionComponent,
     addschoolComponent,
     editschoolComponent,
@@ -80,7 +80,8 @@ registerLocaleData(zh);
     SafequitComponent,
     adduserComponent,
     updateuserComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    PersoninfoComponent
   ],
   entryComponents: [
     EditclassComponent,

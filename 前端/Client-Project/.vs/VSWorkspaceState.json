@@ -3,10 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\forms\\login-form",
     "\\src\\app\\menulist",
-    "\\src\\app\\menulist\\changepassword"
+    "\\src\\app\\menulist\\changepassword",
+    "\\src\\app\\menulist\\personinfo",
+    "\\src\\app\\menulist\\usermanagement",
+    "\\src\\app\\pages\\login",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\menulist\\changepassword\\changepassword.component.html",
+  "SelectedNode": "\\src\\app\\services\\User.service.ts",
   "PreviewInSolutionExplorer": false
 }

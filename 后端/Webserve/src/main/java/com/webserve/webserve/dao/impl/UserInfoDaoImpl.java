@@ -48,7 +48,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
     @Override
     public Void adduserinfo(String uid){
         String sql="insert into t_userinfo (name,school,institution,age,gender,id,role) values(?,?,?,?,?,?,?)";
-        this.jdbcTemplate.update(sql,"未填写","未填写","未填写","未填写","未填写", uid, "普通用户");
+        this.jdbcTemplate.update(sql,"未知","未知","未知","未知","未知", uid, "普通用户");
         return null;
     }//----------------------------------------------------------------------------------
 
