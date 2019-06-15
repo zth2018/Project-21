@@ -53,23 +53,51 @@ export class PersoninfoComponent implements OnInit {
       this.gender = this.user.gender;
       this.age = this.user.age;
       this.id = this.user.id;
+      this.institutionservice.getallschool((callback: any) => {
+        this.listofschool = callback.data;
+        var x = this.listofschool.findIndex((value: any, index: number): boolean => {
+          if (value.schoolname == this.user.school) return true;
+        });
+        if (x != -1) {
+          this.listofinstitution = this.listofschool[x].institutions;
+        }
+        else {
+          this.listofinstitution = [];
+        }
+      });
+
     });
     this.roleservice.getallrole((callback: any) => {
       this.listofrole = callback.data;
     });
 
-    this.institutionservice.getallschool((callback: any) => {
-      this.listofschool = callback.data;
-      var x = this.listofschool.findIndex((value: any, index: number): boolean => {
-        if (value.schoolname == this.user.school) return true;
-      });
-      if (x != -1) {
-        this.listofinstitution = this.listofschool[x].institutions;
-      }
-      else {
-        this.listofinstitution = [];
-      }
+    //this.institutionservice.getallschool((callback: any) => {
+    //  this.listofschool = callback.data;
+    //  var x = this.listofschool.findIndex((value: any, index: number): boolean => {
+    //    if (value.schoolname == this.user.school) return true;
+    //  });
+    //  if (x != -1) {
+    //    this.listofinstitution = this.listofschool[x].institutions;
+    //  }
+    //  else {
+    //    this.listofinstitution = [];
+    //  }
+    //});
+  }//--------------------------------------------------------------------------------------------------------------------------
+
+  institutionlist(data: string) {
+
+    var x = this.listofschool.findIndex((value: any, index: number): boolean => {
+      if (value.schoolname == data) return true;
     });
-  }
+    if (x != -1) {
+      this.listofinstitution = this.listofschool[x].institutions;
+      this.institution = null;
+    }
+    else {
+      this.listofinstitution = [];
+    }
+  }//---------------------------------------------------------------------------------------------------------------------------
+
 
 }//------------------------------------------------------------------------------------------

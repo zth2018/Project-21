@@ -19,15 +19,9 @@ import { SignupFormComponent } from './forms/signup-form/signup-form.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { Page403Component } from './pages/page403/page403.component';
 import { Page500Component } from './pages/page500/page500.component';
-import { LockpageComponent } from './pages/lockpage/lockpage.component';
 import { ListpageComponent } from './shares/listpage/listpage.component';
 import { EditpageComponent } from './shares/editpage/editpage.component';
-import { LockFormComponent } from './forms/lock-form/lock-form.component';
 import { FogotpasswordFormComponent } from './forms/fogotpassword-form/fogotpassword-form.component';
-import { MycreatedComponent, EditclassComponent } from './menulist/MyClass/created/mycreated.component';
-import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
-import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist-for-s.component';
-import { MemberlistForTComponent } from './listpages/memberlist-for-t/memberlist-for-t.component';
 import { UsermanagementComponent, adduserComponent, updateuserComponent } from './menulist/usermanagement/usermanagement.component';
 import { InstitutionmanagementComponent, addinsititutionComponent, addschoolComponent, editschoolComponent, editinsititutionComponent } from './menulist/institutionmanagement/institutionmanagement.component';
 import { RolemanagementComponent, addroleComponent, updateroleComponent, addrolepermissionComponent } from './menulist/rolemanagement/rolemanagement.component';
@@ -35,6 +29,7 @@ import { RolemanagementComponent, addroleComponent, updateroleComponent, addrole
 import { SafequitComponent } from './menulist/safequit/safequit.component';
 import { ChangepasswordComponent } from './menulist/changepassword/changepassword.component';
 import { PersoninfoComponent } from './menulist/personinfo/personinfo.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 
 //import { UserService } from './services/User.service';
@@ -57,16 +52,9 @@ registerLocaleData(zh);
     Page404Component,
     Page403Component,
     Page500Component,
-    LockpageComponent,
     ListpageComponent,
     EditpageComponent,
-    LockFormComponent,
     FogotpasswordFormComponent,
-    MycreatedComponent,
-    MyjoinedComponent,
-    EditclassComponent,
-    MemberlistForSComponent,
-    MemberlistForTComponent,
     UsermanagementComponent,
     InstitutionmanagementComponent,
     RolemanagementComponent,
@@ -81,10 +69,10 @@ registerLocaleData(zh);
     adduserComponent,
     updateuserComponent,
     ChangepasswordComponent,
-    PersoninfoComponent
+    PersoninfoComponent,
+    WelcomeComponent
   ],
   entryComponents: [
-    EditclassComponent,
     addinsititutionComponent,
     addschoolComponent,
     editschoolComponent,

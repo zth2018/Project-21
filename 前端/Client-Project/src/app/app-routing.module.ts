@@ -7,12 +7,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { Page403Component } from './pages/page403/page403.component';
 import { Page500Component } from './pages/page500/page500.component';
-import { LockpageComponent } from './pages/lockpage/lockpage.component';
 import { ListpageComponent } from './shares/listpage/listpage.component';
 import { EditpageComponent } from './shares/editpage/editpage.component';
-import { MycreatedComponent } from './menulist/MyClass/created/mycreated.component';
-import { MyjoinedComponent } from './menulist/MyClass/joined/myjoined.component';
-import { MemberlistForSComponent } from './listpages/memberlist-for-s/memberlist-for-s.component';
 import { UsermanagementComponent } from './menulist/usermanagement/usermanagement.component';
 import { InstitutionmanagementComponent } from './menulist/institutionmanagement/institutionmanagement.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -20,6 +16,7 @@ import { RolemanagementComponent } from './menulist/rolemanagement/rolemanagemen
 import { SafequitComponent } from './menulist/safequit/safequit.component';
 import { ChangepasswordComponent } from './menulist/changepassword/changepassword.component';
 import { PersoninfoComponent } from './menulist/personinfo/personinfo.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 const routes: Routes = [
   
@@ -28,6 +25,7 @@ const routes: Routes = [
     path: 'homepage', component: HomeComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard],
     children: [
        { path: 'usermanagement', component: UsermanagementComponent },
+      
        { path: 'institutionmanagement', component: InstitutionmanagementComponent },
        { path: 'rolemanagement', component: RolemanagementComponent },
        { path: 'safequit', component: SafequitComponent },
@@ -35,13 +33,10 @@ const routes: Routes = [
        { path: 'personinfo', component: PersoninfoComponent },
        { path: 'listpage', component: ListpageComponent },
        { path: 'editpage', component: EditpageComponent },
-       { path: 'mycreatedclass', component: MycreatedComponent },
-       { path: 'myjoinedclass', component: MyjoinedComponent },
-       { path: 'memlistforstudent/:class_id', component: MemberlistForSComponent },
+       { path: '**', component: WelcomeComponent }
     ]},
   {path: 'forgetpassword', component: ForgotpasswordComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'lockpage', component: LockpageComponent},
   {path: '404', component: Page404Component},
   {path: '403', component: Page403Component},
   {path: '500', component: Page500Component},

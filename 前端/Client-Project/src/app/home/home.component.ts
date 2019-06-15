@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/User.service';
 import { InstitutionService } from '../services/institution.service';
 import { RoleService } from '../services/role.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,25 +31,10 @@ export class HomeComponent implements OnInit {
     ];
 
 
-    //this.submenulist = [
-    //  {
-    //    "title": "我的班课", "menulist": [
-    //      { "title": "我创建的班课", "link": "mycreatedclass" },
-    //      { "title": "我加入的班课", "link": "myjoinedclass" }
-    //    ]
-    //  },
-    //  {
-    //    "title": "一个菜单", "menulist": [
-    //      { "title": "menu1", "link": "#" },
-    //      { "title": "menu2", "link": "#" }
-    //    ]
-    //  }
-    //];
-
-
   }
 
   ngOnInit() {
+
     this.institutionService.refreshtoken();
     this.roleservice.refreshtoken();
     this.userService.refreshtoken();

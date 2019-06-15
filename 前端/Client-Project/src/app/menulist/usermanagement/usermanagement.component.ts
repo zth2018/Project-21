@@ -200,10 +200,11 @@ export class adduserComponent {
     });
     if (x != -1) {
       this.listofinstitution = this.listofschool[x].institutions;
+      this.institution = null;
     }
     else {
       this.listofinstitution = [];
-      this.institution = null;
+      
     }
       
   }
@@ -338,12 +339,13 @@ export class updateuserComponent {
     });
     if (x != -1) {
       this.listofinstitution = this.listofschool[x].institutions;
+      this.institution = null;
     }
     else {
       this.listofinstitution = [];
-      this.institution = null;
+      
     }
 
-  }
+  }//--------------------------------------------------------------------------------------
 
 }//-----------------------------------------------------------------------
