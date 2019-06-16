@@ -17,6 +17,7 @@ public interface AccountService {
     Response Register(Account account);
     String getuserrole(String id);
     boolean checkphone(String phone);
+    boolean checkusername(String username);
 //------------------------------------------------------------------------
     Response changepassword(String uid,String old,String _new);
     Response getpersoninfo(String uid);

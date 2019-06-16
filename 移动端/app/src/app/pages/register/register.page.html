@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>注册</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content>
+ 
+<div>
+    <img src="assets\image\LOGO.jpg" alt="">
+   
+    <div>
+        
+      <ion-input type="text"  placeholder="用户名" class="input"  [(ngModel)]="username"></ion-input>
+      <ion-input type="text" placeholder="手机号" class="input" [(ngModel)]="phone"></ion-input>
+      <ion-input type="password" placeholder="密码" class="input" [(ngModel)]="password"></ion-input>
+      <ion-input type="password" placeholder="确认密码" class="input" [(ngModel)]="password_confirm"></ion-input>
+    </div>
+    
+    <ion-button (click)="register()" class="register-button">
+      注册
+    </ion-button>
+    <a (click)="login()" style="margin-left:40px;margin-top: 5px">去登陆</a>
+  </div>
+  
+  
+  </ion-content>

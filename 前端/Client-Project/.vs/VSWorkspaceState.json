@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\home"
+    "\\src\\app\\forms",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\login",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\services",
+  "SelectedNode": "\\src\\app\\services\\User.service.ts",
   "PreviewInSolutionExplorer": false
 }

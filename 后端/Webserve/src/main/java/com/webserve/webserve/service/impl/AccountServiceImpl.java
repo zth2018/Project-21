@@ -18,31 +18,43 @@ public class AccountServiceImpl implements AccountService {
     private UserInfoDao userInfoDao;
     @Override
     public Response Register(Account account){
-        int a=this.accountDao.register(account);
-        Token token=new Token(account.getPhone());
+
+//        Token token=new Token(account.getPhone());
         Response result=new Response();
-//        if(this.accountDao.checkusername(account.getUsername()).equals("0")){
-//            result.setResult(false);
-//            result.setMessage("注册失败,用户名已存在");
-//            return result;
-//        }
-//        if(this.accountDao.checkphone(account.getPhone()).equals("0")){
-//            result.setResult(false);
-//            result.setMessage("注册失败,手机号已存在");
-//            return result;
-//        }
-        if(a>0){
-            result.setResult(true);
-            result.setToken(token.getToken());
-            String uid=this.accountDao.getByPhone(account.getPhone()).getId();
-            result.setData(uid);
-            this.userInfoDao.adduserinfo(uid);
-        }else {
+        if(this.checkusername(account.getUsername())){
             result.setResult(false);
-            result.setMessage("注册失败");
+            result.setMessage("注册失败,用户名已存在");
+            return result;
+        }else{
+            if(this.checkphone(account.getPhone())){
+                result.setResult(false);
+                result.setMessage("注册失败,手机号已存在");
+                return result;
+            }else{
+                int a=this.accountDao.register(account);
+                if(a>0){
+                    result.setResult(true);
+//            result.setToken(token.getToken());
+                    String uid=this.accountDao.getByPhone(account.getPhone()).getId();
+                    result.setData(uid);
+                    this.userInfoDao.adduserinfo(uid);
+                }else {
+                    result.setResult(false);
+                    result.setMessage("注册失败");
+                }
+            }
         }
         return result;
     }//-------------------------------------------------------------------------------
+
+    @Override
+    public boolean checkusername(String username){
+        if(this.accountDao.checkusername(username).equals("0")){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     @Override
     public Response Login(String account, String password,Integer how){

@@ -16,7 +16,7 @@ public class RegisterController {
 
     @PostMapping()
     public Response register(@RequestBody Account u) {
-        return this.accountService.Register(u);
+            return this.accountService.Register(u);
     }
 
     @GetMapping()

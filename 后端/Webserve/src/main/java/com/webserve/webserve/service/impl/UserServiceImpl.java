@@ -54,9 +54,10 @@ public class UserServiceImpl implements UserService {
         account.setPhone(userInfo.getPhone());
         account.setPassword(password);
         response=this.accountService.Register(account);
-        userInfo.setId(response.getData().toString());
-        if(response.isResult())
-        this.updateuserinfo(userInfo);
+        if(response.isResult()){
+            userInfo.setId(response.getData().toString());
+            this.updateuserinfo(userInfo);
+        }
         return  response;
     }//------------------------------------------------------------------------------------------
 

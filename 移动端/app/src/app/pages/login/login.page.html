@@ -9,23 +9,24 @@
   
 <div>
   <img src="assets\image\LOGO.jpg" alt="">
-  <ion-segment style="height: 35px" (ionChange)="segmentChanged($event)">
-    <ion-segment-button >
+  <ion-segment  style="height: 35px;background-color:primary" >
+    <ion-segment-button checked (ionSelect)="segmentButtonClicked(0)">
       <ion-label>用户名登陆</ion-label>
     </ion-segment-button>
-    <ion-segment-button>
+    <ion-segment-button (ionSelect)="segmentButtonClicked(1)">
       <ion-label>手机号登陆</ion-label>
     </ion-segment-button>
   </ion-segment>
   <div>
-    <ion-input type="text" placeholder="账号" class="input"></ion-input>
-    <ion-input type="password" placeholder="密码" class="input"></ion-input>
+      
+    <ion-input type="text"  placeholder="账号" class="input" [(ngModel)]="account"></ion-input>
+    <ion-input type="password" placeholder="密码" class="input" [(ngModel)]="password"></ion-input>
   </div>
   
   <ion-button (click)="login()" class="login-button">
     登陆
   </ion-button>
-  <a href="" style="margin-left:40px">注册账号</a>
+  <a (click)="register()" style="margin-left:40px;margin-top: 5px">注册账号</a>
 </div>
 
 
