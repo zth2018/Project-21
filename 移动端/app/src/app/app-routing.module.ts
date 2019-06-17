@@ -6,6 +6,10 @@ const routes: Routes = [
     { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
     { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
     { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
+    { path: 'course', loadChildren: './pages/course/course.module#CoursePageModule' },  { path: 'createcourse', loadChildren: './pages/createcourse/createcourse.module#CreatecoursePageModule' },
+  { path: 'course-th', loadChildren: './pages/course-th/course-th.module#CourseThPageModule' },
+
+
 
    
 

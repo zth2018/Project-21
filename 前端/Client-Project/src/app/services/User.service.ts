@@ -41,8 +41,9 @@ export class UserService {
           localStorage.setItem("token", JSON.stringify(data.token));
           localStorage.setItem("account", account);
           localStorage.setItem("uid", data.data.id);
+          localStorage.setItem("username", data.data.username);
           if (remember == true) {
-            localStorage.setItem("remember", account);          
+            localStorage.setItem("remember", pw);          
           }
           this.router.navigateByUrl("homepage");
         } else {
@@ -56,9 +57,11 @@ export class UserService {
   Register(username: string, password: string, phone: string) { 
     var user = {"username": username,"phone": phone,"password":password}
       this.http.post<Response>(this.serveurl + "/register",user, this.httpOptions).subscribe((data:any) => {
-      if (data.result) {
-        this.Login(phone, password, false,1);
-      }
+        if (data.result) {
+          this.Login(phone, password, false, 1);
+        } else {
+          this.message.warning(data.message);
+        }
     });
   }//---------------------------------------------------------------------------------------------------------------------------
   
@@ -85,7 +88,7 @@ export class UserService {
 
   adduserbym(data: any) {
     if (data.username == null || data.password == null||data.phone==null) { this.message.warning("添加用户失败，至少需要填入用户名、手机号及密码"); } else {
-      var info = { "name": data.name, "school": data.school, "institution": data.institution, "gender": data.gender, "age": data.age, "role": data.role, "username": data.username, "phone": data.phone };
+      var info = { "id_n": data.id_n,"name": data.name, "school": data.school, "institution": data.institution, "gender": data.gender, "age": data.age, "role": data.role, "username": data.username, "phone": data.phone };
       this.http.post(this.serveurl + "/user?account=" + this.account + "&password=" + data.password, info, this.httpOptions).subscribe((data: any) => {
         if (data.result != true) {
           this.message.warning(data.message);
@@ -112,7 +115,7 @@ export class UserService {
 
   updateuserinfo(data: any) {
     if (data.username == null || data.phone == null) { this.message.warning("用户失败，用户名、手机号不能为空"); } else {
-      var info = { "name": data.name, "school": data.school, "institution": data.institution, "gender": data.gender, "age": data.age, "role": data.role, "username": data.username, "phone": data.phone,"id":data.id };
+      var info = { "id_n": data.id_n,"name": data.name, "school": data.school, "institution": data.institution, "gender": data.gender, "age": data.age, "role": data.role, "username": data.username, "phone": data.phone,"id":data.id };
       this.http.patch(this.serveurl + "/user?account=" + this.account, info, this.httpOptions).subscribe((data: any) => {
         if (data.result != true) {
           this.message.warning(data.message);
@@ -165,7 +168,7 @@ export class UserService {
     }, error => {
       this.errorprocessor(error, "获取个人信息失败");
     });
-  }
+  }//------------------------------------------------------------------------------------------------------------------------------
 
 
 

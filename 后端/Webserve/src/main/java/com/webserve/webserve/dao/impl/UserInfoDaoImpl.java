@@ -9,10 +9,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+
 import java.util.List;
 
 @Repository
@@ -47,14 +46,14 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
     @Override
     public Void adduserinfo(String uid){
-        String sql="insert into t_userinfo (name,school,institution,age,gender,id,role) values(?,?,?,?,?,?,?)";
-        this.jdbcTemplate.update(sql,"未知","未知","未知","未知","未知", uid, "普通用户");
+        String sql="insert into t_userinfo (name,school,institution,age,gender,id,role,id_n) values(?,?,?,?,?,?,?,?)";
+        this.jdbcTemplate.update(sql,"未知","未知","未知","未知","未知", uid, "普通用户","未知");
         return null;
     }//----------------------------------------------------------------------------------
 
     @Override
     public int updateuserinfo (UserInfo userInfo){
-        String sql="update t_userinfo set name=?,school=?,institution=?,gender=?,age=?,role=? where id=?";
+        String sql="update t_userinfo set name=?,school=?,institution=?,gender=?,age=?,role=?,id_n=? where id=?";
         return this.jdbcTemplate.update(sql,
                 userInfo.getName(),
                 userInfo.getSchool(),
@@ -62,6 +61,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
                 userInfo.getGender(),
                 userInfo.getAge(),
                 userInfo.getRole(),
+                userInfo.getId_n(),
                 userInfo.getId()
                 );
     }//----------------------------------------------------------------------------------

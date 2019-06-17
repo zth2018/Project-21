@@ -9,7 +9,7 @@ import { UserService } from '../../services/User.service';
   styleUrls: ['./personinfo.component.scss']
 })
 export class PersoninfoComponent implements OnInit {
-
+  id_n: string;
   role: string;
   name: string;
   school: string;
@@ -38,7 +38,8 @@ export class PersoninfoComponent implements OnInit {
       "gender": this.gender,
       "age": this.age,
       "role": this.role,
-      "id": this.id
+      "id": this.id,
+      "id_n":this.id_n
     };
     this.userservice.updatepersoninfo(info);
   }//------------------------------------------------------------------------------------------------------------------------
@@ -53,6 +54,7 @@ export class PersoninfoComponent implements OnInit {
       this.gender = this.user.gender;
       this.age = this.user.age;
       this.id = this.user.id;
+      this.id_n = this.user.id_n;
       this.institutionservice.getallschool((callback: any) => {
         this.listofschool = callback.data;
         var x = this.listofschool.findIndex((value: any, index: number): boolean => {
@@ -99,5 +101,9 @@ export class PersoninfoComponent implements OnInit {
     }
   }//---------------------------------------------------------------------------------------------------------------------------
 
+  //disable(option: any):boolean {
+  //  if (option.role_name == "管理员") return false;
+  //  else return true;
+  //}
 
 }//------------------------------------------------------------------------------------------

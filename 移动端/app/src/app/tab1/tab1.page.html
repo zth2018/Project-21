@@ -1,15 +1,31 @@
+
+<style>
+    .d1{
+        background-image: url(../assets/image/2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+    }
+    </style>
+
+
+
 <ion-header >
     <ion-toolbar color="primary">
         <ion-icon name="logo-github" slot="start" size="large" class="head-icon"></ion-icon>
       <ion-title >
         班课
       </ion-title>
-      <ion-icon name="add-circle-outline" slot="end" size="large" class="add"></ion-icon>
+      <ion-icon name="add-circle-outline" slot="end" size="large" class="add" (click)="presentActionSheet()"></ion-icon>
     </ion-toolbar>
   </ion-header>
   
   <ion-content>
-  
+    <div class="d1">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+          </ion-refresher>
+
      <ion-list>
        <ion-item>
          <ion-label>班课列表：</ion-label>
@@ -17,18 +33,18 @@
   
        <ion-item *ngFor="let item of listofclass" >
          
-         <img src="assets\icon\favicon.png" alt="">
-         <div style="margin-left: 10px;margin-bottom: 10px;margin-top: 10px;width: 100%">
+         <img src="assets\image\头像3.png" alt="">
+         <div style="margin-left: 10px;margin-bottom: 10px;margin-top: 10px;width: 100%" (click)="course(item.id,item.checkin_count,item.coursename,item.owner_id)">
             <ion-label class="id">班课号:{{item.id}}</ion-label>
-            <ion-label class="class-label">{{item.course}}</ion-label>
-            <ion-label class="class-label">{{item.class}}</ion-label>
-            <ion-label class="creator">{{item.creator}}</ion-label>
+            <ion-label class="class-label">{{item.coursename}}</ion-label>
+            <ion-label class="class-label">{{item.classname}}</ion-label>
+            <ion-label class="creator">{{item.owner_name}}</ion-label>
          </div>
        
        </ion-item>
   
      </ion-list>
   
-  
+  </div>
   
   </ion-content>

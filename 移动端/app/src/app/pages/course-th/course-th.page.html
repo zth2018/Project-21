@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-icon name="logo-github" slot="start" size="large" class="head-icon"></ion-icon>
+      <ion-title>{{coursename}}</ion-title>
+      <ion-icon name="more" slot="end" size="large" class="more" (click)="more()"></ion-icon>
+
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+          </ion-refresher>
+  <ion-list>
+  
+    <ion-item>
+      <div class="d3" (click)="checkin()">
+        <img src="assets\image\签到.png" alt="" class="image1">
+      <ion-label style="color: skyblue">发起签到</ion-label>
+      </div>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>签到次数</ion-label>
+      <ion-label style="text-align: right">{{checkin_count}}次</ion-label>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>成员总数</ion-label>
+      <ion-label style="text-align: right">{{member_n}}人</ion-label>
+    </ion-item>
+  
+    <ion-item *ngFor="let item of listofmember">
+        <img src="assets\image\头像.png" alt="">
+        
+        <div style="margin-left: 10px;margin-bottom: 10px;margin-top: 10px;width: 100%" >
+          <ion-label class="l3" (click)="checkin_sup(item.id,item.checkin_count)">补签</ion-label>
+          <ion-label>{{item.name}}</ion-label>
+          <ion-label class="l2">{{item.id_n||'未填写学号'}}</ion-label>
+          <ion-label class="l1">签到{{item.checkin_count}}次,缺勤{{checkin_count-item.checkin_count}}次</ion-label>
+        </div>
+    </ion-item>
+  
+  </ion-list>
+  </ion-content>

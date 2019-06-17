@@ -10,7 +10,8 @@ export class SafequitComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit() {
-    localStorage.setItem("token", null);
+    localStorage.removeItem("token")
+    localStorage.removeItem("remember")
     this.router.navigateByUrl("/login");
   }
 

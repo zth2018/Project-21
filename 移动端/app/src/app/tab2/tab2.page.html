@@ -1,13 +1,79 @@
+<style>
+    .d1{
+        background-image: url(../assets/image/2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+       
+    }
+    
+    </style>
+
 <ion-header>
   <ion-toolbar color="primary">
+      <ion-icon name="person" slot="start" size="large" style="margin-left: 10px"></ion-icon>
     <ion-title>
       个人信息
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  
+<ion-content >
+   <img src="..\assets\image\back1.jpg" alt="">
+<div  class="d1">
+ 
+ <ion-list >
+   <ion-item >
+     <ion-label >姓名</ion-label>
+     <ion-input  type="text" placeholder="姓名" style="text-align: right" [(ngModel)]="name"></ion-input>
+   </ion-item>
+   <ion-item>
+      <ion-label>性别</ion-label>
+      <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择性别" [(ngModel)]="gender">
+        <ion-select-option value="男">男</ion-select-option>
+        <ion-select-option value="女">女</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item >
+        <ion-label>年龄</ion-label>
+        <ion-input type="text" placeholder="年龄" style="text-align: right" [(ngModel)]="age"></ion-input>
+      </ion-item>
+   <ion-item>
+      <ion-label>身份</ion-label>
+      <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择身份" [(ngModel)]="role">
+        <ion-select-option (value)="item.role_name" *ngFor="let item of listofrole">{{item.role_name}}</ion-select-option>
+        
+      </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>学校</ion-label>
+        <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择学校" (ionChange)="refreshinstitutionlist()" [(ngModel)]="school">
+          <ion-select-option (value)="school.schoolname" *ngFor="let school of listofschool">{{school.schoolname}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>学院</ion-label>
+          <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择学院" [(ngModel)]="institution">
+            <ion-select-option (value)="institution.institution" *ngFor="let institution of listofinstitution">{{institution.institution}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item >
+            <ion-label>学号/工号</ion-label>
+            <ion-input type="text" placeholder="学号/工号" style="text-align: right" [(ngModel)]="id_n"></ion-input>
+          </ion-item>
+      
+         
+ </ion-list>
+ <br>
+<ion-list style="margin-top: 0px">
+     <ion-item>
+         <ion-label style="text-align: center" color="primary" (click)="updatepersoninfo()" >保存个人信息</ion-label>
+     </ion-item>
+</ion-list>
+
+
+</div>
+
 
 
 

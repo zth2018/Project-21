@@ -22,12 +22,12 @@
   <hr />
   <h3>姓名:</h3>
   <input nz-input style="width: 150px" placeholder="选填" [(ngModel)]="name" />
-  <h3>账号角色:</h3>
+  <h3>身份:</h3>
   <nz-select style="width: 200px;"
              nzAllowClear
-             nzPlaceHolder="选择角色"
+             nzPlaceHolder="选择角色" 
              [(ngModel)]="role">
-    <nz-option *ngFor="let option of listofrole" [nzLabel]="option.role_name" [nzValue]="option.role_name"></nz-option>
+    <nz-option *ngFor="let option of listofrole" [nzLabel]="option.role_name" [nzValue]="option.role_name" ></nz-option>
   </nz-select>
   <h3>学校:</h3>
   <nz-select style="width: 300px;"
@@ -54,7 +54,9 @@
   </nz-select>
   <h3>年龄:</h3>
   <input nz-input style="width: 100px" placeholder="选填" [(ngModel)]="age" />
-  <button nz-button nzType="primary" style="margin-left:100px" (click)="updatepersoninfo()">提交修改</button>
+  <h3>学号/工号:</h3>
+  <input nz-input style="width: 150px" placeholder="选填" [(ngModel)]="id_n" />
+  <button nz-button nzType="primary" style="margin-left:200px" (click)="updatepersoninfo()">提交修改</button>
 </div>
 
 

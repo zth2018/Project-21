@@ -31,8 +31,8 @@ export class LoginFormComponent implements OnInit {
     //this.howlogin = localStorage.getItem("howlogin");
     //this.remember = localStorage.getItem("remember");
     this.validateForm = this.fb.group({
-      phone: [localStorage.getItem("remember"), [Validators.required]],
-      password: [null, [Validators.required]],
+      account: [localStorage.getItem("account"), [Validators.required]],
+      password: [localStorage.getItem("remember"), [Validators.required]],
       remember: [false]
     })
   }//---------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ export class LoginFormComponent implements OnInit {
     }
       this.user = this.validateForm.getRawValue();
          
-        this.http.Login(this.user.phone, this.user.password, this.user.remember,this.howlogin);
+        this.http.Login(this.user.account, this.user.password, this.user.remember,this.howlogin);
     
     
    

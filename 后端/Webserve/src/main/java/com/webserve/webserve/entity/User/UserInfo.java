@@ -10,6 +10,7 @@ public class UserInfo {
     private String role;
     private String username;
     private String phone;
+    private String id_n;
     public String getId() {
         return id;
     }
@@ -80,5 +81,13 @@ public class UserInfo {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getId_n() {
+        return id_n;
+    }
+
+    public void setId_n(String id_n) {
+        this.id_n = id_n;
     }
 }

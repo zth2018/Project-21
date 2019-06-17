@@ -1,3 +1,14 @@
+
+
+<style>
+    .d1{
+        background-image: url(../assets/image/2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+    }
+    </style>
+
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>一定来</ion-title>
@@ -7,10 +18,10 @@
 <ion-content>
 
   
-<div>
+<div >
   <img src="assets\image\LOGO.jpg" alt="">
   <ion-segment  style="height: 35px;background-color:primary" >
-    <ion-segment-button checked (ionSelect)="segmentButtonClicked(0)">
+    <ion-segment-button (ionSelect)="segmentButtonClicked(0)">
       <ion-label>用户名登陆</ion-label>
     </ion-segment-button>
     <ion-segment-button (ionSelect)="segmentButtonClicked(1)">

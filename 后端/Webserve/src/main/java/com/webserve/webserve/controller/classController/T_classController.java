@@ -1,6 +1,7 @@
 package com.webserve.webserve.controller.classController;
 
 import com.webserve.webserve.entity.Class.T_class;
+import com.webserve.webserve.entity.Response;
 import com.webserve.webserve.entity.User.Account;
 import com.webserve.webserve.service.T_ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,38 +16,20 @@ public class T_classController {
     @Autowired
     private T_ClassService t_classService;
 
-
-    @GetMapping("/getclass")
-    public List<T_class> getclassid(@RequestParam String phone) {
-
-        return this.t_classService.getclass(phone);
+    @GetMapping
+    public Response getclasslist(@RequestParam String uid){
+        return this.t_classService.getclasslist(uid);
     }
 
-    @GetMapping("/getcclass")
-    public List<T_class> getcclassid(@RequestParam String phone) {
-
-        return this.t_classService.getcclass(phone);
+    @PostMapping
+    public Response addclass(@RequestBody T_class t_class){
+        return this.t_classService.addclass(t_class);
     }
 
-    @GetMapping("/getjclass")
-    public List<T_class> getjclassid(@RequestParam String phone) {
-
-        return this.t_classService.getjclass(phone);
+    @DeleteMapping
+    public Response closeclass(@RequestParam String cid){
+        return this.t_classService.closeclass(cid);
     }
 
-   @PostMapping("/createclass")
-    public int insertclass(@RequestBody T_class t_class){
-
-        return this.t_classService.insertclass(t_class);
-   }
-    @PostMapping("updateclass")
-    public int updateclass(@RequestBody T_class t_class){
-        return this.t_classService.updateclass(t_class);
-    }
-
-    @GetMapping("getuser")
-    public List<Account> getuser(@RequestParam String class_id){
-        return this.t_classService.getuser(class_id);
-    }
 }
 

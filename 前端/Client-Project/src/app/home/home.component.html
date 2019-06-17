@@ -1,4 +1,30 @@
 
+
+
+<style>
+  .logo {
+    height: 63px;
+    background: rgba(255, 255, 255, 0.2);
+    background-image: url(assets/images/头像.png);
+    background-repeat: repeat;
+    
+    margin: 16px;
+  }
+  .title{
+   
+  }
+  .head{
+    margin-left:20px;
+    
+   
+    width:inherit;
+  }
+  .bread{
+    float:left;
+    margin-left:20px;
+  }
+</style>
+
 <nz-layout style="height:900px">
 
   <!--[nzZeroTrigger]="zeroTrigger"-->
@@ -10,14 +36,14 @@
     <div class="logo"></div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
       <!--二级菜单-->
-      <li nz-submenu *ngFor="let item of submenulist">
+      <!--<li nz-submenu *ngFor="let item of submenulist">
         <span title><i nz-icon type="user"></i><span class="nav-text">{{item.title}}</span></span>
         <ul>
           <li nz-menu-item *ngFor="let item2 of item.menulist" [routerLink]=item2.link>{{item2.title}}</li>
         </ul>
-      </li>
+      </li>-->
       <!--一级菜单-->
-      <li nz-menu-item *ngFor="let item of menulist" [routerLink]=item.link>
+      <li nz-menu-item *ngFor="let item of menulist" [routerLink]=item.link (click)="titlechange(item.title)">
         <span><i nz-icon type="user"></i><span class="nav-text">{{item.title}}</span></span>
       </li>
     </ul>
@@ -29,22 +55,20 @@
   <nz-layout>
     <nz-header style="background: #fff; padding:0;">
 
+      <div class="head">
+        <label style="font-size:20px;opacity:1">用户名: {{username}}</label>
+        <label style="font-size:20px;opacity:1;margin-left:30px">身份: {{role}}</label>
+      </div>
       <nz-breadcrumb class="bread">
         <nz-breadcrumb-item>
-          首页
+          首页/{{menutitle}}
         </nz-breadcrumb-item>
-
-        <nz-breadcrumb-item>
-          一级菜单
-        </nz-breadcrumb-item>
-
-
-        <nz-breadcrumb-item>
-          二级菜单
-        </nz-breadcrumb-item>
-
-
       </nz-breadcrumb>
+      
+
+
+
+
 
     </nz-header>
 

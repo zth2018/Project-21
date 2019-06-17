@@ -104,7 +104,7 @@ export class UsermanagementComponent implements OnInit {
 
 
 
-    <h3>账号角色:</h3>
+    <h3>身份:</h3>
       <nz-select
       style="width: 200px;"
       nzAllowClear
@@ -143,6 +143,8 @@ export class UsermanagementComponent implements OnInit {
       <nz-option *ngFor="let option of listofinstitution" [nzLabel]="option.institution"  [nzValue]="option.institution"></nz-option>
       </nz-select>
 
+    <h3>学号/工号:</h3>
+    <input nz-input style="width: 200px" placeholder="选填" [(ngModel)]="id_n" />
 
 
 
@@ -175,7 +177,7 @@ export class adduserComponent {
   @Output() institution: string
   @Output() gender: string
   @Output() age: string
-
+  @Output() id_n:string
   listofrole: any;
   listofschool: any[]=[];
   listofinstitution: any[]=[];
@@ -211,7 +213,10 @@ export class adduserComponent {
 
 }//-----------------------------------------------------------------------
 
-
+//<h3>用户名: </h3>
+//  < input nz - input style = "width: 200px" placeholder = "必填"[(ngModel)] = "username" />
+//    <h3>手机号码: </h3>
+//      < input nz - input style = "width: 300px" placeholder = "选填"[(ngModel)] = "phone" />
 
 
 
@@ -219,13 +224,13 @@ export class adduserComponent {
   selector: 'app - updateuser',
   template: `
     <div>
-    <h3>用户名:</h3>
-    <input nz-input style="width: 200px" placeholder="必填" [(ngModel)]="username" />
-    <h3>手机号码:</h3>
-    <input nz-input style="width: 300px" placeholder="选填" [(ngModel)]="phone" />
+    <h3>用户名:{{username}}</h3>
+  
+    <h3>手机号码:{{phone}}</h3>
+    
 
 
-    <h3>账号角色:</h3>
+    <h3>身份:</h3>
       <nz-select
       style="width: 200px;"
       nzAllowClear
@@ -264,7 +269,8 @@ export class adduserComponent {
       <nz-option *ngFor="let option of listofinstitution" [nzLabel]="option.institution"  [nzValue]="option.institution"></nz-option>
       </nz-select>
 
-
+      <h3>学号/工号:</h3>
+      <input nz-input style="width: 200px" placeholder="选填" [(ngModel)]="id_n" />
 
 
     <h3>性别:</h3>
@@ -295,7 +301,8 @@ export class updateuserComponent {
   @Output() institution: string
   @Output() gender: string
   @Output() age: string
-  @Output() id:string
+  @Output() id: string
+  @Output() id_n:string
   @Input()  user:any
   listofrole: any;
   listofschool: any[] = [];
@@ -329,7 +336,7 @@ export class updateuserComponent {
     this.gender = this.user.gender;
     this.age = this.user.age;
     this.id = this.user.id;
-    
+    this.id_n = this.user.id_n;
   }//----------------------------------------------------------------------------------
 
   institutionlist(data: string) {

@@ -21,12 +21,12 @@ public class AccountServiceImpl implements AccountService {
 
 //        Token token=new Token(account.getPhone());
         Response result=new Response();
-        if(this.checkusername(account.getUsername())){
+        if(!this.checkusername(account.getUsername())){
             result.setResult(false);
             result.setMessage("注册失败,用户名已存在");
             return result;
         }else{
-            if(this.checkphone(account.getPhone())){
+            if(!this.checkphone(account.getPhone())){
                 result.setResult(false);
                 result.setMessage("注册失败,手机号已存在");
                 return result;
@@ -69,6 +69,7 @@ public class AccountServiceImpl implements AccountService {
             response.setResult(true);
             response.setToken(token.getToken());
             response.setMessage("登陆成功");
+            _account.setPassword("");
             response.setData(_account);
 //            this.accountDao.logintime(account);
         }else {
@@ -101,6 +102,7 @@ public class AccountServiceImpl implements AccountService {
         if(pas.equals(old)){
             if(this.accountDao.changepassword(uid,_new)==1){
                 response.setResult(true);
+                response.setMessage("修改密码成功");
             }else {
                 response.setResult(false);
                 response.setMessage("修改密码失败");

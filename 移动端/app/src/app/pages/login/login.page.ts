@@ -8,12 +8,16 @@ import { UserService} from '../../../api/user.service';
 })
 export class LoginPage implements OnInit {
   account:any;
-  login_by:number=0;
+  login_by:any=0;
   password:string;
   constructor(private router:Router,private userService:UserService) { }
 
   ngOnInit() {
     this.account=localStorage.getItem("account");
+    this.password=localStorage.getItem("password")
+    if(localStorage.getItem("login_by")!=null)
+    this.login_by=localStorage.getItem("login_by")
+    if(this.password!=null){this.login()}
   }
 
  

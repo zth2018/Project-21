@@ -72,9 +72,9 @@ public class AccountDaoImpl implements AccountDao {
     public Account login(String account, Integer how){
         String sql="";
         if(how==0){
-            sql = "select password,id from t_user where username = ?";
+            sql = "select * from t_user where username = ?";
         }else if(how==1){
-            sql = "select password,id from t_user where phone = ?";
+            sql = "select * from t_user where phone = ?";
         }
         RowMapper<Account>rowMapper=new BeanPropertyRowMapper<>(Account.class);
         try {

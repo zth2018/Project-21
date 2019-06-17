@@ -3,80 +3,57 @@ package com.webserve.webserve.entity.Class;
 import java.io.Serializable;
 
 public class T_class implements Serializable {
-    private String id;
-    private String classname;
-    private String description;
-    private String ownerphone;
-
-    private String addtime;
-    private String edittime;
-    private String starttime;
-    private String endtime;
-
-    public String getAddtime() {
-        return addtime;
+   private String id;
+   private String classname;
+   private String coursename;
+   private String owner_id;
+   private Integer checkin_count;
+   private String owner_name;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getClassname() {
-        return classname;
+    public String getOwner_name() {
+        return owner_name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getEdittime() {
-        return edittime;
-    }
-
-    public String getEndtime() {
-        return endtime;
+    public void setOwner_name(String owner_name) {
+        this.owner_name = owner_name;
     }
 
     public String getId() {
         return id;
     }
 
-
-
-    public String getOwnerphone() {
-        return ownerphone;
-    }
-
-    public String getStarttime() {
-        return starttime;
-    }
-
-    public void setAddtime(String addtime) {
-        this.addtime = addtime;
-    }
-
     public void setClassname(String classname) {
         this.classname = classname;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getClassname() {
+        return classname;
     }
 
-    public void setEdittime(String edittime) {
-        this.edittime = edittime;
+    public String getCoursename() {
+        return coursename;
     }
 
-    public void setEndtime(String endtime) {
-        this.endtime = endtime;
+    public void setCoursename(String coursename) {
+        this.coursename = coursename;
     }
 
-
-
-    public void setOwnerphone(String ownerphone) {
-        this.ownerphone = ownerphone;
+    public Integer getCheckin_count() {
+        return checkin_count;
     }
 
-    public void setStarttime(String starttime) {
-        this.starttime = starttime;
+    public String getOwner_id() {
+        return owner_id;
     }
 
-    public void setId(String id) {  this.id = id; }
+    public void setCheckin_count(Integer checkin_count) {
+        this.checkin_count = checkin_count;
+    }
 
+    public void setOwner_id(String owner_id) {
+        this.owner_id = owner_id;
+    }
 }

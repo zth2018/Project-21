@@ -1,33 +1,47 @@
+
+<style>
+.d1{
+    background-image: url(../assets/image/2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+</style>
+
+
 <ion-header >
   <ion-toolbar color="primary">
       <ion-icon name="logo-github" slot="start" size="large" class="head-icon"></ion-icon>
     <ion-title >
-      测试班课
+      设置
     </ion-title>
-    <ion-icon name="add-circle-outline" slot="end" size="large" class="add"></ion-icon>
+
+
+    <ion-icon name="add-circle-outline" slot="end" size="large" class="add" (click)="presentActionSheet()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
 
-   <ion-list>
-     <ion-item>
-       <ion-label>班课列表：</ion-label>
-     </ion-item>
+<div class="d1">
+ <ion-button (click)="changepassword()" class="b2">
+  修改密码
+</ion-button>
 
-     <ion-item *ngFor="let item of listofclass" >
-       
-       <img src="assets\icon\favicon.png" alt="">
-       <div style="margin-left: 10px;margin-bottom: 10px;margin-top: 10px;width: 100%">
-          <ion-label class="id">班课号:{{item.id}}</ion-label>
-          <ion-label class="class-label">{{item.course}}</ion-label>
-          <ion-label class="class-label">{{item.class}}</ion-label>
-          <ion-label class="creator">{{item.creator}}</ion-label>
-       </div>
-     
-     </ion-item>
 
-   </ion-list>
+<div>
+ <ion-button (click)="safequit()" class="b1" color="danger">
+  退出当前账号
+</ion-button>
+</div>
+
+<img src="..\assets\image\头像2.png" alt="">
+
+</div>
+
+  
 
 
 

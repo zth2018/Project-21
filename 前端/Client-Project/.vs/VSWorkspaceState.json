@@ -4,10 +4,12 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\forms",
-    "\\src\\app\\pages",
-    "\\src\\app\\pages\\login",
-    "\\src\\app\\services"
+    "\\src\\app\\forms\\signup-form",
+    "\\src\\app\\home",
+    "\\src\\app\\pages\\welcome",
+    "\\src\\app\\services",
+    "\\src\\assets\\images"
   ],
-  "SelectedNode": "\\src\\app\\services\\User.service.ts",
+  "SelectedNode": "\\src\\app\\home\\home.component.html",
   "PreviewInSolutionExplorer": false
 }

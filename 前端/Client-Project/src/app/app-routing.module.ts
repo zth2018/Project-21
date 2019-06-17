@@ -24,8 +24,7 @@ const routes: Routes = [
   {
     path: 'homepage', component: HomeComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard],
     children: [
-       { path: 'usermanagement', component: UsermanagementComponent },
-      
+       { path: 'usermanagement', component: UsermanagementComponent },      
        { path: 'institutionmanagement', component: InstitutionmanagementComponent },
        { path: 'rolemanagement', component: RolemanagementComponent },
        { path: 'safequit', component: SafequitComponent },
@@ -33,6 +32,7 @@ const routes: Routes = [
        { path: 'personinfo', component: PersoninfoComponent },
        { path: 'listpage', component: ListpageComponent },
        { path: 'editpage', component: EditpageComponent },
+       { path: 'welcome', component: WelcomeComponent },
        { path: '**', component: WelcomeComponent }
     ]},
   {path: 'forgetpassword', component: ForgotpasswordComponent},
