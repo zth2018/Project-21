@@ -95,4 +95,15 @@ export class CourseService {
      },error=>{alert("请重新登陆")})
    }
 
+   refreshcourse(){
+    this.account = localStorage.getItem("account");
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("token")
+      })
+    };
+   }
+
+
 }//-----------------------------------------------------------------------------------

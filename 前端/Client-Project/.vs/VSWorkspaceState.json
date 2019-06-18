@@ -3,13 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\forms",
-    "\\src\\app\\forms\\signup-form",
-    "\\src\\app\\home",
+    "\\src\\app\\menulist",
+    "\\src\\app\\pages",
     "\\src\\app\\pages\\welcome",
-    "\\src\\app\\services",
-    "\\src\\assets\\images"
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\home\\home.component.html",
+  "SelectedNode": "\\src\\app\\pages\\welcome\\welcome.component.html",
   "PreviewInSolutionExplorer": false
 }

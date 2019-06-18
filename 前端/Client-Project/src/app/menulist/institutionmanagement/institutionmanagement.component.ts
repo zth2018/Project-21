@@ -11,7 +11,7 @@ import {  school } from '../../interface/school';
   styleUrls: ['./institutionmanagement.component.scss']
 })
 export class InstitutionmanagementComponent implements OnInit {
-  searchValue = '';
+ 
   sortName: string | null = null;
   sortValue: string | null = null;
   listOfSchoolData: school[] = [];
@@ -163,24 +163,21 @@ export class InstitutionmanagementComponent implements OnInit {
   refreshlist() {
     this.institutionservice.getallschool((callback: Response) => {
       this.listOfSchoolData = callback.data;
-      this.search();
+      this.search("");
     });
     
   }//-------------------------------------------------------------------------------------------------------
 
-  search() {
+  search(s:any) {
     this.listOfDisplay = [];
     this.listOfSchoolData.forEach((value:school) => {
-      if (value.schoolname.includes(this.searchValue)) {
+      if (value.schoolname.includes(s) || value.province.includes(s) || value.city.includes(s)) {
         this.listOfDisplay.push(value);
       }       
     });
   }//-----------------------------------------------------------------------------------------
 
-  reset() {
-    this.searchValue = "";
-    this.listOfDisplay = this.listOfSchoolData;
-  }//----------------------------------------------------------------------------------------------------
+ 
 
 
 

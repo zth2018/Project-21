@@ -27,7 +27,7 @@
              nzAllowClear
              nzPlaceHolder="选择角色" 
              [(ngModel)]="role">
-    <nz-option *ngFor="let option of listofrole" [nzLabel]="option.role_name" [nzValue]="option.role_name" ></nz-option>
+    <nz-option *ngFor="let option of listofroledisplay" [nzLabel]="option.role_name" [nzValue]="option.role_name" ></nz-option>
   </nz-select>
   <h3>学校:</h3>
   <nz-select style="width: 300px;"

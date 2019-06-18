@@ -2,28 +2,18 @@
 
 <button nz-button (click)="refreshlist()" style="margin-left:3px" nzType="primary">刷新</button>
 
+
+<div>
+  <input nz-input placeholder="按关键字搜索" class="c3" #x />
+  <button nz-button nzType="primary" (click)="search(x.value)">搜索</button>
+</div>
+
+
 <nz-table #nestedTable [nzData]="listOfDisplay" [nzPageSize]="10">
   <thead>
     <tr>
       <th nzShowExpand></th>
-      <th nzCustomFilter>
-        学校
-        <nz-dropdown nzTrigger="click" nzPlacement="topLeft" [nzClickHide]="false" [(nzVisible)]="visible" nzTableFilter #dropdown>
-          <i nz-icon
-             nzType="search"
-             class="ant-table-filter-icon"
-             [class.ant-table-filter-open]="dropdown.nzVisible"
-             nz-dropdown></i>
-          <div class="search-box">
-            <input type="text" nz-input placeholder="按名称查找" [(ngModel)]="searchValue" />
-            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
-              查找
-            </button>
-            <button nz-button nzSize="small" (click)="reset()">重置</button>
-          </div>
-        </nz-dropdown>
-
-      </th>
+      <th>学校</th>
       <th>所属省份</th>
       <th>所在城市</th>
       <th>Action</th>

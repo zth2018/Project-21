@@ -18,10 +18,10 @@ export class PersoninfoComponent implements OnInit {
   age: string;
   id: string;
   user: any;
-  listofrole: any;
+  listofrole: any[]=[];
   listofschool: any[] = [];
   listofinstitution: any[] = [];
-
+  listofroledisplay: any[] = [];
   constructor(private roleservice: RoleService, private institutionservice: InstitutionService,private userservice:UserService) { }
 
   ngOnInit() {
@@ -71,6 +71,15 @@ export class PersoninfoComponent implements OnInit {
     });
     this.roleservice.getallrole((callback: any) => {
       this.listofrole = callback.data;
+      if (this.role != "管理员") {
+        this.listofrole.forEach((value: any, index: any) => {
+          if (value.role_name != "管理员")
+            this.listofroledisplay.push(this.listofrole[index]);
+        })
+      } else {
+        this.listofroledisplay = this.listofrole;
+      }
+
     });
 
     //this.institutionservice.getallschool((callback: any) => {

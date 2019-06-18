@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  user:any;
+  user:any=[];
   listofclass:any[]=[];
 
   constructor(private user_service:UserService,private course_service:CourseService,private router:Router,private actionSheetController: ActionSheetController,public alertController: AlertController) {
@@ -18,12 +18,7 @@ export class Tab1Page {
   }//-------------------------------------------------------------------------------------------------------------
 
   ngOnInit(): void {
-      this.course_service.getclasslist(localStorage.getItem("uid"),(callback:any)=>{
-        this.listofclass=callback;
-      });
-    this.user_service.getpersoninfo(localStorage.getItem("uid"),(callback:any)=>{
-          this.user=callback.data;
-    });
+     this.refresh()
   }//-------------------------------------------------------------------------------------------------------------------------
 
 
@@ -143,5 +138,22 @@ export class Tab1Page {
       this.listofclass=callback;
     });
   }
+
+ngDoCheck(): void {
+  //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+  //Add 'implements DoCheck' to the class.
+  if(this.user.id!=localStorage.getItem("uid")){
+    this.refresh();
+  }
+}
+
+refresh(){
+  this.course_service.getclasslist(localStorage.getItem("uid"),(callback:any)=>{
+    this.listofclass=callback;
+  });
+  this.user_service.getpersoninfo(localStorage.getItem("uid"),(callback:any)=>{
+      this.user=callback.data;
+});
+}
 
 }//----------------------------------------------------------------------------------------------------------------

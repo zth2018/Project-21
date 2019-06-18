@@ -19,9 +19,14 @@
 </ion-header>
 
 <ion-content >
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
    <img src="..\assets\image\back1.jpg" alt="">
 <div  class="d1">
  
+
  <ion-list >
    <ion-item >
      <ion-label >姓名</ion-label>
@@ -41,7 +46,7 @@
    <ion-item>
       <ion-label>身份</ion-label>
       <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择身份" [(ngModel)]="role">
-        <ion-select-option (value)="item.role_name" *ngFor="let item of listofrole">{{item.role_name}}</ion-select-option>
+        <ion-select-option (value)="item.role_name" *ngFor="let item of listofroledisplay">{{item.role_name}}</ion-select-option>
         
       </ion-select>
     </ion-item>

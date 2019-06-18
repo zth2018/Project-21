@@ -1,12 +1,20 @@
 <button nz-button (click)="adduser()" nzType="primary">添加用户</button>
 
 <button nz-button (click)="refreshlist()" style="margin-left:3px" nzType="primary">刷新</button>
+<div>
+  <input nz-input placeholder="按关键字搜索" class="c3" #x />
+  <button nz-button nzType="primary"  (click)="search(x.value)" >搜索</button>
+</div>
+
+
 
 <nz-table #table nzBordered nzTitle="用户信息" [nzData]="listOfDisplay" [nzPageSize]="10">
   <thead>
     <tr>
       <th>姓名</th>
-      <th>用户名</th>
+
+      
+      <th>用户名 </th>
       <th>手机号</th>
       <th>学校</th>
       <th>学院</th>

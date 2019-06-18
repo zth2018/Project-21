@@ -110,5 +110,14 @@ export class UserService {
   }
 
 
+  refreshuser(){
+    this.account = localStorage.getItem("account");
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("token")
+      })
+    };
+  }
 
 }//------------------------------------------------------------------------------------------

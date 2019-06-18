@@ -11,13 +11,14 @@ import { InstitutionService } from '../../services/institution.service';
 })
 export class UsermanagementComponent implements OnInit {
   listOfDisplay: any[] = [];
-
-
+  listOfUser: any[] = [];
+  
   constructor(private userservice: UserService, private modalService: NzModalService) { }
 
   ngOnInit() {
     this.userservice.getalluserinfo((callback: any) => {
       this.listOfDisplay = callback;
+      this.listOfUser = callback;
     });
   
   }//-------------------------------------------------------------------------------------------------
@@ -77,10 +78,27 @@ export class UsermanagementComponent implements OnInit {
   }//--------------------------------------------------------------------------------------------------------------
 
 
+ 
+
+  search(searchvalue:any) {
+    this.listOfDisplay = [];
+    this.listOfUser.forEach((value: any) => {
+      if (value.name.includes(searchvalue) || value.username.includes(searchvalue) || value.phone.includes(searchvalue) || value.school.includes(searchvalue) || value.institution.includes(searchvalue) || value.id_n.includes(searchvalue) || value.role.includes(searchvalue)) {
+        this.listOfDisplay.push(value);
+      }
+    });
+  }
+
+
+
+
+
+
 
   refreshlist() {
     this.userservice.getalluserinfo((callback: any) => {
       this.listOfDisplay = callback;
+      this.search("");
     });
   }
 
