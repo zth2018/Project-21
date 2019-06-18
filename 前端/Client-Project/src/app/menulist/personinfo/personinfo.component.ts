@@ -55,6 +55,18 @@ export class PersoninfoComponent implements OnInit {
       this.age = this.user.age;
       this.id = this.user.id;
       this.id_n = this.user.id_n;
+      this.roleservice.getallrole((callback: any) => {
+        this.listofrole = callback.data;
+        if (this.role != "管理员") {
+          this.listofrole.forEach((value: any, index: any) => {
+            if (value.role_name != "管理员")
+              this.listofroledisplay.push(this.listofrole[index]);
+          })
+        } else {
+          this.listofroledisplay = this.listofrole;
+        }
+
+      });
       this.institutionservice.getallschool((callback: any) => {
         this.listofschool = callback.data;
         var x = this.listofschool.findIndex((value: any, index: number): boolean => {
@@ -69,18 +81,7 @@ export class PersoninfoComponent implements OnInit {
       });
 
     });
-    this.roleservice.getallrole((callback: any) => {
-      this.listofrole = callback.data;
-      if (this.role != "管理员") {
-        this.listofrole.forEach((value: any, index: any) => {
-          if (value.role_name != "管理员")
-            this.listofroledisplay.push(this.listofrole[index]);
-        })
-      } else {
-        this.listofroledisplay = this.listofrole;
-      }
-
-    });
+  
 
     //this.institutionservice.getallschool((callback: any) => {
     //  this.listofschool = callback.data;

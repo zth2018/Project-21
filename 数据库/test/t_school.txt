@@ -1,2 +1,0 @@
-"schoolname"	"city"	"province"	"id"
-"福州大学"	"福州市"	"福建省"	"1"

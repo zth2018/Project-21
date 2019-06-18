@@ -37,9 +37,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getpersoninfo(localStorage.getItem("uid"), (callback: any) => {
-      this.role = callback.data.role;
-    })
+    //this.userService.getpersoninfo(localStorage.getItem("uid"), (callback: any) => {
+    //  this.role = callback.data.role;
+    //})
+    this.role=localStorage.getItem("role")
     this.menutitle = "欢迎页";
     this.username = localStorage.getItem("username");
     this.institutionService.refreshtoken();
@@ -49,6 +50,12 @@ export class HomeComponent implements OnInit {
 
   titlechange(title: any) {
     this.menutitle = title;
+  }
+
+
+  ngDoCheck(): void {
+
+
   }
 
 

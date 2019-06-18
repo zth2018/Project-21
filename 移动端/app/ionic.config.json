@@ -1,5 +1,7 @@
 {
-  "name": "app",
-  "integrations": {},
+  "name": "photo-rc1",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

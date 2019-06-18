@@ -34,7 +34,7 @@
    </ion-item>
    <ion-item>
       <ion-label>性别</ion-label>
-      <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择性别" [(ngModel)]="gender">
+      <ion-select  interface="alert" multiple="false" placeholder="选择性别" [(ngModel)]="gender">
         <ion-select-option value="男">男</ion-select-option>
         <ion-select-option value="女">女</ion-select-option>
       </ion-select>
@@ -45,20 +45,20 @@
       </ion-item>
    <ion-item>
       <ion-label>身份</ion-label>
-      <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择身份" [(ngModel)]="role">
+      <ion-select  interface="alert" multiple="false" placeholder="选择身份" [(ngModel)]="role">
         <ion-select-option (value)="item.role_name" *ngFor="let item of listofroledisplay">{{item.role_name}}</ion-select-option>
         
       </ion-select>
     </ion-item>
     <ion-item>
         <ion-label>学校</ion-label>
-        <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择学校" (ionChange)="refreshinstitutionlist()" [(ngModel)]="school">
+        <ion-select interface="alert" multiple="false" placeholder="选择学校" (ionChange)="refreshinstitutionlist()" [(ngModel)]="school">
           <ion-select-option (value)="school.schoolname" *ngFor="let school of listofschool">{{school.schoolname}}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
           <ion-label>学院</ion-label>
-          <ion-select [interfaceOptions]="customAlertOptions" interface="alert" multiple="false" placeholder="选择学院" [(ngModel)]="institution">
+          <ion-select  interface="alert" multiple="false" placeholder="选择学院" [(ngModel)]="institution">
             <ion-select-option (value)="institution.institution" *ngFor="let institution of listofinstitution">{{institution.institution}}</ion-select-option>
           </ion-select>
         </ion-item>

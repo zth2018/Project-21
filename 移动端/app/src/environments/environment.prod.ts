@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  ServeUrl: 'http://localhost:8080'
+  ServeUrl: 'http://122.152.192.53:8080'
 };

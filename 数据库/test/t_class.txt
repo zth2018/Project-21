@@ -1,3 +1,0 @@
-"id"	"classname"	"description"	"ownerphone"	"addtime"	"edittime"	"starttime"	"endtime"
-"1"	"update测试"	"1"	"1"	"9/5/2019 21:49:23"	"9/5/2019 21:49:23"		
-"2"	"2"	"2"	"2"				

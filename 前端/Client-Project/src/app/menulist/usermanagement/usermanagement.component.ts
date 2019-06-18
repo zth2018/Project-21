@@ -97,7 +97,7 @@ export class UsermanagementComponent implements OnInit {
 
   refreshlist() {
     this.userservice.getalluserinfo((callback: any) => {
-      this.listOfDisplay = callback;
+      this.listOfUser = callback;
       this.search("");
     });
   }

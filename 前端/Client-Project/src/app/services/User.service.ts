@@ -42,10 +42,16 @@ export class UserService {
           localStorage.setItem("account", account);
           localStorage.setItem("uid", data.data.id);
           localStorage.setItem("username", data.data.username);
+          this.refreshtoken();
+          this.getpersoninfo(data.data.id, (callback: any) => {
+            console.log("mark")
+            localStorage.setItem("role", callback.data.role);
+            this.router.navigateByUrl("homepage");
+          })
           if (remember == true) {
             localStorage.setItem("remember", pw);          
           }
-          this.router.navigateByUrl("homepage");
+          //this.router.navigateByUrl("homepage");
         } else {
           this.message.warning(data.message);
         }
