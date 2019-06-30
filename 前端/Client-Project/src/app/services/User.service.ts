@@ -24,17 +24,17 @@ export class UserService {
   serveurl: any = environment.ServeUrl;
   account: string;
   constructor(private http: HttpClient, private router: Router, private message: NzMessageService) {
-    this.account = localStorage.getItem("account");
+    this.account = 'account';
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem("token")
+        'Authorization': 'InititalToken'
       })
     };
   }//----------------------------------------------------------------------------------------------------------------------------
  
   Login(account:string,pw:string,remember:boolean,how:number):void {    
-     
+
     if (account != null && pw != null) {
       this.http.get<any>(this.serveurl + "/login?account=" + account + "&password=" + pw+"&how="+how).subscribe((data: any) => {
         if (data.result == true) {
@@ -44,7 +44,7 @@ export class UserService {
           localStorage.setItem("username", data.data.username);
           this.refreshtoken();
           this.getpersoninfo(data.data.id, (callback: any) => {
-            console.log("mark")
+      
             localStorage.setItem("role", callback.data.role);
             this.router.navigateByUrl("homepage");
           })

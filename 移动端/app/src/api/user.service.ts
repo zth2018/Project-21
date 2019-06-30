@@ -11,11 +11,11 @@ export class UserService {
   httpOptions: any;
   account: string;
   constructor(private http:HttpClient,private router:Router) {
-    this.account = localStorage.getItem("account");
+    this.account = 'account';
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem("token")
+        'Authorization': 'InitialToken'
       })
     };
    }//--------------------------------------------------------------------------------------------------
