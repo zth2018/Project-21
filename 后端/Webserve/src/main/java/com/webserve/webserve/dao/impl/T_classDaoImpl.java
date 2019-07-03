@@ -68,10 +68,11 @@ public class T_classDaoImpl implements T_classDao {
 
     @Override
     public T_class getclassbycid(String cid){
+
         String sql="select * from t_class where id=?";
         RowMapper rowMapper=new BeanPropertyRowMapper(T_class.class);
-        List<T_class>t_classes=this.jdbcTemplate.query(sql,rowMapper,cid);
-        return  t_classes.get(0);
+        List<T_class> t_classes = this.jdbcTemplate.query(sql, rowMapper, cid);
+        return t_classes.get(0);
     }//--------------------------------------------------------------------------------------------
 
     @Override

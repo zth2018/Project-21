@@ -35,7 +35,7 @@ export class CourseService {
          alert(data.message)
        }
        callback(data.result)
-     },error=>{alert("请重新登陆")}
+     },error=>{alert("创建班课失败")}
      )
    }
 
@@ -48,7 +48,7 @@ export class CourseService {
          alert(data.message)
        }
        callback(data.result)
-     },error=>{alert("请重新登陆")})
+     },error=>{alert("班课号不存在")})
    }
 
 
@@ -64,7 +64,7 @@ export class CourseService {
     this.http.post(this.serveurl+"/checkin?account="+this.account+"&cid="+cid,null,this.httpOptions).subscribe((data:any)=>{
       alert(data.message)
      
-    },error=>{alert("请重新登陆")})
+    },error=>{alert("发起签到失败")})
    }
 
    checkin(count:any,id:any){
@@ -72,27 +72,27 @@ export class CourseService {
     this.http.get(this.serveurl+"/checkin?account="+this.account+"&id="+id+"&cid="+cid+"&count="+count,this.httpOptions).subscribe((data:any)=>{
       alert(data.message)
       
-    },error=>{alert("请重新登陆")})
+    },error=>{alert("签到失败")})
    }
 
    quitclass(mid:string,callback){
      this.http.delete(this.serveurl+"/classinfo?account="+this.account+"&mid="+mid,this.httpOptions).subscribe((data:any)=>{
       alert(data.message)
       callback(data.result)
-    },error=>{alert("请重新登陆")})
+    },error=>{alert("退出班课失败")})
    }
 
    closeclass(cid:string,callback){
     this.http.delete(this.serveurl+"/class?account="+this.account+"&cid="+cid,this.httpOptions).subscribe((data:any)=>{
       alert(data.message)
       callback(data.result)
-    },error=>{alert("请重新登陆")})
+    },error=>{alert("结束班课失败")})
    }
 
    checkin_sup(id:string,checkin_count:string){
      this.http.patch(this.serveurl+"/checkin?account="+this.account+"&id="+id+"&count="+checkin_count,null,this.httpOptions).subscribe((data:any)=>{
        alert(data.message)
-     },error=>{alert("请重新登陆")})
+     },error=>{alert("补签失败")})
    }
 
    refreshcourse(){

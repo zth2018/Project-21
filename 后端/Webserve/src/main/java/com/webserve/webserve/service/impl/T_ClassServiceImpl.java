@@ -44,6 +44,7 @@ public class T_ClassServiceImpl implements T_ClassService {
     @Override
     public Response addclassmember(String uid,String cid){
         Response response=new Response();
+
         if(!this.t_classDao.getclassbycid(cid).getOwner_id().equals(uid)){
             Boolean mark=true;
             List<T_classmember>t_classmembers=new ArrayList<T_classmember>();

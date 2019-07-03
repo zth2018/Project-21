@@ -6,8 +6,6 @@
     "\\src\\app\\forms",
     "\\src\\app\\forms\\login-form",
     "\\src\\app\\home",
-    "\\src\\app\\pages\\login",
-    "\\src\\app\\pages\\signup",
     "\\src\\app\\services",
     "\\src\\environments"
   ],
